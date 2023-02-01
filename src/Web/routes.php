@@ -33,3 +33,11 @@ $map->attach('users.', '/users', function ($r) {
     $r->get('view',   '/{id}'       , Web\Users\Controllers\InfoController::class);
     $r->get('index',  ''            , Web\Users\Controllers\ListController::class);
 });
+
+
+$map->attach('urls.', '/urls', function ($r) {
+    $r->get('add',    '/add'        , Web\Urls\Controllers\AddController::class)->allows(['POST']);
+    $r->get('update', '/update{/id}', Web\Urls\Controllers\UpdateController::class)->allows(['POST']);
+    $r->get('delete', '/delete/{id}', Web\Urls\Controllers\DeleteController::class);
+    $r->get('index',  ''            , Web\Urls\Controllers\ListController::class);
+});

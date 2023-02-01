@@ -8,3 +8,12 @@ create table people (
 	role      varchar(30),
 	authentication_method varchar(40)
 );
+
+
+create table urls (
+	id        int unsigned not null primary key auto_increment,
+	person_id	  int unsigned not null,
+	code	varchar(6) not null,
+	original	varchar(128) not null,
+	foreign key(person_id) references people(id)
+);

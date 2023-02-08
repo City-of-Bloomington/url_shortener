@@ -13,9 +13,17 @@ use Domain\Urls\Actions\Search\Request as SearchRequest;
 use Web\Urls\Views\SearchView;
 use Web\Controller;
 use Web\View;
+use Web\Urls\View\test;
 
 class ListController extends Controller
 {
+    public function __invoke(array $params): View
+    {
+		
+        return new test();
+    }
+
+    /*
     public function __invoke(array $params): View
     {
 		$page     =  !empty($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -25,4 +33,5 @@ class ListController extends Controller
 
         return new SearchView($request, $response, parent::ITEMS_PER_PAGE, $page);
     }
+    */
 }

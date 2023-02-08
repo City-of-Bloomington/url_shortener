@@ -8,25 +8,11 @@ namespace Web\Urls\Views;
 
 use Web\View;
 
-use Domain\Urls\Actions\Info\Response as InfoResponse;
+// use Domain\Urls\Actions\Info\Response as InfoResponse;
 
-/*
+
 class InfoView extends View
 {
-    public function __construct(InfoResponse $response)
-    {
-        parent::__construct();
-
-        if ($response->errors) {
-            $_SESSION['errorMessages'] = $response->errors;
-        }
-        $person = $response->person;
-
-        $this->vars = [
-            'title'  => "{$person->firstname} {$person->lastname}",
-            'person' => $person
-        ];
-    }
 
     // :|
     public function render(): string
@@ -34,7 +20,7 @@ class InfoView extends View
         return $this->twig->render("{$this->outputFormat}/urls/info.twig", $this->vars);
     }
 }
-*/
+
 
 
 

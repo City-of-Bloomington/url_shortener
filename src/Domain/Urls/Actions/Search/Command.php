@@ -26,7 +26,6 @@ class Command
             return new Response([], null, [$e->getMessage()]);
         }
     }
-
 }
 
 

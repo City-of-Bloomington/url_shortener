@@ -6,4 +6,9 @@
     {% if isAllowed('users', 'index') %}
     <a href="{{ uri('users.index') }}">{{ _(['user', 'users', 10]) }}</a>
     {% endif %}
+
+    
+    {% if isAllowed('urls', 'index') %}
+    <a href="{{ uri('urls.index') }}">{{ _(['urls', 'urls', 10]) }}</a>
+    {% endif %}
 </nav>

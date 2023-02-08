@@ -35,5 +35,3 @@ class InfoView extends View
     }
 }
 */
-
-

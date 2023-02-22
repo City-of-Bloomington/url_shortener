@@ -13,14 +13,11 @@ use Web\View;
 
 class InfoView extends View
 {
-
-    // :|
+    
     public function render(): string
     {
         return $this->twig->render("{$this->outputFormat}/urls/info.twig", $this->vars);
     }
 }
-
-
 
 

@@ -19,34 +19,8 @@
     </header>
     <form method="get">
         <fieldset>
-            <div><label  for="firstname">{{ _('firstname') }}</label>
-                 <input name="firstname" id="firstname" value="{{ firstname }}" />
-            </div>
-            <div><label  for="lastname">{{ _('lastname') }}</label>
-                 <input name="lastname" id="lastname" value="{{ lastname }}" />
-            </div>
-            <div><label  for="email">{{ _('email') }}</label>
-                 <input name="email" id="email" value="{{ email }}" />
-            </div>
-            <button type="submit" class="search">{{ _('search') }}</button>
+            <div><h1>URLS</h1></div>
         </fieldset>
     </form>
-    {% if firstname or lastname or email %}
-        {% if isAllowed('people', 'add') %}
-        <a href="{{ uri('people.update') }}" class="add button">{{ _('person_add') }}</a>
-        {% endif %}
-
-        {% if not people %}
-        <div>{{ _('no_results', 'messages')|format(_(['person', 'people', 10])) }}</div>
-        {% endif %}
-    {% endif %}
-
-    {% if people %}
-        {{ include('html/people/list.twig') }}
-    {% endif %}
-
-    {% if total > itemsPerPage %}
-        {{ pagination.pageLinks(total, itemsPerPage, currentPage) }}
-    {% endif %}
 </section>
 {% endblock %}

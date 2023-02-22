@@ -12,6 +12,10 @@ class Request {
     public $person_id;
     public $original;
 
+    public $order;
+    public $itemsPerPage;
+    public $currentPage;
+
     public function __construct(?array $data=null, ?array $order=null, ?int $itemsPerPage=null, ?int $currentPage=null)
     {
         if ($data) 
@@ -21,5 +25,8 @@ class Request {
             if (!empty($data['code'     ])) { $this->code      = $data['code'     ]; }
             if (!empty($data['original' ])) { $this->original  = $data['original' ]; }
         }
+        if ($order       ) { $this->order        = $order;        }
+        if ($itemsPerPage) { $this->itemsPerPage = $itemsPerPage; }
+        if ($currentPage ) { $this->currentPage  = $currentPage;  }
     }
 }

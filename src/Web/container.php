@@ -5,6 +5,7 @@
  */
 declare (strict_types=1);
 use Aura\Di\ContainerBuilder;
+use Domain\Urls\Entities\Urls;
 
 $builder = new ContainerBuilder();
 $DI = $builder->newInstance();
@@ -15,7 +16,7 @@ $DI->set('db.default', \Web\Database::getConnection($DATABASES['default'], 'defa
 // Declare database repositories
 //---------------------------------------------------------
 $repos = [
-    'People', 'Users',
+    'People', 'Users', 'Urls'
 ];
 foreach ($repos as $t) {
     $DI->params[ "Web\\$t\\Pdo{$t}Repository"]["pdo"] = $DI->lazyGet('db.default');
@@ -50,4 +51,11 @@ foreach (['Add', 'Delete', 'Info', 'Search', 'Update'] as $a) {
     $DI->params[ "Domain\\Users\\Actions\\$a\\Command"]["repository"] = $DI->lazyGet('Domain\Users\DataStorage\UsersRepository');
     $DI->set(    "Domain\\Users\\Actions\\$a\\Command",
     $DI->lazyNew("Domain\\Users\\Actions\\$a\\Command"));
+}
+
+// URLS
+foreach (['Search'] as $a) {
+    $DI->params[ "Domain\\Urls\\Actions\\$a\\Command"]["repository"] = $DI->lazyGet('Domain\Urls\DataStorage\UrlsRepository');
+    $DI->set(    "Domain\\Urls\\Actions\\$a\\Command",
+    $DI->lazyNew("Domain\\Urls\\Actions\\$a\\Command"));
 }

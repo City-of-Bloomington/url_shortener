@@ -6,7 +6,7 @@
 declare (strict_types=1);
 namespace Domain\Urls\Entities;
 
-class Urls
+class Url
 {
     // urls:
     public $id;

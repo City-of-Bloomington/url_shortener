@@ -36,12 +36,10 @@ class SearchView extends View
         }
 
         $this->vars = [
+            'url'      => $response->urls,
             'total'       => $response->total,
             'itemsPerPage'=> $itemsPerPage,
             'currentPage' => $currentPage,
-            'firstname'   => !empty($_GET['firstname']) ? parent::escape($_GET['firstname']) : '',
-            'lastname'    => !empty($_GET['lastname' ]) ? parent::escape($_GET['lastname' ]) : '',
-            'email'       => !empty($_GET['email'    ]) ? parent::escape($_GET['email'    ]) : ''
         ];
     }
 

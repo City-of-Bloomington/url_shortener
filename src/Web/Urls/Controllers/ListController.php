@@ -19,12 +19,17 @@ class ListController extends Controller
 {
     public function __invoke(array $params): View
     {
+        // echo '--> ListController';
 		$page   = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
+        // echo '$page';
         $search   = $this->di->get('Domain\Urls\Actions\Search\Command');
+        // echo '$search';
         $request  = new SearchRequest($_GET, null, parent::ITEMS_PER_PAGE, $page);
+        // echo '$request';
         $response = $search($request);
+
         return new SearchView($request, $response, parent::ITEMS_PER_PAGE, $page);
-        // return new test();
+    
     }
 
 }

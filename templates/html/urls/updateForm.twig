@@ -11,29 +11,6 @@
 {% extends "html/layouts/default.twig" %}
 {% block content %}
 <section>
-    <header>
-        <h1>{{ title }}</h1>
-    </header>
 
-	<form method="post">
-		<fieldset><legend>{{ _('person_info') }}</legend>
-			<input name="id" type="hidden" value="{{ id }}" />
-            <div class="required">
-                <label  for="firstname">{{ _('firstname') }}</label>
-                <input name="firstname" id="firstname" value="{{ firstname }}" required="true" />
-            </div>
-            <div class="required">
-                <label  for="lastname">{{ _('lastname') }}</label>
-                <input name="lastname" id="lastname" value="{{ lastname }}" required="true" />
-            </div>
-            <div class="required">
-                <label  for="email">{{ _('email') }}</label>
-                <input name="email" id="email" value="{{ email }}" required="true" />
-            </div>
-
-            <button type="submit" class="save">{{ _('save') }}</button>
-            <a href="{{ return_url }}" class="cancel">{{ _('cancel') }}</a>
-		</fieldset>
-	</form>
 </section>
 {% endblock %}

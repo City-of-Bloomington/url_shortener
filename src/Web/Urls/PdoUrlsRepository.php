@@ -16,7 +16,7 @@ namespace Web\Urls;
 
 use Aura\SqlQuery\Common\SelectInterface;
 use Domain\Urls\DataStorage\UrlsRepository;
-use Domain\Urls\Entities\Urls;
+use Domain\Urls\Entities\Url;
 use Domain\Urls\Actions\Search\Request as SearchRequest;
 use Web\PdoRepository;
 
@@ -28,24 +28,24 @@ class PdoUrlsRepository extends PdoRepository implements UrlsRepository{
     public function columns()
     {
         static $columns;
-        if (!$columns) { $columns = array_keys(get_class_vars('Domain\People\Entities\Person')); }
+        if (!$columns) { $columns = array_keys(get_class_vars('Domain\Urls\Entities\Url')); }
         return $columns;
     }
 
-    public function load(int $person_id): Urls
+    public function load(int $id): Url
     {
         $select = $this->queryFactory->newSelect();
         $select->cols($this->columns())->from(self::TABLE);
-        $select->where('id=?', $person_id);
+        $select->where('id=?', $id);
         $result = $this->performSelect($select);
         if (count($result['rows'])) {
-            return new Urls($result['rows'][0]);
+            return new Url($result['rows'][0]);
         }
-        throw new \Exception('people/unknown');
+        throw new \Exception('url/unknown');
     }
 
 
-    public static function hydrate(array $row): Urls { return new Urls($row); }
+    public static function hydrate(array $row): Url { return new Url($row); }
 
     /**
      * Look for people using wildcard matching of fields
@@ -72,7 +72,7 @@ class PdoUrlsRepository extends PdoRepository implements UrlsRepository{
      * Saves a person and returns the ID for the person
      * 
      */
-    public function save(Urls $person): int
+    public function save(Url $person): int
     {
         return parent::saveToTable((array)$person, self::TABLE);
     }
@@ -82,7 +82,7 @@ class PdoUrlsRepository extends PdoRepository implements UrlsRepository{
         $result = parent::performSelect($select, self::$DEFAULT_SORT, $itemsPerPage, $currentPage);
 
         $people = [];
-        foreach ($result['rows'] as $r) { $people[] = new Urls($r); }
+        foreach ($result['rows'] as $r) { $people[] = new Url($r); }
         $result['rows'] = $people;
         return $result;
     }

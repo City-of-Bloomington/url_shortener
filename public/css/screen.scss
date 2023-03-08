@@ -1,7 +1,11 @@
 @import 'inc/vars';
 
-code { font-family: monospace; white-space: pre; }
+code { 
+    font-family: monospace; white-space: pre; 
+    .urls-view {
+        background-color: $blue;
+    }
 
-.urls-view {
-    background-color: $blue;
+
+
 }

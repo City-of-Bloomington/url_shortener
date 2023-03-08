@@ -1,27 +1,57 @@
 {#
- * @copyright 2017-2021 City of Bloomington, Indiana
- * @license http://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
- * @param string firstname
- * @param string lastname
- * @param string email
- * @param array  people         Array of people search results
- * @param int    total
- * @param int    itemsPerPage
- * @param int    currentPage
+
  #}
 {% extends "html/layouts/default.twig" %}
 {% import  "html/macros/pagination.twig" as pagination %}
 
 {% block content %}
-<section class="urls-view">
+
+
+
+<section>
     <header>
-        <h1>URLS</h1>
-        <h1>{{ _(['id', 'code', 100]) }}</h1>
-        <p>TODO: serach for urls</p>
+        <h1> Search url </h1>
+        <h3>TODO:</h3>
     </header>
+    <form method="get">
+        <fieldset>
+            <div>
+	            <label for="code">Code</label>
+	            <input name="code" id="code" value="{{ code }}" />
+            </div>
+            <div>
+	            <label for="original">Original</label>
+	            <input name="original" id="original" value="{{ original }}" />
+            </div>
+            <h1>{{ url }}</h1>
+            <button type="submit" class="search">Search</button>
+        </fieldset>
+    </form>
 
-    
-
+    {% if url %}
+    <table>
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Original URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for url in url %}
+            <tr>
+                <td>{{ url.code }}</td>
+                <td>{{ url.original }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No URLs found.</p>
+    {% endif %}
 
 </section>
+
+
+
+
 {% endblock %}

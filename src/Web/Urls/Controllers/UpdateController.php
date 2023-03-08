@@ -12,7 +12,7 @@ use Web\Urls\Views\UpdateView;
 use Web\Controller;
 use Web\View;
 
-/*
+
 class UpdateController extends Controller
 {
     public function __invoke(array $params): View
@@ -57,5 +57,5 @@ class UpdateController extends Controller
                 : View::generateUrl('resources.index'));
     }
 }
-*/
+
 

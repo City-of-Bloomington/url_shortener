@@ -36,10 +36,13 @@ class SearchView extends View
         }
 
         $this->vars = [
-            'url'      => $response->urls,
-            'total'       => $response->total,
-            'itemsPerPage'=> $itemsPerPage,
-            'currentPage' => $currentPage,
+            'url'         => $response->urls,
+            'total'        => $response->total,
+            'itemsPerPage' => $itemsPerPage,
+            'currentPage'  => $currentPage,
+            'code'         => !empty($_GET['code'    ]) ? parent::escape($_GET['code'    ]) : '',
+            'id'           => !empty($_GET['id'      ]) ? parent::escape($_GET['id'      ]) : '',
+            'original'     => !empty($_GET['original']) ? parent::escape($_GET['original']) : ''
         ];
     }
 
@@ -49,5 +52,6 @@ class SearchView extends View
         return $this->twig->render("{$this->outputFormat}/$template.twig", $this->vars);
     }
 }
+
 
 

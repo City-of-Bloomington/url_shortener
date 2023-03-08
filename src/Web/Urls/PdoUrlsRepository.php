@@ -20,11 +20,11 @@ use Domain\Urls\Entities\Url;
 use Domain\Urls\Actions\Search\Request as SearchRequest;
 use Web\PdoRepository;
 
-class PdoUrlsRepository extends PdoRepository implements UrlsRepository{
-
+class PdoUrlsRepository extends PdoRepository implements UrlsRepository
+{
     const TABLE = 'urls';
-
     public static $DEFAULT_SORT = ['person_id', 'code'];
+
     public function columns()
     {
         static $columns;
@@ -36,7 +36,7 @@ class PdoUrlsRepository extends PdoRepository implements UrlsRepository{
     {
         $select = $this->queryFactory->newSelect();
         $select->cols($this->columns())->from(self::TABLE);
-        $select->where('id=?', $id);
+        $select->where('id = ?', $id);
         $result = $this->performSelect($select);
         if (count($result['rows'])) {
             return new Url($result['rows'][0]);
@@ -44,12 +44,11 @@ class PdoUrlsRepository extends PdoRepository implements UrlsRepository{
         throw new \Exception('url/unknown');
     }
 
+    public static function hydrate(array $row): Url
+    {
+        return new Url($row);
+    }
 
-    public static function hydrate(array $row): Url { return new Url($row); }
-
-    /**
-     * Look for people using wildcard matching of fields
-     */
     public function search(SearchRequest $req): array
     {
         $select = $this->queryFactory->newSelect();
@@ -68,22 +67,18 @@ class PdoUrlsRepository extends PdoRepository implements UrlsRepository{
                                              $req->currentPage);
     }
 
-    /**
-     * Saves a person and returns the ID for the person
-     * 
-     */
-    public function save(Url $person): int
+    public function save(Url $url): int
     {
-        return parent::saveToTable((array)$person, self::TABLE);
+        return parent::saveToTable((array)$url, self::TABLE);
     }
 
     private function doSelect(SelectInterface $select, ?array $order=null, ?int $itemsPerPage=null, ?int $currentPage=null): array
     {
         $result = parent::performSelect($select, self::$DEFAULT_SORT, $itemsPerPage, $currentPage);
 
-        $people = [];
-        foreach ($result['rows'] as $r) { $people[] = new Url($r); }
-        $result['rows'] = $people;
+        $urls = [];
+        foreach ($result['rows'] as $r) { $urls[] = new Url($r); }
+        $result['rows'] = $urls;
         return $result;
     }
 }

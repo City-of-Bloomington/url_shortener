@@ -8,7 +8,7 @@ namespace Web;
 
 class Paginator
 {
-    public $itemsPerPage      = 20;
+    public $itemsPerPage      = 20; // set to 20 urls per page
     public $currentPageNumber = 1;
     public $totalItemCount    = 0;
     public $pageRange         = 10;

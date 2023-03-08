@@ -11,7 +11,7 @@
 <section>
     <header>
         <h1> Search url </h1>
-        <h3>TODO:</h3>
+        <h3>TODO: pagination </h3>
     </header>
     <form method="get">
         <fieldset>
@@ -23,15 +23,18 @@
 	            <label for="original">Original</label>
 	            <input name="original" id="original" value="{{ original }}" />
             </div>
-            <h1>{{ url }}</h1>
             <button type="submit" class="search">Search</button>
         </fieldset>
     </form>
+
+
 
     {% if url %}
     <table>
         <thead>
             <tr>
+                <th>ID</th>
+                <th>Owner ID --> make it username based</th>
                 <th>Code</th>
                 <th>Original URL</th>
             </tr>
@@ -39,8 +42,12 @@
         <tbody>
             {% for url in url %}
             <tr>
+                <td>{{ url.id }}</td>
+                <td>{{ url.person_id }}</td>
                 <td>{{ url.code }}</td>
-                <td>{{ url.original }}</td>
+                <td><a>{{ url.original }}</a></td>
+                
+
             </tr>
             {% endfor %}
         </tbody>
@@ -49,9 +56,11 @@
         <p>No URLs found.</p>
     {% endif %}
 
+    {# Pagination #}
+    {% if total > itemsPerPage %}
+        {{ pagination.pageLinks(total, itemsPerPage, currentPage) }}
+    {% endif %}
+
+
 </section>
-
-
-
-
 {% endblock %}

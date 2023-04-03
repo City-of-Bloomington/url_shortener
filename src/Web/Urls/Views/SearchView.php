@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2017-2021 City of Bloomington, Indiana
+ * @copyright 2023 City of Bloomington, Indiana
  * @license https://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
  */
 declare (strict_types=1);
@@ -12,18 +12,8 @@ use Web\View;
 use Domain\Urls\Actions\Search\Request;
 use Domain\Urls\Actions\Search\Response;
 
-
 class SearchView extends View
 {
-    /*
-    
-    public function render(): string
-    {
-        $template = $this->outputFormat == 'html' ? 'urls/testView' : 'urls/list';
-        return $this->twig->render("{$this->outputFormat}/$template.twig", $this->vars);
-    }
-    */
-
     public function __construct(Request  $request,
                                 Response $response,
                                 int      $itemsPerPage,
@@ -53,6 +43,3 @@ class SearchView extends View
         return $this->twig->render("{$this->outputFormat}/$template.twig", $this->vars);
     }
 }
-
-
-

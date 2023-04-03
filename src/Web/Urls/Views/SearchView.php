@@ -26,13 +26,13 @@ class SearchView extends View
         }
 
         $this->vars = [
-            'url'          => $response->urls,
+            'urls'         => $response->urls,
             'total'        => $response->total,
             'itemsPerPage' => $itemsPerPage,
             'currentPage'  => $currentPage,
             'code'         => !empty($_GET['code'     ]) ? parent::escape($_GET['code'     ]) : '',
             'id'           => !empty($_GET['id'       ]) ? parent::escape($_GET['id'       ]) : '',
-            'person_id'    => !empty($_GET['person_id']) ? parent::escape($_GET['person_id']) : '',
+            'username'     => !empty($_GET['username' ]) ? parent::escape($_GET['username' ]) : '',
             'original'     => !empty($_GET['original' ]) ? parent::escape($_GET['original' ]) : ''
         ];
     }

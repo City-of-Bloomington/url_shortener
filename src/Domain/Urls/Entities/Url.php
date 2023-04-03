@@ -9,7 +9,7 @@ namespace Domain\Urls\Entities;
 class Url
 {
     public $id;
-    public $person_id;
+    public $username;
     public $code;
     public $original;
 
@@ -17,7 +17,7 @@ class Url
     {
         if ($data) {
             if (!empty($data['id'       ])) { $this->id        = (int)$data['id'  ]; }
-            if (!empty($data['person_id'])) { $this->person_id = $data['person_id']; }
+            if (!empty($data['username' ])) { $this->username  = $data['username' ]; }
             if (!empty($data['code'     ])) { $this->code      = $data['code'     ]; }
             if (!empty($data['original' ])) { $this->original  = $data['original' ]; }
         }

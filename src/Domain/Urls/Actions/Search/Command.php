@@ -11,7 +11,6 @@ use Domain\Urls\Entities\Urls;
 
 class Command
 {
-    
     private $repo;
 
     public function __construct(UrlsRepository $repository)
@@ -30,4 +29,3 @@ class Command
         }
     }
 }
-

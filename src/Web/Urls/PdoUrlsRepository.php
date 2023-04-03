@@ -15,7 +15,7 @@ use Web\PdoRepository;
 class PdoUrlsRepository extends PdoRepository implements UrlsRepository
 {
     const TABLE = 'urls';
-    public static $DEFAULT_SORT = ['person_id', 'code'];
+    public static $DEFAULT_SORT = ['username', 'code'];
 
     public function columns()
     {

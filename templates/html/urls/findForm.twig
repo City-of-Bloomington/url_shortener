@@ -1,13 +1,7 @@
-{#
-
- #}
 {% extends "html/layouts/default.twig" %}
 {% import  "html/macros/pagination.twig" as pagination %}
 
 {% block content %}
-
-
-
 <section>
     <header>
         <h1> Search url </h1>
@@ -27,14 +21,12 @@
         </fieldset>
     </form>
 
-
-
     {% if url %}
     <table>
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Owner ID --> make it username based</th>
+                <th>Owner</th>
                 <th>Code</th>
                 <th>Original URL</th>
             </tr>
@@ -46,8 +38,6 @@
                 <td>{{ url.person_id }}</td>
                 <td>{{ url.code }}</td>
                 <td><a>{{ url.original }}</a></td>
-                
-
             </tr>
             {% endfor %}
         </tbody>
@@ -60,7 +50,5 @@
     {% if total > itemsPerPage %}
         {{ pagination.pageLinks(total, itemsPerPage, currentPage) }}
     {% endif %}
-
-
 </section>
 {% endblock %}

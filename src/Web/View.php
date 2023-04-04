@@ -204,13 +204,27 @@ abstract class View
         return new Url(Url::current_url(BASE_HOST));
     }
 
-	public static function isAllowed(string $resource, ?string $action=null): bool
+	/**
+     * Checks the ACl to see if users have access to the requested resource
+     *
+     * If $data is provided, it checks if the user is the owner of $data
+     *
+     * The ACL is implemented using Laminas's ACL library
+     * @see https://docs.laminas.dev/laminas-permissions-acl/ownership
+     */
+	public static function isAllowed(string $resource, ?string $action=null, $data=null): bool
     {
 		global $ACL;
-		$role = 'Anonymous';
-		if (isset  ($_SESSION['USER']) && $_SESSION['USER']->role) {
-			$role = $_SESSION['USER']->role;
-		}
-		return $ACL->isAllowed($role, $resource, $action);
+        $role = 'Anonymous';
+        if (isset  ($_SESSION['USER']) && $_SESSION['USER']->role) {
+            if ($data && $data->username) {
+                $role     = new \Web\Acl\User($data->username, $_SESSION['USER']->role);
+                $resource = new \Web\Acl\ResourceData($resource, $data->username);
+            }
+            else {
+                $role = $_SESSION['USER']->role;
+            }
+        }
+        return $ACL->isAllowed($role, $resource, $action);
     }
 }

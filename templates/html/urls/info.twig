@@ -6,7 +6,7 @@
 {% extends "html/layouts/default.twig" %}
 {% block content %}
 <section>
-    {% if isAllowed('urls', 'update') %}
+    {% if isAllowed('urls', 'update', url) %}
     <header>
         <nav>
             <a href="{{ uri('urls.update', {'id':url.id}) }}">{{ _('edit'  ) }}</a>

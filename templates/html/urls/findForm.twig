@@ -49,12 +49,11 @@
             </tr>
         </thead>
         <tbody>
-            {% for url in urls %}
-            <tr>
-                <td>{{ url.id }}</td>
+            {% for url in urls %}{% set uri = uri('urls.view', {'id':url.id}) %}
+            <tr><td>{{ url.id }}</td>
                 <td>{{ url.username }}</td>
-                <td>{{ url.code }}</td>
-                <td><a>{{ url.original }}</a></td>
+                <td><a href="{{ uri          }}">{{ url.code     }}</a></td>
+                <td><a href="{{ url.original }}">{{ url.original }}</a></td>
             </tr>
             {% endfor %}
         </tbody>

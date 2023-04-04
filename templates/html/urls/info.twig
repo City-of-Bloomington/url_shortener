@@ -1,11 +1,25 @@
 {#
- * @copyright 2009-2021 City of Bloomington, Indiana
+ * @copyright 2023 City of Bloomington, Indiana
  * @license http://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
- * @param Person person
+ * @param Url url
 #}
 {% extends "html/layouts/default.twig" %}
 {% block content %}
 <section>
+    {% if isAllowed('urls', 'update') %}
+    <header>
+        <nav>
+            <a href="{{ uri('urls.update', {'id':url.id}) }}">{{ _('edit'  ) }}</a>
+            <a href="{{ uri('urls.delete', {'id':url.id}) }}">{{ _('delete') }}</a>
+        </nav>
+    </header>
+    {% endif %}
+    <table>
+        <tr><th>ID</th>      <td>{{ url.id       }}</td></tr>
+        <tr><th>code</th>    <td>{{ url.code     }}</td></tr>
+        <tr><th>original</th><td>{{ url.original }}</td></tr>
+        <tr><th>username</th><td>{{ url.username }}</td></tr>
+    </table>
     
 </section>
 {% endblock %}

@@ -2,6 +2,7 @@
 /**
  * @copyright 2023 City of Bloomington, Indiana
  * @license http://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
+ * @see https://docs.laminas.dev/laminas-permissions-acl
  */
 declare (strict_types=1);
 
@@ -20,7 +21,8 @@ $map->get('login.logout',  '/logout', Web\Authentication\Controllers\LogoutContr
 
 $map->attach('urls.', '/urls', function ($r) {
     $r->get('add',    '/add'        , Web\Urls\Controllers\AddController::class)->allows(['POST']);
-    $r->get('update', '/update{/id}', Web\Urls\Controllers\UpdateController::class)->allows(['POST']);
-    $r->get('delete', '/delete/{id}', Web\Urls\Controllers\DeleteController::class);
+    $r->get('update', '/{id}/update', Web\Urls\Controllers\UpdateController::class)->allows(['POST']);
+    $r->get('delete', '/{id}/delete', Web\Urls\Controllers\DeleteController::class);
+    $r->get('view',   '/{id}',        Web\Urls\Controllers\ViewController::class);
     $r->get('index',  ''            , Web\Urls\Controllers\ListController::class);
 });

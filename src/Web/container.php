@@ -40,7 +40,7 @@ $DI->lazyNew('Site\Employee'));
 //---------------------------------------------------------
 
 // URLS
-foreach (['Search'] as $a) {
+foreach (['Add', 'Delete', 'Info', 'Search', 'Update'] as $a) {
     $DI->params[ "Domain\\Urls\\Actions\\$a\\Command"]["repository"] = $DI->lazyGet('Domain\Urls\DataStorage\UrlsRepository');
     $DI->set(    "Domain\\Urls\\Actions\\$a\\Command",
     $DI->lazyNew("Domain\\Urls\\Actions\\$a\\Command"));

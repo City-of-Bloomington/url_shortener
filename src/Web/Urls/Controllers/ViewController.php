@@ -1,13 +1,12 @@
 <?php
 /**
- * @copyright 2019 City of Bloomington, Indiana
+ * @copyright 2023 City of Bloomington, Indiana
  * @license http://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
  */
 declare (strict_types=1);
 
 namespace Web\Urls\Controllers;
 
-use Domain\Urls\Entities\Person;
 use Domain\Urls\Actions\Info\Request as InfoRequest;
 use Web\Urls\Views\InfoView;
 use Web\Controller;
@@ -15,18 +14,16 @@ use Web\View;
 
 class ViewController extends Controller
 {
-    public function __invoke(array $parms): View
+    public function __invoke(array $params): View
     {
-        if (!empty($_REQUEST['id'])) {
             $info = $this->di->get('Domain\Urls\Actions\Info\Command');
-            $res  = $info((int)$_REQUEST['id']);
-            if ($res->person) {
+            $res  = $info((int)$params['id']);
+            if ($res->url) {
                 return new InfoView($res);
             }
             else {
                 $_SESSION['errorMessages'] = $res->errors;
             }
-        }
         return new \Web\Views\NotFoundView();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2017-2021 City of Bloomington, Indiana
+ * @copyright 2023 City of Bloomington, Indiana
  * @license https://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
  */
 declare (strict_types=1);
@@ -12,18 +12,8 @@ use Web\View;
 use Domain\Urls\Actions\Search\Request;
 use Domain\Urls\Actions\Search\Response;
 
-
 class SearchView extends View
 {
-    /*
-    
-    public function render(): string
-    {
-        $template = $this->outputFormat == 'html' ? 'urls/testView' : 'urls/list';
-        return $this->twig->render("{$this->outputFormat}/$template.twig", $this->vars);
-    }
-    */
-
     public function __construct(Request  $request,
                                 Response $response,
                                 int      $itemsPerPage,
@@ -36,13 +26,13 @@ class SearchView extends View
         }
 
         $this->vars = [
-            'url'          => $response->urls,
+            'urls'         => $response->urls,
             'total'        => $response->total,
             'itemsPerPage' => $itemsPerPage,
             'currentPage'  => $currentPage,
             'code'         => !empty($_GET['code'     ]) ? parent::escape($_GET['code'     ]) : '',
             'id'           => !empty($_GET['id'       ]) ? parent::escape($_GET['id'       ]) : '',
-            'person_id'    => !empty($_GET['person_id']) ? parent::escape($_GET['person_id']) : '',
+            'username'     => !empty($_GET['username' ]) ? parent::escape($_GET['username' ]) : '',
             'original'     => !empty($_GET['original' ]) ? parent::escape($_GET['original' ]) : ''
         ];
     }
@@ -53,6 +43,3 @@ class SearchView extends View
         return $this->twig->render("{$this->outputFormat}/$template.twig", $this->vars);
     }
 }
-
-
-

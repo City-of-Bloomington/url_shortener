@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2019 City of Bloomington, Indiana
+ * @copyright 2019-2023 City of Bloomington, Indiana
  * @license http://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
  */
 declare (strict_types=1);
@@ -19,7 +19,7 @@ class Auth
     // Header containing the username that's attempting to make the request
     const HEADER_USERNAME      = 'username';
 
-    public static function getAuthenticatedUser(AuthenticationService $service): ?User
+    public static function getAuthenticatedUser(AuthenticationInterface $service): ?User
     {
         if ( isset($_SESSION['USER'])) {
             return $_SESSION['USER'];

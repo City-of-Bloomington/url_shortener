@@ -1,13 +1,24 @@
 {#
-
- #}
+ * @copyright 2023 City of Bloomington, Indiana
+ * @license https://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
+ *
+ * @param array  urls          Search Results
+ *
+ * -- Pagination parameters
+ * @param int    total
+ * @param int    itemsPerPage
+ * @param int    currentPage
+ *
+ * -- Search Parameters
+ * @param int    id
+ * @param string username
+ * @param string code
+ * @param string original
+#}
 {% extends "html/layouts/default.twig" %}
 {% import  "html/macros/pagination.twig" as pagination %}
 
 {% block content %}
-
-
-
 <section>
     <header>
         <h1> Search url </h1>
@@ -27,27 +38,23 @@
         </fieldset>
     </form>
 
-
-
-    {% if url %}
+    {% if urls %}
     <table>
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Owner ID --> make it username based</th>
+                <th>Owner</th>
                 <th>Code</th>
                 <th>Original URL</th>
             </tr>
         </thead>
         <tbody>
-            {% for url in url %}
+            {% for url in urls %}
             <tr>
                 <td>{{ url.id }}</td>
-                <td>{{ url.person_id }}</td>
+                <td>{{ url.username }}</td>
                 <td>{{ url.code }}</td>
                 <td><a>{{ url.original }}</a></td>
-                
-
             </tr>
             {% endfor %}
         </tbody>
@@ -60,7 +67,5 @@
     {% if total > itemsPerPage %}
         {{ pagination.pageLinks(total, itemsPerPage, currentPage) }}
     {% endif %}
-
-
 </section>
 {% endblock %}

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2018-2019 City of Bloomington, Indiana
+ * @copyright 2018-2023 City of Bloomington, Indiana
  * @license http://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
  */
 declare (strict_types=1);
@@ -9,7 +9,7 @@ namespace Web\Authentication;
 use Domain\Users\Entities\User;
 use Domain\Users\DataStorage\UsersRepository;
 
-class AuthenticationService
+class AuthenticationService implements AuthenticationInterface
 {
     private $repo;
     private $config;

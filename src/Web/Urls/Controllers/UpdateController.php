@@ -5,7 +5,7 @@
  */
 declare (strict_types=1);
 
-namespace Web\People\Controllers;
+namespace Web\Urls\Controllers;
 
 use Domain\Urls\Actions\Update\Request;
 use Domain\Urls\Actions\Update\Response;
@@ -52,11 +52,9 @@ class UpdateController extends Controller
 
     private static function defaultReturnUrl(?int $resource_id=null): string
     {
-        return !empty  ($_REQUEST['return_url'])
+        return !empty($_REQUEST['return_url'])
             ? urldecode($_REQUEST['return_url'])
-            : ($resource_id
-                ? View::generateUrl('resources.view', ['id'=>$resource_id])
-                : View::generateUrl('resources.index'));
+            : View::generateUrl('urls.index');
     }
 }
 

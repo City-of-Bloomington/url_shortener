@@ -11,3 +11,28 @@ use Domain\Urls\Actions\Update\Request;
 use Domain\Urls\Actions\Update\Response;
 
 use Web\View;
+
+class UpdateView extends View
+{
+    public function __construct(Request $request, ?Response $response, string $return_url)
+    {
+        parent::__construct();
+
+        if ($response && $response->errors) {
+            $_SESSION['errorMessages'] = $response->errors;
+        }
+
+        $this->vars = [
+            'id'         => $request->id,
+            'code'       => $request->code,
+            'original'   => $request->original,
+            'username'   => $request->username,
+            'return_url' => $return_url
+        ];
+    }
+
+    public function render(): string
+    {
+        return $this->twig->render("{$this->outputFormat}/urls/updateForm.twig", $this->vars);
+    }
+}

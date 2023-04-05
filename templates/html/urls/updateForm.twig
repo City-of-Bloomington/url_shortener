@@ -11,6 +11,21 @@
 {% extends "html/layouts/default.twig" %}
 {% block content %}
 <section>
+    <h1>Edit URL</h1>
+    <form method="post" action="{{ return_url }}">
+        <input type="hidden" name="id" value="{{ id }}" />
 
+        <label for="code">Code:</label>
+        <input type="text" id="code" name="code" value="{{ code }}" required />
+
+        <label for="original">Original:</label>
+        <input type="text" id="original" name="original" value="{{ original }}" required />
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" value="{{ username }}" required />
+
+        <input type="submit" value="Update" />
+        <a href="{{ return_url }}">Cancel</a>
+    </form>
 </section>
 {% endblock %}

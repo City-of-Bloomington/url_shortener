@@ -1,0 +1,28 @@
+{#
+ * @copyright 2023 City of Bloomington, Indiana
+ * @license https://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
+ *
+ * @param string code
+ * @param string original
+#}
+{% extends "html/layouts/default.twig" %}
+{% block content %}
+<section>
+    <header>
+        <h2>Add URL</h2>
+    </header>
+    <form method="post">
+        <fieldset>
+            <div>
+	            <label  for="code">Code</label>
+	            <input name="code" id="code" value="{{ code }}" />
+            </div>
+            <div>
+	            <label  for="original">Original</label>
+	            <input name="original" id="original" value="{{ original }}" />
+            </div>
+            <button type="submit">Save</button>
+        </fieldset>
+    </form>
+</section>
+{% endblock %}

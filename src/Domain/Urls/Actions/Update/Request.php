@@ -8,13 +8,15 @@ namespace Domain\Urls\Actions\Update;
 
 class Request
 {
-    public function __construct(public int    $id,
-                                public string $code,
-                                public string $original,
-                                public string $username) {}
+    public ?int $id       = null;
+    public ?string $code     = null;
+    public ?string $original = null;
+    public ?string $username = null;
 
-    public static function fromArray(array $data): Request
+    public function __construct(array $data=null)
     {
-        return new Request($data['id'], $data['code'], $data['original'], $data['username']);
+        foreach ($this as $k=>$v) {
+            if (!empty($data[$k])) { $this->$k = $data[$k]; }
+        }
     }
 }

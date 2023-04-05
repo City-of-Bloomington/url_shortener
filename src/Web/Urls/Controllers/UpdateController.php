@@ -7,6 +7,8 @@ declare (strict_types=1);
 
 namespace Web\People\Controllers;
 
+use Domain\Urls\Actions\Update\Request;
+use Domain\Urls\Actions\Update\Response;
 use Domain\Urls\Actions\Update\Request as UpdateRequest;
 use Web\Urls\Views\UpdateView;
 use Web\Controller;

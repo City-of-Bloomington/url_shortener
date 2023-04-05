@@ -8,14 +8,7 @@ namespace Domain\Urls\Actions\Search;
 
 class Response 
 {
-    public array $urls   = [];
-    public array $errors = [];
-    public int   $total  = 0;
-
-    public function __construct(array $urls, int $total=null, array $errors=null)
-    {
-        $this->urls = $urls;
-        if ($this->total ) { $this->total  = $total;  }
-        if ($this->errors) { $this->errors = $errors; }
-    }
+    public function __construct(public ?array $urls  = [],
+                                public ?int   $total = null,
+                                public ?array $errors = []) {}
 }

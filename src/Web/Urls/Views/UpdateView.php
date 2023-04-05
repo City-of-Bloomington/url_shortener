@@ -14,7 +14,7 @@ use Web\View;
 
 class UpdateView extends View
 {
-    public function __construct(Request $request, ?Response $response, string $return_url)
+    public function __construct(Request $request, ?Response $response=null)
     {
         parent::__construct();
 
@@ -25,9 +25,7 @@ class UpdateView extends View
         $this->vars = [
             'id'         => $request->id,
             'code'       => $request->code,
-            'original'   => $request->original,
-            'username'   => $request->username,
-            'return_url' => $return_url
+            'original'   => $request->original
         ];
     }
 

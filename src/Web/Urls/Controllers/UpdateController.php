@@ -9,7 +9,6 @@ namespace Web\Urls\Controllers;
 
 use Domain\Urls\Actions\Update\Request;
 use Domain\Urls\Actions\Update\Response;
-use Domain\Urls\Actions\Update\Request as UpdateRequest;
 use Web\Urls\Views\UpdateView;
 use Web\Controller;
 use Web\View;
@@ -19,43 +18,31 @@ class UpdateController extends Controller
 {
     public function __invoke(array $params): View
     {
-        $person_id = !empty($_REQUEST['id']) ? (int)$_REQUEST['id'] : null;
-        $_SESSION['return_url'] = self::defaultReturnUrl($person_id);
-
-        if (isset($_POST['firstname'])) {
-            $update  = $this->di->get('Domain\Urls\Actions\Update\Command');
-            $req = new UpdateRequest($_POST);
-            $res = $update($req);
-
-            if (!$res->errors) {
-                $return_url = $_SESSION['return_url'];
-                unset($_SESSION['return_url']);
-                header("Location: $return_url");
-                exit();
-            }
-        }
-        elseif ($person_id) {
+        if (isset($params['id'])) {
             $info = $this->di->get('Domain\Urls\Actions\Info\Command');
-            $ir   = $info($person_id);
+            $ir   = $info((int)$params['id']);
             if ($ir->errors) {
-                $_SESSION['errorMessages'] = $ir->errors;
                 return new \Web\Views\NotFoundView();
             }
-            $req = new UpdateRequest((array)$ir->person);
-        }
-        else {
-            $req = new UpdateRequest();
+            $req = new Request((array)$ir->url);
         }
 
-        return new UpdateView($req, isset($res) ? $res : null, $_SESSION['return_url']);
+
+        if (isset($_POST['code'])) {
+            $update = $this->di->get('Domain\Urls\Actions\Update\Command');
+            $req    = new Request($_POST);
+            $req->username = $_SESSION['USER']->username;
+            $res    = $update($req);
+            if (!isset($res->errors)) {
+                header("Location: ".View::generateUrl('urls.view', ['id'=>$res->id]));
+            }
+            else {
+                $_SESSION['errorMessages'] = $res->errors;
+            }
+        }
+
+        return new UpdateView($req, $res ?? null);
     }
 
-    private static function defaultReturnUrl(?int $resource_id=null): string
-    {
-        return !empty($_REQUEST['return_url'])
-            ? urldecode($_REQUEST['return_url'])
-            : View::generateUrl('urls.index');
-    }
 }
-
 

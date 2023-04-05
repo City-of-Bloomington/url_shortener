@@ -41,4 +41,5 @@ class Command
         if (!$req->username) { $errors[] = 'missingUsername'; }
         return $errors;
     }
+
 }

@@ -1,31 +1,32 @@
 {#
- * @copyright 2019-2021 City of Bloomington, Indiana
+ * @copyright 2023 City of Bloomington, Indiana
  * @license http://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
  * @param string id
  * @param string firstname
  * @param string lastname
  * @param string email
  * @param string title
- * @param string return_url
 #}
 {% extends "html/layouts/default.twig" %}
 {% block content %}
 <section>
     <h1>Edit URL</h1>
-    <form method="post" action="{{ return_url }}">
-        <input type="hidden" name="id" value="{{ id }}" />
+    <form method="post">
+        <fieldset>
+            <input type="hidden" name="id" value="{{ id }}" />
 
-        <label for="code">Code:</label>
-        <input type="text" id="code" name="code" value="{{ code }}" required />
+            <div>
+                <label for="code">Code:</label>
+                <input type="text" id="code" name="code" value="{{ code }}" required />
+            </div>
 
-        <label for="original">Original:</label>
-        <input type="text" id="original" name="original" value="{{ original }}" required />
+            <div>
+                <label for="original">Original:</label>
+                <input type="text" id="original" name="original" value="{{ original }}" required />
+            </div>
 
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" value="{{ username }}" required />
-
-        <input type="submit" value="Update" />
-        <a href="{{ return_url }}">Cancel</a>
+            <button type="submit">Save</button>
+        </fieldset>
     </form>
 </section>
 {% endblock %}

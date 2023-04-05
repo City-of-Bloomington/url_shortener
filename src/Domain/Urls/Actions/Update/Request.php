@@ -8,7 +8,7 @@ namespace Domain\Urls\Actions\Update;
 
 class Request
 {
-    public ?int $id       = null;
+    public ?int    $id       = null;
     public ?string $code     = null;
     public ?string $original = null;
     public ?string $username = null;
@@ -16,7 +16,17 @@ class Request
     public function __construct(array $data=null)
     {
         foreach ($this as $k=>$v) {
-            if (!empty($data[$k])) { $this->$k = $data[$k]; }
+            if (!empty($data[$k])) {
+                switch ($k) {
+                    case 'id':
+                        $this->$k = (int)$data[$k];
+                    break;
+
+                    default:
+                        $this->$k = $data[$k];
+
+                }
+            }
         }
     }
 }

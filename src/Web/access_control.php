@@ -32,13 +32,12 @@ foreach (array_keys($ROUTES->getMap()->getRoutes()) as $r) {
 // Permissions for unauthenticated browsing
 $ACL->allow(null, 'login');
 $ACL->allow(null, 'home', 'index');
+$ACL->allow(null, 'urls', 'redirect');
 
 $ACL->allow('Staff', 'urls', ['add', 'index', 'view']);
 $ACL->allow('Staff', 'urls', ['update', 'delete'], new OwnershipAssertion());
 
-$ACL->allow('Administrator', 'urls', ['add', 'index', 'view']);
-$ACL->allow('Administrator', 'urls', ['update', 'delete'], new OwnershipAssertion());
-#$ACL->allow('Administrator');
+$ACL->allow('Administrator');
 
 class User implements RoleInterface, ProprietaryInterface
 {

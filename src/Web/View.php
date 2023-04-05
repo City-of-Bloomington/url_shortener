@@ -218,7 +218,7 @@ abstract class View
         $role = 'Anonymous';
         if (isset  ($_SESSION['USER']) && $_SESSION['USER']->role) {
             if ($data && $data->username) {
-                $role     = new \Web\Acl\User($data->username, $_SESSION['USER']->role);
+                $role     = new \Web\Acl\User($_SESSION['USER']->username, $_SESSION['USER']->role);
                 $resource = new \Web\Acl\ResourceData($resource, $data->username);
             }
             else {

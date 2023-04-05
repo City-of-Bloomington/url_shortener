@@ -2,6 +2,7 @@
 /**
  * @copyright 2023 City of Bloomington, Indiana
  * @license http://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
+ * @see https://auraphp.com/packages/3.x/Sql/
  */
 declare (strict_types=1);
 namespace Web\Urls;
@@ -24,11 +25,17 @@ class PdoUrlsRepository extends PdoRepository implements UrlsRepository
         return $columns;
     }
 
-    public function load(int $id): Url
+    /**
+     * @param int|string $id  Either the ID or Code value
+     */
+    public function load($id): Url
     {
         $select = $this->queryFactory->newSelect();
         $select->cols($this->columns())->from(self::TABLE);
-        $select->where('id = ?', $id);
+
+        if (is_numeric($id)) { $select->where(  'id=?', $id); }
+        else                 { $select->where('code=?', $id); }
+
         $result = $this->performSelect($select);
         if (count($result['rows'])) {
             return new Url($result['rows'][0]);

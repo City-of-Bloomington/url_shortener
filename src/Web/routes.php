@@ -2,14 +2,14 @@
 /**
  * @copyright 2023 City of Bloomington, Indiana
  * @license http://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
- * @see https://docs.laminas.dev/laminas-permissions-acl
+ * @see https://auraphp.com/packages/3.x/Router
  */
 declare (strict_types=1);
 
 $ROUTES = new Aura\Router\RouterContainer(BASE_URI);
 $map    = $ROUTES->getMap();
 
-$map->tokens(['id' => '\d+']);
+$map->tokens(['id' => '\d+', 'code' => '[^/]{5}']);
 
 $map->get('home.index',    '/'      , Web\HomeController::class);
 
@@ -26,3 +26,5 @@ $map->attach('urls.', '/urls', function ($r) {
     $r->get('view',   '/{id}',        Web\Urls\Controllers\ViewController::class);
     $r->get('index',  ''            , Web\Urls\Controllers\ListController::class);
 });
+
+$map->get('urls.redirect', '/{code}', Web\Urls\Controllers\RedirectController::class);

@@ -7,7 +7,6 @@ declare (strict_types=1);
 
 namespace Web\Urls\Controllers;
 
-use Domain\Urls\Actions\Info\Request as InfoRequest;
 use Web\Urls\Views\InfoView;
 use Web\Controller;
 use Web\View;

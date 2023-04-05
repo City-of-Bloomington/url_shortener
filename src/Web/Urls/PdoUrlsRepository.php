@@ -71,6 +71,12 @@ class PdoUrlsRepository extends PdoRepository implements UrlsRepository
         return parent::saveToTable((array)$url, self::TABLE);
     }
 
+    public function delete(int $id)
+    {
+        $delete = $this->pdo->prepare('delete from urls where id=?');
+        $delete->execute([$id]);
+    }
+
     private function doSelect(SelectInterface $select, ?array $order=null, ?int $itemsPerPage=null, ?int $currentPage=null): array
     {
         $result = parent::performSelect($select, self::$DEFAULT_SORT, $itemsPerPage, $currentPage);

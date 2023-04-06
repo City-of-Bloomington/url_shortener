@@ -38,7 +38,7 @@ class PdoUrlsRepository extends PdoRepository implements UrlsRepository
 
         $result = $this->performSelect($select);
         if (count($result['rows'])) {
-            return new Url($result['rows'][0]);
+            return self::hydrate($result['rows'][0]);
         }
         throw new \Exception('url/unknown');
     }
@@ -68,7 +68,10 @@ class PdoUrlsRepository extends PdoRepository implements UrlsRepository
 
     public function save(Url $url): int
     {
-        return parent::saveToTable((array)$url, self::TABLE);
+        $data = (array)$url;
+        unset($data['created']);
+        unset($data['updated']);
+        return parent::saveToTable($data, self::TABLE);
     }
 
     public function delete(int $id)

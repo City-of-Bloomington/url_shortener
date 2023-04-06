@@ -33,8 +33,8 @@ class UpdateController extends Controller
             $req    = new Request($_POST);
             $req->username = $_SESSION['USER']->username;
             $res    = $update($req);
-            if (!isset($res->errors)) {
-                header("Location: ".View::generateUrl('urls.view', ['id'=>$res->id]));
+            if (!$res->errors) {
+                header("Location: ".View::generateUrl('urls.view', ['id'=>$req->id]));
             }
             else {
                 $_SESSION['errorMessages'] = $res->errors;
@@ -43,6 +43,5 @@ class UpdateController extends Controller
 
         return new UpdateView($req, $res ?? null);
     }
-
 }
 

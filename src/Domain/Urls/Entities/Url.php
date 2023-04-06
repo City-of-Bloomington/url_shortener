@@ -8,18 +8,33 @@ namespace Domain\Urls\Entities;
 
 class Url
 {
-    public $id;
-    public $username;
-    public $code;
-    public $original;
+    public ?int       $id       = null;
+    public ?string    $username = null;
+    public ?string    $code     = null;
+    public ?string    $original = null;
+    public ?\DateTime $created  = null;
+    public ?\DateTime $updated  = null;
 
     public function __construct(?array $data=null)
     {
         if ($data) {
-            if (!empty($data['id'       ])) { $this->id        = (int)$data['id'  ]; }
-            if (!empty($data['username' ])) { $this->username  = $data['username' ]; }
-            if (!empty($data['code'     ])) { $this->code      = $data['code'     ]; }
-            if (!empty($data['original' ])) { $this->original  = $data['original' ]; }
+            foreach ($this as $k=>$v) {
+                if (!empty($data[$k])) {
+                    switch ($k) {
+                        case 'id':
+                            $this->$k = (int)$data[$k];
+                        break;
+
+                        case 'created':
+                        case 'updated':
+                            $this->$k = new \DateTime($data[$k]);
+                        break;
+
+                        default:
+                            $this->$k = $data[$k];
+                    }
+                }
+            }
         }
     }
 }

@@ -28,3 +28,4 @@ $map->attach('urls.', '/urls', function ($r) {
 });
 
 $map->get('urls.redirect', '/{code}', Web\Urls\Controllers\RedirectController::class);
+$map->get('urls.qrcode',   '/qrcodes/{code}.png', Web\Urls\Controllers\QrCodeController::class);

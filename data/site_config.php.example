@@ -32,6 +32,7 @@ define('BASE_URL' , "$_SERVER[REQUEST_SCHEME]://".BASE_HOST.BASE_URI);
  * The current theme's screen.css will be included in the HTML head.
  */
 define('THEME', 'COB');
+define('QR_SIZE', 200);
 
 /**
  * Database Setup

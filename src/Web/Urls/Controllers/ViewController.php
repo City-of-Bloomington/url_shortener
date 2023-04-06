@@ -15,14 +15,14 @@ class ViewController extends Controller
 {
     public function __invoke(array $params): View
     {
-            $info = $this->di->get('Domain\Urls\Actions\Info\Command');
-            $res  = $info((int)$params['id']);
-            if ($res->url) {
-                return new InfoView($res);
-            }
-            else {
-                $_SESSION['errorMessages'] = $res->errors;
-            }
+        $info = $this->di->get('Domain\Urls\Actions\Info\Command');
+        $res  = $info((int)$params['id']);
+        if ($res->url) {
+            return new InfoView($res);
+        }
+        else {
+            $_SESSION['errorMessages'] = $res->errors;
+        }
         return new \Web\Views\NotFoundView();
     }
 }

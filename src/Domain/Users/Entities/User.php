@@ -9,7 +9,7 @@ namespace Domain\Users\Entities;
 class User
 {
     public $id;
-    public $displayName;
+    public $displayname;
     public $firstname;
     public $lastname;
     public $email;
@@ -21,7 +21,7 @@ class User
     {
         if ($data) {
             if (!empty($data['id'         ])) { $this->id          = (int)$data['id'  ]; }
-            if (!empty($data['displayName'])) { $this->displayName = $data['displayName']; }
+            if (!empty($data['displayname'])) { $this->displayName = $data['displayname']; }
             if (!empty($data['firstname'  ])) { $this->firstname   = $data['firstname']; }
             if (!empty($data['lastname'   ])) { $this->lastname    = $data['lastname' ]; }
             if (!empty($data['email'      ])) { $this->email       = $data['email'    ]; }

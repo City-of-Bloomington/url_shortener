@@ -28,5 +28,3 @@ $map->attach('urls.', '/urls', function ($r) {
 });
 
 $map->get('urls.redirect', '/{code}', Web\Urls\Controllers\RedirectController::class);
-
-$map->get('urls.create', '/create'     , Web\Urls\Controllers\AddController::class)->allows(['POST']);

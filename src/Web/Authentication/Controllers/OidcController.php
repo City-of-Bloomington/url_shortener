@@ -65,12 +65,12 @@ class OidcController extends Controller
         exit();
     }
 
-    private function role(array $groups, array $mapping): ?string
+    private function role(array $groups, array $mapping): string
     {
         foreach ($mapping as $role=>$g) {
             if (in_array($g, $groups)) { return $role; }
         }
-        return null;
+        return 'Staff';
     }
 
     private function failure(string $error): View

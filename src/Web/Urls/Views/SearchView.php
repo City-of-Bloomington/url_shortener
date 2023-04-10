@@ -11,11 +11,13 @@ use Web\View;
 
 use Domain\Urls\Actions\Search\Request;
 use Domain\Urls\Actions\Search\Response;
+use Domain\Urls\Metadata;
 
 class SearchView extends View
 {
     public function __construct(Request  $request,
                                 Response $response,
+                                Metadata $metadata,
                                 int      $itemsPerPage,
                                 int      $currentPage)
     {
@@ -33,7 +35,8 @@ class SearchView extends View
             'code'         => !empty($_GET['code'     ]) ? parent::escape($_GET['code'     ]) : '',
             'id'           => !empty($_GET['id'       ]) ? parent::escape($_GET['id'       ]) : '',
             'username'     => !empty($_GET['username' ]) ? parent::escape($_GET['username' ]) : '',
-            'original'     => !empty($_GET['original' ]) ? parent::escape($_GET['original' ]) : ''
+            'original'     => !empty($_GET['original' ]) ? parent::escape($_GET['original' ]) : '',
+            'usernames'    => $metadata->usernames()
         ];
     }
 

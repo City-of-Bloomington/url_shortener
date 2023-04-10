@@ -3,6 +3,7 @@
  * @license https://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
  *
  * @param array  urls          Search Results
+ * @param array  usernames     List of all usernames
  *
  * -- Pagination parameters
  * @param int    total
@@ -21,7 +22,7 @@
 {% block content %}
 <section>
     <header>
-        <h1> Search url </h1>
+        <h1>Find URLs</h1>
     </header>
     <form method="get">
         <fieldset>
@@ -33,6 +34,14 @@
 	            <label for="original">Original</label>
 	            <input name="original" id="original" value="{{ original }}" />
             </div>
+            <div>
+                <label  for="username">Username</label>
+                <select name="username" id="username"><option value=""></option>
+                {% for u in usernames %}
+                    <option {% if u==username %}selected="selected"{% endif %}>{{ u }}</option>
+                {% endfor %}
+                </select>
+            </div>
             <button type="submit" class="search">Search</button>
         </fieldset>
     </form>
@@ -40,19 +49,16 @@
     {% if urls %}
     <table>
         <thead>
-            <tr>
-                <th>ID</th>
-                <th>Owner</th>
-                <th>Code</th>
+            <tr><th>Code</th>
                 <th>Original URL</th>
+                <th>Short URL</th>
             </tr>
         </thead>
         <tbody>
             {% for url in urls %}{% set uri = uri('urls.view', {'id':url.id}) %}
-            <tr><td>{{ url.id }}</td>
-                <td>{{ url.username }}</td>
-                <td><a href="{{ uri          }}">{{ url.code     }}</a></td>
+            <tr><td><a href="{{ uri('urls.view', {'id':url.id}) }}">{{ url.code }}</a></td>
                 <td><a href="{{ url.original }}">{{ url.original }}</a></td>
+                <td><a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></td>
             </tr>
             {% endfor %}
         </tbody>

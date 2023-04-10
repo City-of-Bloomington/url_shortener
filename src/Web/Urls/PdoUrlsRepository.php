@@ -90,5 +90,13 @@ class PdoUrlsRepository extends PdoRepository implements UrlsRepository
         return $result;
     }
 
-    
+    //-----------------------------------------------------
+    // Metadata Functions
+    //-----------------------------------------------------
+    public function usernames(): array
+    {
+        $sql = 'select distinct username from urls order by username';
+        $result = $this->pdo->query($sql);
+        return $result->fetchAll(\PDO::FETCH_COLUMN);
+    }
 }

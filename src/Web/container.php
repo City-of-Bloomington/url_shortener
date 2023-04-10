@@ -27,6 +27,9 @@ foreach ($repos as $t) {
 //---------------------------------------------------------
 // Metadata providers
 //---------------------------------------------------------
+$DI->params[ 'Domain\Urls\Metadata']['repository'] = $DI->lazyGet('Domain\Urls\DataStorage\UrlsRepository');
+$DI->set(    'Domain\Urls\Metadata',
+$DI->lazyNew('Domain\Urls\Metadata'));
 
 //---------------------------------------------------------
 // Services

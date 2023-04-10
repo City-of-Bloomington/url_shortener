@@ -17,11 +17,13 @@
     <table>
         <tr><th>ID</th>      <td>{{ url.id       }}</td></tr>
         <tr><th>code</th>    <td>{{ url.code     }}</td></tr>
-        <tr><th>original</th><td>{{ url.original }}</td></tr>
+        <tr><th>original</th><td><a href="{{ url.original }}">{{ url.original }}</a></td></tr>
         <tr><th>username</th><td>{{ url.username }}</td></tr>
         <tr><th>created</th> <td>{{ url.created.format('c') }}</td></tr>
         <tr><th>updated</th> <td>{{ url.updated.format('c') }}</td></tr>
     </table>
+
+    <img src="{{ url('urls.qrcode', {'code':url.code} )}}" />
     
 </section>
 {% endblock %}

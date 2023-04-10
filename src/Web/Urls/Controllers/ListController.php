@@ -21,6 +21,10 @@ class ListController extends Controller
         $request  = new SearchRequest($_GET, null, parent::ITEMS_PER_PAGE, $page);
         $response = $search($request);
 
-        return new SearchView($request, $response, parent::ITEMS_PER_PAGE, $page);
+        return new SearchView($request,
+                              $response,
+                              $this->di->get('Domain\Urls\Metadata'),
+                              parent::ITEMS_PER_PAGE,
+                              $page);
     }
 }

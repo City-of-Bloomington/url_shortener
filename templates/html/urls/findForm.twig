@@ -4,11 +4,13 @@
  *
  * @param array  urls          Search Results
  * @param array  usernames     List of all usernames
+ * @param array  sorts         List of valid sorting parameters
  *
  * -- Pagination parameters
  * @param int    total
  * @param int    itemsPerPage
  * @param int    currentPage
+ * @param string order
  *
  * -- Search Parameters
  * @param int    id
@@ -31,23 +33,21 @@
             <input name="query" id="query" value="{{ query }}" placeholder="Search original or code"/>
             <button type="submit" class="search">Search</button>
         </fieldset>
-    </form>
-    <details {% if code or original or username %}open="true"{% endif %}>
-        <summary>Advanced Search</summary>
-        <form method="get">
+        <details {% if code or original or username %}open="true"{% endif %}>
+            <summary>Advanced Search</summary>
             <fieldset>
                 <div>
-                    <label for="code">Code</label>
+                    <label  for="code">Code</label>
                     <input name="code" id="code" value="{{ code }}"
                                 size="{{ CODE_LENGTH }}"
-                        maxlength="{{ CODE_LENGTH }}" />
+                           maxlength="{{ CODE_LENGTH }}" />
                 </div>
                 <div>
                     <label for="original">Original</label>
                     <input name="original" id="original" value="{{ original }}" />
                 </div>
                 <div>
-                    <label  for="username">Username</label>
+                    <label   for="username">Username</label>
                     <select name="username" id="username"><option value=""></option>
                     {% for u in usernames %}
                         <option {% if u==username %}selected="selected"{% endif %}>{{ u }}</option>
@@ -56,26 +56,34 @@
                 </div>
                 <button type="submit" class="search">Search</button>
             </fieldset>
-        </form>
-    </details>
+        </details>
+        <fieldset>
+            <div>
+                <label   for="sort">Sort</label>
+                <select name="sort" id="sort">
+                {% for s in sorts %}
+                    <option value="{{ s }}" {% if s==order %}selected="true"{% endif %}>
+                    {{ _('sort ' ~ s) }}
+                    </option>
+                {% endfor %}
+                </select>
+            </div>
+        </fieldset>
+    </form>
 
     {% if urls %}
-    <table>
-        <thead>
-            <tr><th>Info</th>
-                <th>Short URL</th>
-                <th>Original URL</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for url in urls %}{% set uri = uri('urls.view', {'id':url.id}) %}
-            <tr><td><a href="{{ uri('urls.view', {'id':url.id}) }}">{{ url.code }}</a></td>
-                <td><a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></td>
-                <td><a href="{{ url.original }}">{{ url.original }}</a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% for url in urls %}{% set uri = uri('urls.view', {'id':url.id}) %}
+    <article>
+        <header><a href="{{ uri('urls.view', {'id':url.id}) }}">{{ url.code }}</a></header>
+        <div><a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></div>
+        <div><a href="{{ url.original }}">{{ url.original }}</a></div>
+        <div><strong>Created: </strong>  {{ url.created.format('n/d/Y') }}
+              <strong>Updated: </strong> {{ url.updated.format('n/d/Y') }}
+              <strong>User:</strong> {{ url.username }}
+              <strong>Hits: </strong> {{ url.hits }}
+        </div>
+    </article>
+    {% endfor %}
     {% else %}
         <p>No URLs found.</p>
     {% endif %}

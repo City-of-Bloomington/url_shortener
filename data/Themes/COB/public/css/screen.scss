@@ -8,6 +8,13 @@
     background-color: $color-error;
 }
 
+article {
+    border-bottom: 1px solid $color-divider;
+    header {
+        font-size: $font-size-big; font-weight: bold;
+    }
+}
+
 .pageNavigation {
     a {
         display: table-cell;

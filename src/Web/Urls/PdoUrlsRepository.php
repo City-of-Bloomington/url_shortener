@@ -16,7 +16,7 @@ use Web\PdoRepository;
 class PdoUrlsRepository extends PdoRepository implements UrlsRepository
 {
     const TABLE = 'urls';
-    public static $DEFAULT_SORT = ['username', 'code'];
+    public static $DEFAULT_SORT = ['updated desc'];
 
     public function columns()
     {
@@ -58,16 +58,17 @@ class PdoUrlsRepository extends PdoRepository implements UrlsRepository
                 $select->where("lower($f) like ?", strtolower($req->$f).'%');
             }
         }
-
         if ($req->query) {
             $select->where('lower(code) like ? or lower(original) like ?',
                            '%'.strtolower($req->query).'%',
                            '%'.strtolower($req->query).'%');
         }
 
+        $order = $req->order ? $this->validateOrder($req->order) : self::$DEFAULT_SORT;
+
         return parent::performHydratedSelect($select,
                                              __CLASS__.'::hydrate',
-                                             self::$DEFAULT_SORT,
+                                             $order,
                                              $req->itemsPerPage,
                                              $req->currentPage);
     }
@@ -102,6 +103,17 @@ class PdoUrlsRepository extends PdoRepository implements UrlsRepository
         foreach ($result['rows'] as $r) { $urls[] = new Url($r); }
         $result['rows'] = $urls;
         return $result;
+    }
+
+    private function validateOrder(string $sort): array
+    {
+        $sort = explode(' ', $sort);
+        if (in_array($sort[0], $this->columns())) {
+            return (isset($sort[1]) && $sort[1]=='desc')
+                        ? ["$sort[0] desc"]
+                        : ["$sort[0]"];
+        }
+        return self::$DEFAULT_SORT;
     }
 
     //-----------------------------------------------------

@@ -18,7 +18,7 @@ class Request
     public $itemsPerPage;
     public $currentPage;
 
-    public function __construct(?array $data=null, ?array $order=null, ?int $itemsPerPage=null, ?int $currentPage=null)
+    public function __construct(?array $data=null, ?string $order=null, ?int $itemsPerPage=null, ?int $currentPage=null)
     {
         if ($data)  {
             if (!empty($data['id'       ])) { $this->id   = (int)$data['id'       ]; }

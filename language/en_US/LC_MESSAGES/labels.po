@@ -128,3 +128,27 @@ msgid "profile"
 msgid_plural "profiles"
 msgstr[0] "Profile"
 msgstr[1] "Profiles"
+
+msgid "sort username"
+msgstr "User A-Z"
+
+msgid "sort username desc"
+msgstr "User Z-A"
+
+msgid "sort created"
+msgstr "Oldest Created"
+
+msgid "sort created desc"
+msgstr "Last Created"
+
+msgid "sort updated"
+msgstr "Oldest Updated"
+
+msgid "sort updated desc"
+msgstr "Last Updated"
+
+msgid "sort hits"
+msgstr "Least Hits"
+
+msgid "sort hits desc"
+msgstr "Most Hits"

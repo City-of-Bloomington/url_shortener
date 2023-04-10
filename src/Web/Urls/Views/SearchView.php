@@ -17,9 +17,7 @@ class SearchView extends View
 {
     public function __construct(Request  $request,
                                 Response $response,
-                                Metadata $metadata,
-                                int      $itemsPerPage,
-                                int      $currentPage)
+                                Metadata $metadata)
     {
         parent::__construct();
 
@@ -27,17 +25,27 @@ class SearchView extends View
             $_SESSION['errorMessages'] = $response->errors;
         }
 
+        $valid_sorts = [
+            'username', 'username desc',
+            'created',   'created desc',
+            'updated',   'updated desc',
+            'hits',         'hits desc'
+        ];
+
+
         $this->vars = [
             'urls'         => $response->urls,
             'total'        => $response->total,
-            'itemsPerPage' => $itemsPerPage,
-            'currentPage'  => $currentPage,
+            'order'        => $request->order,
+            'itemsPerPage' => $request->itemsPerPage,
+            'currentPage'  => $request->currentPage,
             'code'         => !empty($_GET['code'     ]) ? parent::escape($_GET['code'     ]) : '',
             'id'           => !empty($_GET['id'       ]) ? parent::escape($_GET['id'       ]) : '',
             'username'     => !empty($_GET['username' ]) ? parent::escape($_GET['username' ]) : '',
             'original'     => !empty($_GET['original' ]) ? parent::escape($_GET['original' ]) : '',
             'query'        => !empty($_GET['query'    ]) ? parent::escape($_GET['query'    ]) : '',
             'usernames'    => $metadata->usernames(),
+            'sorts'        => $valid_sorts,
             'CODE_LENGTH'  => CODE_LENGTH
         ];
     }

@@ -18,13 +18,16 @@ class ListController extends Controller
     {
 		$page     = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
         $search   = $this->di->get('Domain\Urls\Actions\Search\Command');
-        $request  = new SearchRequest($_GET, null, parent::ITEMS_PER_PAGE, $page);
+        $request  = new SearchRequest($_GET,
+                                      $_GET['sort'] ?? 'updated desc',
+                                      parent::ITEMS_PER_PAGE,
+                                      $page);
+
+
         $response = $search($request);
 
         return new SearchView($request,
                               $response,
-                              $this->di->get('Domain\Urls\Metadata'),
-                              parent::ITEMS_PER_PAGE,
-                              $page);
+                              $this->di->get('Domain\Urls\Metadata'));
     }
 }

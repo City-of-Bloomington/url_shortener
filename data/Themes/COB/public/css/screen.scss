@@ -9,5 +9,14 @@
 }
 
 .pageNavigation {
-    a { border: 1px solid $color-divider; }
+    a {
+        display: table-cell;
+        border-collapse: collapse;
+        border: 1px solid $color-divider;
+        width: 1.5em;
+        text-align: center;
+    }
+    .current {
+        background-color: $color-action;
+    }
 }

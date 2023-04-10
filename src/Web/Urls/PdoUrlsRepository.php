@@ -71,6 +71,7 @@ class PdoUrlsRepository extends PdoRepository implements UrlsRepository
         $data = (array)$url;
         unset($data['created']);
         unset($data['updated']);
+        unset($data['hits'   ]);
         return parent::saveToTable($data, self::TABLE);
     }
 

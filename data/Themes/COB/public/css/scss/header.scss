@@ -1,51 +1,33 @@
+$size-logo-height: 55px;
+
 body > header {
     background-color: $color-content-background;
     border-top: $size-gutter solid $color-header;
     color: $color-header;
     padding-top:$size-gutter; padding-left:$size-gutter;
+    height: (2 * $size-gutter) + $size-logo-height;
+
+    background: url('../images/cob-logo-horizontal.svg') no-repeat left center;
+    background-size: 233px $size-logo-height;
+    text-align: center;
+
+    h1 {
+        display: inline-block;
+        margin: .2em 0;
+        vertical-align: middle;
+        a {
+            margin-left: $size-gutter;
+            font-size:$font-size-bigger; font-weight: normal;
+        }
+    }
 
     a {
         color: $color-header;
         font-family: $font-family-nav;
     }
-
-    > .container {
-        h1, h2 {
-            display: inline-block;
-            margin: .2em 0;
-            vertical-align: middle;
-        }
-        h1 a {
-            margin-left: $size-gutter;
-            font-size:$font-size-bigger; font-weight: normal;
-
-            @if $url-logo {
-                display: inline-block;
-                background: url($url-logo) no-repeat left center;
-                background-size:2.5rem;
-                padding-left:3rem;
-                line-height:2.5rem;
-            }
-        }
-        h2 {
-            font-size:$font-size-small;
-            margin: 0 0 0 2em;
-            padding:0 0 0 2em;
-            border-left:1px solid $color-border-table;
-        }
-    }
-
-    .utilityBar {
-        position: absolute; right:10px; top:10px;
-        display: flex;
-        details { background-color: $color-content-background; }
-        nav a {
-            display: block;
-        }
-    }
 }
 
-#nav1 {
+body > nav {
     height: 2rem;
     display: flex; align-items: center;
     background-color: $color-header;

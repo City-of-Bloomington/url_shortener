@@ -1,6 +1,0 @@
-<nav>
-    <header><h2>{{ _('admin') }}</h2></header>
-    {% if isAllowed('urls', 'index') %}
-    <a href="{{ uri('urls.index') }}">{{ _(['urls', 'urls', 10]) }}</a>
-    {% endif %}
-</nav>

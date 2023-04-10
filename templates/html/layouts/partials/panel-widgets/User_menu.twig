@@ -1,8 +1,0 @@
-<nav>
-    {% if USER is defined %}
-        <header><h2>{{ USER.getFullname() }}</h2></header>
-        <a href="{{ uri('login.logout') }}">{{ _('logout') }}</a>
-    {% else %}
-        <a href="{{ url('login.oidc') ~ '?return_url=' ~ REQUEST_URI }}">{{ _('login') }}</a>
-    {% endif %}
-</nav>

@@ -1,7 +1,9 @@
+html { margin: 0; padding: 0; }
 body {
     color: $color-text-default;
     font-family: $font-family-default;
     font-size:$font-size-normal;
+    margin: 0; padding: 0;
 }
 h1, h2, h3, h4, h5, h6 {
     color: $color-heading;
@@ -37,6 +39,7 @@ tbody th { text-align: right; }
 fieldset {
     margin: 0 0 3em 0;
     padding: $size-gutter;
+    border: none;
 
     > div > label { display: inline-block; width: 10em; }
 }

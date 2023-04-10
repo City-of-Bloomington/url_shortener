@@ -41,6 +41,9 @@ class Command
         if (!$req->code    ) { $errors[] = 'missingCode';     }
         if (!$req->original) { $errors[] = 'missingOriginal'; }
         if (!$req->username) { $errors[] = 'missingUsername'; }
+
+        if (strlen($req->code) !== CODE_LENGTH) { $errors[] = 'invalidCodeLength'; }
+
         return $errors;
     }
 }

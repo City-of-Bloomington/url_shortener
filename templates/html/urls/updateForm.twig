@@ -16,16 +16,20 @@
             <input type="hidden" name="id" value="{{ id }}" />
 
             <div>
-                <label for="code">Code:</label>
-                <input type="text" id="code" name="code" value="{{ code }}" required />
+                <label  for="code">Code:</label>
+                <input name="code" id="code" value="{{ code }}" required
+	                        size="{{ CODE_LENGTH }}"
+	                   minlength="{{ CODE_LENGTH }}"
+	                   maxlength="{{ CODE_LENGTH }}" />
             </div>
 
             <div>
-                <label for="original">Original:</label>
-                <input type="text" id="original" name="original" value="{{ original }}" required />
+                <label  for="original">Original:</label>
+                <input name="original" id="original" value="{{ original }}" required />
             </div>
 
             <button type="submit">Save</button>
+            <a href="{{ uri('urls.view', {'id':id}) }}">Cancel</a>
         </fieldset>
     </form>
 </section>

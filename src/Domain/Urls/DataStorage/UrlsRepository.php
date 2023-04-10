@@ -14,4 +14,6 @@ interface UrlsRepository
     public function load(int $id): Url;
     public function search(SearchRequest $req): array;
     public function save(Url $code): int;
+
+    public function usernames(): array;
 }

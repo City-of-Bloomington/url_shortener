@@ -49,16 +49,16 @@
     {% if urls %}
     <table>
         <thead>
-            <tr><th>Code</th>
-                <th>Original URL</th>
+            <tr><th>Info</th>
                 <th>Short URL</th>
+                <th>Original URL</th>
             </tr>
         </thead>
         <tbody>
             {% for url in urls %}{% set uri = uri('urls.view', {'id':url.id}) %}
             <tr><td><a href="{{ uri('urls.view', {'id':url.id}) }}">{{ url.code }}</a></td>
-                <td><a href="{{ url.original }}">{{ url.original }}</a></td>
                 <td><a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></td>
+                <td><a href="{{ url.original }}">{{ url.original }}</a></td>
             </tr>
             {% endfor %}
         </tbody>

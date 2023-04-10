@@ -4,6 +4,7 @@
  *
  * @param string code
  * @param string original
+ * @param int    CODE_LENGTH   Short URL codes must be exactly this length
 #}
 {% extends "html/layouts/default.twig" %}
 {% block content %}
@@ -15,7 +16,10 @@
         <fieldset>
             <div>
 	            <label  for="code">Code</label>
-	            <input name="code" id="code" value="{{ code }}" />
+	            <input name="code" id="code" value="{{ code }}"
+	                        size="{{ CODE_LENGTH }}"
+	                   minlength="{{ CODE_LENGTH }}"
+	                   maxlength="{{ CODE_LENGTH }}" />
             </div>
             <div>
 	            <label  for="original">URL</label>

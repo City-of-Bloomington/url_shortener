@@ -1,7 +1,9 @@
 <nav>
     {% if isAllowed('urls', 'index') %}
-    <a href="{{ uri('urls.index') }}">{{ _(['urls', 'urls', 10]) }}</a>
+    <a href="{{ uri('urls.index') }}">All Urls</a>
     {% endif %}
+
+    <a href="{{ uri('urls.add') }}">Add Url</a>
 
     {% if not USER is defined %}
         <a href="{{ url('login.oidc') ~ '?return_url=' ~ REQUEST_URI }}">{{ _('login') }}</a>

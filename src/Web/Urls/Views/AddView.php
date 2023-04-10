@@ -23,7 +23,8 @@ class AddView extends View
 
         $this->vars = [
             'code'          => $request->code,
-            'original'      => $request->original
+            'original'      => $request->original,
+            'CODE_LENGTH'   => CODE_LENGTH
         ];
     }
 

@@ -23,9 +23,10 @@ class UpdateView extends View
         }
 
         $this->vars = [
-            'id'         => $request->id,
-            'code'       => $request->code,
-            'original'   => $request->original
+            'id'          => $request->id,
+            'code'        => $request->code,
+            'original'    => $request->original,
+            'CODE_LENGTH' => CODE_LENGTH
         ];
     }
 

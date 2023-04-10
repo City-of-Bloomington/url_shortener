@@ -36,7 +36,9 @@ class SearchView extends View
             'id'           => !empty($_GET['id'       ]) ? parent::escape($_GET['id'       ]) : '',
             'username'     => !empty($_GET['username' ]) ? parent::escape($_GET['username' ]) : '',
             'original'     => !empty($_GET['original' ]) ? parent::escape($_GET['original' ]) : '',
-            'usernames'    => $metadata->usernames()
+            'query'        => !empty($_GET['query'    ]) ? parent::escape($_GET['query'    ]) : '',
+            'usernames'    => $metadata->usernames(),
+            'CODE_LENGTH'  => CODE_LENGTH
         ];
     }
 

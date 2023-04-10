@@ -8,10 +8,11 @@ namespace Domain\Urls\Actions\Search;
 
 class Request
 {
-    public string $code;
+    public $code;
     public $id;
     public $username;
     public $original;
+    public $query;
 
     public $order;
     public $itemsPerPage;
@@ -24,6 +25,7 @@ class Request
             if (!empty($data['username' ])) { $this->username  = $data['username' ]; }
             if (!empty($data['code'     ])) { $this->code      = $data['code'     ]; }
             if (!empty($data['original' ])) { $this->original  = $data['original' ]; }
+            if (!empty($data['query'    ])) { $this->query     = $data['query'    ]; }
         }
         if ($order       ) { $this->order        = $order;        }
         if ($itemsPerPage) { $this->itemsPerPage = $itemsPerPage; }

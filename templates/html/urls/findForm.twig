@@ -15,6 +15,7 @@
  * @param string username
  * @param string code
  * @param string original
+ * @param string query
 #}
 {% extends "html/layouts/default.twig" %}
 {% import  "html/macros/pagination.twig" as pagination %}
@@ -26,25 +27,37 @@
     </header>
     <form method="get">
         <fieldset>
-            <div>
-	            <label for="code">Code</label>
-	            <input name="code" id="code" value="{{ code }}" />
-            </div>
-            <div>
-	            <label for="original">Original</label>
-	            <input name="original" id="original" value="{{ original }}" />
-            </div>
-            <div>
-                <label  for="username">Username</label>
-                <select name="username" id="username"><option value=""></option>
-                {% for u in usernames %}
-                    <option {% if u==username %}selected="selected"{% endif %}>{{ u }}</option>
-                {% endfor %}
-                </select>
-            </div>
+            <label for="query">Query</label>
+            <input name="query" id="query" value="{{ query }}" placeholder="Search original or code"/>
             <button type="submit" class="search">Search</button>
         </fieldset>
     </form>
+    <details {% if code or original or username %}open="true"{% endif %}>
+        <summary>Advanced Search</summary>
+        <form method="get">
+            <fieldset>
+                <div>
+                    <label for="code">Code</label>
+                    <input name="code" id="code" value="{{ code }}"
+                                size="{{ CODE_LENGTH }}"
+                        maxlength="{{ CODE_LENGTH }}" />
+                </div>
+                <div>
+                    <label for="original">Original</label>
+                    <input name="original" id="original" value="{{ original }}" />
+                </div>
+                <div>
+                    <label  for="username">Username</label>
+                    <select name="username" id="username"><option value=""></option>
+                    {% for u in usernames %}
+                        <option {% if u==username %}selected="selected"{% endif %}>{{ u }}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="search">Search</button>
+            </fieldset>
+        </form>
+    </details>
 
     {% if urls %}
     <table>

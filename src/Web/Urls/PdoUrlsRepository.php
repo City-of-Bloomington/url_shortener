@@ -59,6 +59,12 @@ class PdoUrlsRepository extends PdoRepository implements UrlsRepository
             }
         }
 
+        if ($req->query) {
+            $select->where('lower(code) like ? or lower(original) like ?',
+                           '%'.strtolower($req->query).'%',
+                           '%'.strtolower($req->query).'%');
+        }
+
         return parent::performHydratedSelect($select,
                                              __CLASS__.'::hydrate',
                                              self::$DEFAULT_SORT,

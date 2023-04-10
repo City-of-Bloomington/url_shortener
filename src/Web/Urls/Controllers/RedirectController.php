@@ -16,6 +16,7 @@ class RedirectController extends Controller
     {
         $repo = $this->di->get('Domain\Urls\DataStorage\UrlsRepository');
         try {
+            $repo->incrementHits($params['code']);
             $url = $repo->load($params['code']);
             header('Location: '.$url->original);
             exit();

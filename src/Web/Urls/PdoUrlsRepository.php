@@ -80,6 +80,13 @@ class PdoUrlsRepository extends PdoRepository implements UrlsRepository
         $delete->execute([$id]);
     }
 
+    public function incrementHits(string $code)
+    {
+        $sql    = 'update urls set hits=hits+1 where code=?';
+        $update = $this->pdo->prepare($sql);
+        $update->execute([$code]);
+    }
+
     private function doSelect(SelectInterface $select, ?array $order=null, ?int $itemsPerPage=null, ?int $currentPage=null): array
     {
         $result = parent::performSelect($select, self::$DEFAULT_SORT, $itemsPerPage, $currentPage);

@@ -4,5 +4,6 @@ create table urls (
 	code	  char(5)      not null unique,
 	original  text         not null,
 	created   datetime     not null default CURRENT_TIMESTAMP,
-	updated   timestamp    not null default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP
+	updated   timestamp    not null default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+	hits      int          not null default 0
 );

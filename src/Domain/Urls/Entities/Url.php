@@ -14,6 +14,7 @@ class Url
     public ?string    $original = null;
     public ?\DateTime $created  = null;
     public ?\DateTime $updated  = null;
+    public ?int       $hits     = null;
 
     public function __construct(?array $data=null)
     {
@@ -22,6 +23,7 @@ class Url
                 if (!empty($data[$k])) {
                     switch ($k) {
                         case 'id':
+                        case 'hits':
                             $this->$k = (int)$data[$k];
                         break;
 

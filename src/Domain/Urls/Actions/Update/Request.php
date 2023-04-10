@@ -23,7 +23,7 @@ class Request
                     break;
 
                     default:
-                        $this->$k = $data[$k];
+                        $this->$k = trim($data[$k]);
 
                 }
             }

@@ -15,7 +15,7 @@ class Request
     public function __construct(array $data=null)
     {
         foreach ($this as $k=>$v) {
-            if (!empty($data[$k])) { $this->$k = $data[$k]; }
+            if (!empty($data[$k])) { $this->$k = trim($data[$k]); }
         }
     }
 }

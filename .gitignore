@@ -1,5 +1,6 @@
 build
 vendor
+make.conf
 site_config.php
 ansible/roles
 data/sessions/*

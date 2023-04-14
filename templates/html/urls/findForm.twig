@@ -72,18 +72,30 @@
     </form>
 
     {% if urls %}
-    {% for url in urls %}{% set uri = uri('urls.view', {'id':url.id}) %}
-    <article>
-        <header><a href="{{ uri('urls.view', {'id':url.id}) }}">{{ url.code }}</a></header>
-        <div><a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></div>
-        <div><a href="{{ url.original }}">{{ url.original }}</a></div>
-        <div><strong>Created: </strong>  {{ url.created.format('n/d/Y') }}
-              <strong>Updated: </strong> {{ url.updated.format('n/d/Y') }}
-              <strong>User:</strong> {{ url.username }}
-              <strong>Hits: </strong> {{ url.hits }}
-        </div>
-    </article>
-    {% endfor %}
+    {% set sorturl      = current_url() %}
+    {% set current_sort = sorturl.__get('sort')|split(' ') %}
+    <table>
+        <thead>
+            <tr>{% for f in ['code', 'short', 'original', 'created', 'updated', 'username', 'hits'] %}
+                    {{ sorturl.__set('sort', f) }}
+                    {% if current_sort[0]==f and current_sort[1] is not defined %}{{ sorturl.__set('sort', f ~ ' desc') }}{% endif %}
+                    <th><a href="{{ sorturl }}">{{ f }}</a></th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+        {% for url in urls %}{% set uri = uri('urls.view', {'id':url.id}) %}
+        <tr><td><a href="{{ uri('urls.view', {'id':url.id}) }}">{{ url.code }}</a></td>
+            <td><a href="{{ url('urls.redirect', {'code':url.code}) }}">Short Url</a></td>
+            <td><a href="{{ url.original }}">Original Url</a></td>
+            <td>{{ url.created.format('n/d/Y') }}</td>
+            <td>{{ url.updated.format('n/d/Y') }}</td>
+            <td>{{ url.username }}</td>
+            <td>{{ url.hits }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
     {% else %}
         <p>No URLs found.</p>
     {% endif %}

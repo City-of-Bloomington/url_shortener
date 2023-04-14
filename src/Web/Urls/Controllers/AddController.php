@@ -14,8 +14,6 @@ use Web\View;
 
 class AddController extends Controller
 {
-    const MAX_CODE_LENGTH = 5;
-
     public function __invoke(array $params): View
     {
         if (isset($_POST['code'])) {
@@ -44,7 +42,7 @@ class AddController extends Controller
     {
         $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $code  = [];
-        for ($i=0; $i<self::MAX_CODE_LENGTH; $i++) {
+        for ($i=0; $i<CODE_LENGTH; $i++) {
             $code[] = $chars[random_int(0, strlen($chars))];
         }
         return implode('', $code);

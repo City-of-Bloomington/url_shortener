@@ -85,49 +85,6 @@ msgid_plural "emails"
 msgstr[0] "Email"
 msgstr[1] "Email Addresses"
 
-msgid "person"
-msgid_plural "people"
-msgstr[0] "Person"
-msgstr[1] "People"
-
-msgid "user"
-msgid_plural "users"
-msgstr[0] "User Account"
-msgstr[1] "User Accounts"
-
-msgid "person_info"
-msgstr "Person Info"
-
-msgid "person_add"
-msgstr "Add a Person"
-
-msgid "person_edit"
-msgstr "Edit Person"
-
-msgid "user_add"
-msgstr "Create Account"
-
-msgid "user_edit"
-msgstr "Edit Account"
-
-msgid "user_delete"
-msgstr "Delete Account"
-
-msgid "user_info"
-msgstr "Account Info"
-
-msgid "my_account"
-msgstr "My Account"
-
-msgid "employee"
-msgid_plural "employees"
-msgstr[0] "Employee"
-msgstr[1] "Employees"
-
-msgid "profile"
-msgid_plural "profiles"
-msgstr[0] "Profile"
-msgstr[1] "Profiles"
 
 msgid "sort username"
 msgstr "User A-Z"

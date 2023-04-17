@@ -4,6 +4,7 @@
  *
  * @param string code
  * @param string original
+ * @param bool   preview
  * @param int    CODE_LENGTH   Short URL codes must be exactly this length
 #}
 {% extends "html/layouts/default.twig" %}
@@ -24,6 +25,10 @@
             <div>
 	            <label  for="original">URL</label>
 	            <input name="original" id="original" value="{{ original }}" />
+            </div>
+            <div>
+                <label  for="preview">Preview</label>
+                <input name="preview" id="preview" type="checkbox" value="1" {{ preview ? 'checked="true"' : '' }} />
             </div>
             <button type="submit">Save</button>
         </fieldset>

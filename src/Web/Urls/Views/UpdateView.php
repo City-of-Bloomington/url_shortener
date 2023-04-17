@@ -26,6 +26,7 @@ class UpdateView extends View
             'id'          => $request->id,
             'code'        => $request->code,
             'original'    => $request->original,
+            'preview'     => $request->preview,
             'CODE_LENGTH' => CODE_LENGTH
         ];
     }

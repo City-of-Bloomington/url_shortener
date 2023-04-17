@@ -12,6 +12,7 @@ class Request
     public $id;
     public $username;
     public $original;
+    public $preview;
     public $query;
 
     public $order;
@@ -26,6 +27,12 @@ class Request
             if (!empty($data['code'     ])) { $this->code      = $data['code'     ]; }
             if (!empty($data['original' ])) { $this->original  = $data['original' ]; }
             if (!empty($data['query'    ])) { $this->query     = $data['query'    ]; }
+
+            if (isset($data['preview'])) {
+                if ($data['preview'])         { $this->preview = true;  }
+                if ($data['preview']==0
+                 || $data['preview']===false) { $this->preview = false; }
+            }
         }
         if ($order       ) { $this->order        = $order;        }
         if ($itemsPerPage) { $this->itemsPerPage = $itemsPerPage; }

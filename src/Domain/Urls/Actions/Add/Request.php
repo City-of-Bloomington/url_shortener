@@ -11,11 +11,21 @@ class Request
     public ?string $code     = null;
     public ?string $original = null;
     public ?string $username = null;
+    public ?bool   $preview  = null;
 
     public function __construct(array $data=null)
     {
         foreach ($this as $k=>$v) {
-            if (!empty($data[$k])) { $this->$k = trim($data[$k]); }
+            if (!empty($data[$k])) {
+                switch ($k) {
+                    case 'preview':
+                        $this->preview = $data[$k] ? true : false;
+                    break;
+
+                    default:
+                        $this->$k = trim($data[$k]);
+                }
+            }
         }
     }
 }

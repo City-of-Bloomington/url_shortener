@@ -54,8 +54,21 @@ class PdoUrlsRepository extends PdoRepository implements UrlsRepository
         $select->cols($this->columns())->from(self::TABLE);
 
         foreach ($this->columns() as $f) {
-            if (!empty($req->$f)) {
-                $select->where("lower($f) like ?", strtolower($req->$f).'%');
+            if (isset($req->$f)) {
+                switch ($f) {
+                    case 'id':
+                    case 'username':
+                        $select->where("$f=?", $req->$f);
+                    break;
+
+                    case 'preview':
+                        if ($req->preview) { $select->where('preview  = 1'); }
+                        else               { $select->where('preview != 1'); }
+                    break;
+
+                    default:
+                        $select->where("lower($f) like ?", strtolower($req->$f).'%');
+                }
             }
         }
         if ($req->query) {
@@ -75,10 +88,13 @@ class PdoUrlsRepository extends PdoRepository implements UrlsRepository
 
     public function save(Url $url): int
     {
-        $data = (array)$url;
-        unset($data['created']);
-        unset($data['updated']);
-        unset($data['hits'   ]);
+        $data = [
+            'id'       => $url->id,
+            'code'     => $url->code,
+            'original' => $url->original,
+            'username' => $url->username,
+            'preview'  => $url->preview ? 1 : null
+        ];
         return parent::saveToTable($data, self::TABLE);
     }
 

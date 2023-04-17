@@ -11,6 +11,7 @@ class Request
     public ?int    $id       = null;
     public ?string $code     = null;
     public ?string $original = null;
+    public ?bool   $preview  = null;
     public ?string $username = null;
 
     public function __construct(array $data=null)
@@ -18,6 +19,10 @@ class Request
         foreach ($this as $k=>$v) {
             if (!empty($data[$k])) {
                 switch ($k) {
+                    case 'preview':
+                        $this->$k = $data[$k] ? true : false;
+                    break;
+
                     case 'id':
                         $this->$k = (int)$data[$k];
                     break;

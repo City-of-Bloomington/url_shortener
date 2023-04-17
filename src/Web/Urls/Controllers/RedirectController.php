@@ -9,6 +9,7 @@ namespace Web\Urls\Controllers;
 
 use Web\Controller;
 use Web\View;
+use Web\Urls\Views\RedirectView;
 
 class RedirectController extends Controller
 {
@@ -18,6 +19,9 @@ class RedirectController extends Controller
         try {
             $repo->incrementHits($params['code']);
             $url = $repo->load($params['code']);
+            if ($url->preview) {
+                return new RedirectView($url);
+            }
             header('Location: '.$url->original);
             exit();
         }

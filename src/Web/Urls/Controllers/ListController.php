@@ -22,8 +22,6 @@ class ListController extends Controller
                                       $_GET['sort'] ?? 'updated desc',
                                       parent::ITEMS_PER_PAGE,
                                       $page);
-
-
         $response = $search($request);
 
         return new SearchView($request,

@@ -15,6 +15,7 @@ class Url
     public ?\DateTime $created  = null;
     public ?\DateTime $updated  = null;
     public ?int       $hits     = null;
+    public ?bool      $preview  = null;
 
     public function __construct(?array $data=null)
     {
@@ -22,6 +23,10 @@ class Url
             foreach ($this as $k=>$v) {
                 if (!empty($data[$k])) {
                     switch ($k) {
+                        case 'preview':
+                            $this->$k = $data[$k] ? true : false;
+                        break;
+
                         case 'id':
                         case 'hits':
                             $this->$k = (int)$data[$k];

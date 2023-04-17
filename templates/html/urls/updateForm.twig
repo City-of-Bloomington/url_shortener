@@ -2,10 +2,9 @@
  * @copyright 2023 City of Bloomington, Indiana
  * @license http://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
  * @param string id
- * @param string firstname
- * @param string lastname
- * @param string email
- * @param string title
+ * @param string code
+ * @param string original
+ * @param bool   preview
 #}
 {% extends "html/layouts/default.twig" %}
 {% block content %}
@@ -26,6 +25,11 @@
             <div>
                 <label  for="original">Original:</label>
                 <input name="original" id="original" value="{{ original }}" required />
+            </div>
+
+            <div>
+                <label  for="preview">Preview</label>
+                <input name="preview" id="preview" type="checkbox" value="1" {{ preview ? 'checked="true"' : '' }} />
             </div>
 
             <button type="submit">Save</button>

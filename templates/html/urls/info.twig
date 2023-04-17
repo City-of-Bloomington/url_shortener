@@ -22,6 +22,7 @@
         <tr><th>created</th> <td>{{ url.created.format('c') }}</td></tr>
         <tr><th>updated</th> <td>{{ url.updated.format('c') }}</td></tr>
         <tr><th>hits</th>    <td>{{ url.hits }}</td></tr>
+        <tr><th>Preview</th> <td>{{ url.preview ? '✓' : '' }}</td></tr>
     </table>
 
     <img src="{{ url('urls.qrcode', {'code':url.code} )}}" />

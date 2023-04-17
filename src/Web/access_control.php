@@ -18,7 +18,6 @@ use Laminas\Permissions\Acl\Assertion\OwnershipAssertion;
 $ACL = new Acl();
 $ACL->addRole(new Role('Anonymous'))
     ->addRole(new Role('Staff'),     'Anonymous')
-    ->addRole(new Role('Supervisor', 'Anonymous'))
     ->addRole(new Role('Administrator'));
 /**
  * Create resources for all the routes

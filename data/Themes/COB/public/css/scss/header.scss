@@ -1,13 +1,14 @@
 $size-logo-height: 55px;
+$size-logo-margin: 28px;
 
 body > header {
     background-color: $color-content-background;
     border-top: $size-gutter solid $color-header;
     color: $color-header;
-    padding-top:$size-gutter; padding-left:$size-gutter;
-    height: (2 * $size-gutter) + $size-logo-height;
+    padding-top:$size-logo-margin; padding-left:$size-logo-margin;
+    height: $size-logo-margin + $size-logo-height;
 
-    background: url('../images/cob-logo-horizontal.svg') no-repeat left center;
+    background: url('../images/cob-logo-horizontal.svg') no-repeat top $size-logo-margin left $size-logo-margin;
     background-size: 233px $size-logo-height;
     text-align: center;
 

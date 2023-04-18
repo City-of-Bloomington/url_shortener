@@ -1,5 +1,7 @@
+@font-face { font-family: 'Roboto'; src: url('../Roboto/Roboto-Regular.ttf'); }
+
 $serif: serif;
-$sans:  sans-serif;
+$sans:  'Roboto';
 
 // Fonts
 $font-family-default: $sans;
@@ -19,35 +21,35 @@ $font-size-small:   12px;
 
 @import 'color-palette';
 // Foreground colors
-$color-text-default:       $mine-shaft;
-$color-text-secondary:     $silver-chalice;
+$color-text-default:       #000;;
+$color-text-secondary:     $gray-dark;
 $color-link:               $cob-blue;
-$color-heading:            $mine-shaft;
-$color-divider:            $silver;
+$color-heading:            #000;
+$color-divider:            $gray-light;
 
 // Background colors
-$color-content-background:  $white;
-$color-selected-background: $havelock-blue;
+$color-content-background:  #fff;
+$color-selected-background: $vibrant-blue;
 
 $color-nav1:                $cob-blue;
 $color-header:              $cob-blue;
-$color-header-border:       $azure;
-$color-footer:              $dark-slate;
-$color-error:               $sunglo;
-$color-alert:               $california;
-$color-action:              $fern;
-$color-action-hover:        $deyork;
+$color-header-border:       $cob-blue;
+$color-footer:              $gray-dark;
+$color-error:               $red;
+$color-alert:               $red;
+$color-action:              $green;
+$color-action-hover:        $teal;
 $color-accent:              $red;
 
 // Special widget colors
-$color-background-field:           $sail;
-$color-background-field-highlight: $gin-fizz;
-$color-border-input:               $silver-chalice;
-$color-border-input-highlight:     $mine-shaft;
-$color-border-table:               $wafer;
+$color-background-field:           #fff;
+$color-background-field-highlight: #fff;
+$color-border-input:               $gray-dark;
+$color-border-input-highlight:     $gray-dark;
+$color-border-table:               $gray-light;
 
-$color-table-background:           $gainsboro;
-$color-table-background-alt:       $silver;
+$color-table-background:           #fff;
+$color-table-background-alt:       $gray-light;
 $color-table-header-background:    $cob-blue;
 
 $color-shadow: rgba(0, 0, 0, 0.5);

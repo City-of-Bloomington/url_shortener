@@ -67,6 +67,10 @@
             </fieldset>
         </details>
     </form>
+    {# Pagination #}
+    {% if total > itemsPerPage %}
+        {{ pagination.pageLinks(total, itemsPerPage, currentPage) }}
+    {% endif %}
 
     {% if urls %}
     {% set sorturl      = current_url() %}

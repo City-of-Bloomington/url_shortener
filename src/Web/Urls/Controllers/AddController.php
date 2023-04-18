@@ -43,7 +43,7 @@ class AddController extends Controller
         $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $code  = [];
         for ($i=0; $i<CODE_LENGTH; $i++) {
-            $code[] = $chars[random_int(0, strlen($chars))];
+            $code[] = $chars[random_int(0, strlen($chars)-1)];
         }
         return implode('', $code);
     }

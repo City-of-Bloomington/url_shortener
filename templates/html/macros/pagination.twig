@@ -18,6 +18,10 @@
 
         <nav class="pageNavigation">
         {% set url = current_url() %}
+            {% do url.__set('page', 1) %}
+            <a href="{{ url }}">First</a>
+            {% do url.__set('page', pageNumber>1 ? pageNumber-1 : 1) %}
+            <a href="{{ url }}">Previous</a>
         {% for i in lowerBound..upperBound %}
             {% do url.__set('page', i) %}
             <a href="{{ url }}" {% if i==pageNumber %}class="current"{% endif %}>{{ i }}</a>

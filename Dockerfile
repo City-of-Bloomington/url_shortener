@@ -31,7 +31,9 @@ RUN apt-get install -y \
     libapache2-mod-php
 
 WORKDIR /srv/sites/url_shortener
-COPY --chown=www-data:staff . /srv/sites/url_shortener
+COPY --chown=www-data . /srv/sites/url_shortener
+RUN mkdir -p /srv/sites/url_shortener/data/sessions && \
+    chown -R www-data /srv/sites/url_shortener
 
 EXPOSE 80
 ENTRYPOINT ["apachectl", "-D", "FOREGROUND"]

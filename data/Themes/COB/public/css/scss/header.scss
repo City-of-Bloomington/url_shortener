@@ -1,3 +1,4 @@
+$size-logo-width: 233px;
 $size-logo-height: 55px;
 $size-logo-margin: 28px;
 
@@ -8,13 +9,12 @@ body > header {
     height: $size-logo-margin + $size-logo-height;
 
     background: url('../images/cob-logo-horizontal.svg') no-repeat top $size-logo-margin left $size-logo-margin;
-    background-size: 233px $size-logo-height;
+    background-size: $size-logo-width $size-logo-height;
     background-color: $color-content-background;
-    text-align: center;
 
     h1 {
         display: inline-block;
-        margin: .2em 0;
+        margin: .2em $size-gutter 0 $size-logo-width + $size-gutter;
         vertical-align: middle;
         a {
             margin-left: $size-gutter;
@@ -25,6 +25,11 @@ body > header {
     a {
         color: $color-header;
         font-family: $font-family-nav;
+    }
+
+    @media (min-width: 700px) {
+        text-align: center;
+        h1 { margin: .2em 0; }
     }
 }
 

@@ -1,7 +1,6 @@
 @import 'scss/vars';
 
 @import 'scss/html-elements';
-@import 'scss/layout';
 @import 'scss/header';
 
 #errorMessages {
@@ -9,8 +8,11 @@
 }
 
 html { background-color: $color-selected-background; }
-main {
-    display: flex; align-items: center; justify-content: center;
+@media (min-width: 700px) {
+    main {
+        display: flex; align-items: center; justify-content: center;
+        margin: $size-gutter;
+    }
 }
 section {
     background-color: $color-content-background;

@@ -49,28 +49,6 @@ $DATABASES = [
     ]
 ];
 
-/**
- * Ldap Configuration
- *
- * This supports doing user authentication from multiple external
- * directories, such as LDAP or ADS. This is required since city staff
- * are in a seperate LDAP directory from public user accounts.
- * Classes that implement AuthenticationInterface should have an entry here.
- *
- * @see Domain\Auth
- */
-$LDAP = [
-  'Employee' => [
-      'classname'          => 'Site\Employee',
-      'server'             => 'ldaps://ldap.example.org:636',
-      'base_dn'            => 'DC=ldap,DC=example,DC=org',
-      'username_attribute' => 'sAMAccountName',
-      'user_binding'       => '{username}@bldap.example.org',
-      'admin_binding'      => 'admin@ldap.example.org',
-      'admin_pass'         => 'secret password'
-  ]
-];
-
 $AUTHENTICATION = [
     'cas' => [
         'host' => 'example.org',

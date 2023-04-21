@@ -23,7 +23,7 @@ if ($route) {
     $controller = $route->handler;
     $c = new $controller($DI);
     if (is_callable($c)) {
-        $user = Auth::getAuthenticatedUser($DI->get('Web\Authentication\AuthenticationInterface'));
+        $user = $_SESSION['USER'] ?? null;
         if (Auth::isAuthorized($route->name, $user)) {
             // Convenience:
             // Most of our applications are just basic form processing.

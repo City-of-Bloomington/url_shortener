@@ -34,9 +34,6 @@ $DI->lazyNew('Domain\Urls\Metadata'));
 //---------------------------------------------------------
 // Services
 //---------------------------------------------------------
-$DI->params[ 'Site\Employee']['config'] = $LDAP;
-$DI->set(    'Web\Authentication\AuthenticationInterface',
-$DI->lazyNew('Site\Employee'));
 
 //---------------------------------------------------------
 // Use Cases

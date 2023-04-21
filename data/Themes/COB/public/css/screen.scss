@@ -8,12 +8,41 @@
     background-color: $color-error;
 }
 
+html { background-color: $color-selected-background; }
+main {
+    display: flex; align-items: center; justify-content: center;
+}
+section {
+    background-color: $color-content-background;
+    border-radius: $size-gutter;
+    padding: $size-gutter;
+    width: fit-content; block-size: fit-content;
+
+    header h2 {
+        border-bottom: 1px solid $color-divider;
+    }
+}
+
 article {
     border-bottom: 1px solid $color-divider;
     header {
         font-size: $font-size-big; font-weight: bold;
     }
 }
+details, fieldset > div {
+    margin-bottom: $size-gutter;
+}
+
+label[for="preview"] { display: inline; }
+label[for="query"]   { display: none;   }
+button[type="submit"] {
+    background-color: $color-action;
+    color: $color-content-background;
+}
+.button.edit   { background-color: $color-link;  color: $color-content-background; }
+.button.delete { background-color: $color-alert; color: $color-content-background; }
+.button.cancel { background-color: $color-alert; color: $color-content-background; }
+
 
 .pageNavigation {
     a {

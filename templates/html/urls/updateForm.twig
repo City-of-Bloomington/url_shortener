@@ -8,12 +8,18 @@
 #}
 {% extends "html/layouts/default.twig" %}
 {% block content %}
-<section>
-    <h1>Edit URL</h1>
+<section id="updateForm">
+    <header>
+        <h2>Edit URL</h2>
+    </header>
     <form method="post">
         <fieldset>
             <input type="hidden" name="id" value="{{ id }}" />
 
+            <div>
+                <input name="preview" id="preview" type="checkbox" value="1" {{ preview ? 'checked="true"' : '' }} />
+                <label  for="preview">Enable Destination Preview</label>
+            </div>
             <div>
                 <label  for="code">Code:</label>
                 <input name="code" id="code" value="{{ code }}" required
@@ -21,19 +27,13 @@
 	                   minlength="{{ CODE_LENGTH }}"
 	                   maxlength="{{ CODE_LENGTH }}" />
             </div>
-
             <div>
-                <label  for="original">Original:</label>
+                <label  for="original">Destination Url</label>
                 <input name="original" id="original" value="{{ original }}" required />
             </div>
 
-            <div>
-                <label  for="preview">Preview</label>
-                <input name="preview" id="preview" type="checkbox" value="1" {{ preview ? 'checked="true"' : '' }} />
-            </div>
-
             <button type="submit">Save</button>
-            <a href="{{ uri('urls.view', {'id':id}) }}">Cancel</a>
+            <a href="{{ uri('urls.view', {'id':id}) }}" class="cancel button">Cancel</a>
         </fieldset>
     </form>
 </section>

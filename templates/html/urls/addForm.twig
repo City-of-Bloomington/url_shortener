@@ -9,12 +9,16 @@
 #}
 {% extends "html/layouts/default.twig" %}
 {% block content %}
-<section>
+<section id="addForm">
     <header>
         <h2>Shorten a URL</h2>
     </header>
     <form method="post">
         <fieldset>
+            <div>
+                <input name="preview" id="preview" type="checkbox" value="1" {{ preview ? 'checked="true"' : '' }} />
+                <label  for="preview">Enable Destination Preview</label>
+            </div>
             <div>
 	            <label  for="code">Code</label>
 	            <input name="code" id="code" value="{{ code }}"
@@ -23,12 +27,8 @@
 	                   maxlength="{{ CODE_LENGTH }}" />
             </div>
             <div>
-	            <label  for="original">URL</label>
+	            <label  for="original">Destination Url</label>
 	            <input name="original" id="original" value="{{ original }}" />
-            </div>
-            <div>
-                <label  for="preview">Preview</label>
-                <input name="preview" id="preview" type="checkbox" value="1" {{ preview ? 'checked="true"' : '' }} />
             </div>
             <button type="submit">Save</button>
         </fieldset>

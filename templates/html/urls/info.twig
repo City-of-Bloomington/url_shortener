@@ -5,12 +5,12 @@
 #}
 {% extends "html/layouts/default.twig" %}
 {% block content %}
-<section>
+<section id="info">
     {% if isAllowed('urls', 'update', url) %}
     <header>
         <nav>
-            <a href="{{ uri('urls.update', {'id':url.id}) }}">{{ _('edit'  ) }}</a>
-            <a href="{{ uri('urls.delete', {'id':url.id}) }}">{{ _('delete') }}</a>
+            <a href="{{ uri('urls.update', {'id':url.id}) }}" class="button edit">{{ _('edit'  ) }}</a>
+            <a href="{{ uri('urls.delete', {'id':url.id}) }}" class="button delete">{{ _('delete') }}</a>
         </nav>
     </header>
     {% endif %}

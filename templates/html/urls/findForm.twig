@@ -24,9 +24,9 @@
 {% import  "html/macros/pagination.twig" as pagination %}
 
 {% block content %}
-<section>
+<section id="findForm">
     <header>
-        <h1>Find URLs</h1>
+        <h2>Find URLs</h2>
     </header>
     <form method="get">
         <fieldset>
@@ -64,7 +64,7 @@
                     </select>
                 </div>
                 <button type="submit" class="search">Search</button>
-                <a href="{{ uri('urls.index') }}">Reset</a>
+                <a href="{{ uri('urls.index') }}" class="cancel button">Reset</a>
             </fieldset>
         </details>
     </form>

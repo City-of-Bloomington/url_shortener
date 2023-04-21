@@ -30,8 +30,6 @@ RUN apt-get install -y \
     php-imagick \
     libapache2-mod-php
 
-COPY docker/apache.conf /etc/apache2/sites-available/000-default.conf
-
 WORKDIR /srv/sites/url_shortener
 COPY --chown=www-data:staff . /srv/sites/url_shortener
 

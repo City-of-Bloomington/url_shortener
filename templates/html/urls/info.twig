@@ -15,12 +15,13 @@
     </header>
     {% endif %}
     <table>
-        <tr><th>ID</th>      <td>{{ url.id       }}</td></tr>
-        <tr><th>code</th>    <td>{{ url.code     }}</td></tr>
-        <tr><th>original</th><td><a href="{{ url.original }}">{{ url.original }}</a></td></tr>
-        <tr><th>username</th><td>{{ url.username }}</td></tr>
-        <tr><th>created</th> <td>{{ url.created.format('c') }}</td></tr>
-        <tr><th>updated</th> <td>{{ url.updated.format('c') }}</td></tr>
+        <tr><th>id</th>      <td>{{ url.id       }}</td></tr>
+        <tr><th>Code</th>    <td>{{ url.code     }}</td></tr>
+        <tr><th>Short Url</th><td><a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></td></tr>
+        <tr><th>Destination Url</th><td><a href="{{ url.original }}">{{ url.original }}</a></td></tr>
+        <tr><th>Username</th><td>{{ url.username }}</td></tr>
+        <tr><th>Created</th> <td>{{ url.created.format('c') }}</td></tr>
+        <tr><th>Updated</th> <td>{{ url.updated.format('c') }}</td></tr>
         <tr><th>hits</th>    <td>{{ url.hits }}</td></tr>
         <tr><th>Preview</th> <td>{{ url.preview ? '✓' : '' }}</td></tr>
     </table>

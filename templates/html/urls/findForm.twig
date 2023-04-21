@@ -83,7 +83,6 @@
                 {{ sorturl.__set('sort', 'code') }}
                 {% if current_sort[0]=='code' and current_sort[1] is not defined %}{{ sorturl.__set('sort', 'code desc') }}{% endif %}
                 <th><a href="{{ sorturl }}">Code</a></th>
-                <th><a href="{{ sorturl }}">Short Url</a></th>
 
                 {{ sorturl.__set('sort', 'created') }}
                 {% if current_sort[0]=='created' and current_sort[1] is not defined %}{{ sorturl.__set('sort', 'created desc') }}{% endif %}
@@ -110,7 +109,6 @@
         {% for url in urls %}{% set uri = uri('urls.view', {'id':url.id}) %}
         <tr><td>{{ url.preview ? '✓' : '' }}</td>
             <td><a href="{{ uri('urls.view', {'id':url.id}) }}">{{ url.code }}</a></td>
-            <td><a href="{{ url('urls.redirect', {'code':url.code}) }}">https://bton.in/{{ url.code }}</a></td>
             <td>{{ url.created.format('n/d/Y') }}</td>
             <td>{{ url.updated.format('n/d/Y') }}</td>
             <td>{{ url.username }}</td>

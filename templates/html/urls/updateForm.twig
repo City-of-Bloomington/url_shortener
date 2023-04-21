@@ -23,9 +23,12 @@
             <div>
                 <label  for="code">Code:</label>
                 <input name="code" id="code" value="{{ code }}" required
+                           title="Must only contain numbers and letters"
+                         pattern="{{ CODE_PATTERN ~ '{' ~ CODE_LENGTH ~ '}' }}"
 	                        size="{{ CODE_LENGTH }}"
 	                   minlength="{{ CODE_LENGTH }}"
 	                   maxlength="{{ CODE_LENGTH }}" />
+                <div class="help">only allows numbers and letters</div>
             </div>
             <div>
                 <label  for="original">Destination Url</label>

@@ -9,6 +9,7 @@ namespace Web\Urls\Views;
 
 use Domain\Urls\Actions\Update\Request;
 use Domain\Urls\Actions\Update\Response;
+use Domain\Urls\Metadata;
 
 use Web\View;
 
@@ -27,7 +28,8 @@ class UpdateView extends View
             'code'        => $request->code,
             'original'    => $request->original,
             'preview'     => $request->preview,
-            'CODE_LENGTH' => CODE_LENGTH
+            'CODE_LENGTH' => CODE_LENGTH,
+            'CODE_PATTERN'  => Metadata::VALID_CHARACTER_CLASS
         ];
     }
 

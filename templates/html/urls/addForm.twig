@@ -6,6 +6,7 @@
  * @param string original
  * @param bool   preview
  * @param int    CODE_LENGTH   Short URL codes must be exactly this length
+ * @param string CODE_PATTERN  Valid regex pattern for code input
 #}
 {% extends "html/layouts/default.twig" %}
 {% block content %}
@@ -22,9 +23,12 @@
             <div>
 	            <label  for="code">Code</label>
 	            <input name="code" id="code" value="{{ code }}"
+                           title="Must only contain numbers and letters"
+                         pattern="{{ CODE_PATTERN ~ '{' ~ CODE_LENGTH ~ '}' }}"
 	                        size="{{ CODE_LENGTH }}"
 	                   minlength="{{ CODE_LENGTH }}"
 	                   maxlength="{{ CODE_LENGTH }}" />
+                <div class="help">only allows numbers and letters</div>
             </div>
             <div>
 	            <label  for="original">Destination Url</label>

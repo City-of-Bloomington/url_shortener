@@ -8,6 +8,7 @@ namespace Web\Urls\Views;
 
 use Domain\Urls\Actions\Add\Request;
 use Domain\Urls\Actions\Add\Response;
+use Domain\Urls\Metadata;
 use Web\View;
 
 class AddView extends View
@@ -25,7 +26,8 @@ class AddView extends View
             'code'          => $request->code,
             'original'      => $request->original,
             'preview'       => $request->preview,
-            'CODE_LENGTH'   => CODE_LENGTH
+            'CODE_LENGTH'   => CODE_LENGTH,
+            'CODE_PATTERN'  => Metadata::VALID_CHARACTER_CLASS
         ];
     }
 

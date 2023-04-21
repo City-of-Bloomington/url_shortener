@@ -45,7 +45,7 @@ button[type="submit"] {
 .button.delete { background-color: $color-alert; color: $color-content-background; }
 .button.cancel { background-color: $color-alert; color: $color-content-background; }
 
-
+.help { font-style: italic; }
 .pageNavigation {
     a {
         display: table-cell;

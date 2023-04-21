@@ -8,6 +8,7 @@ namespace Domain\Urls\Actions\Add;
 
 use Domain\Urls\DataStorage\UrlsRepository;
 use Domain\Urls\Entities\Url;
+use Domain\Urls\Metadata;
 
 class Command
 {
@@ -43,6 +44,10 @@ class Command
         if (!$req->username) { $errors[] = 'missingUsername'; }
 
         if (strlen($req->code) !== CODE_LENGTH) { $errors[] = 'invalidCodeLength'; }
+
+        if (preg_match("/[^{Metadata::VALID_CHARACTER_CLASS}]+/", $req->code)) {
+            $errors[] = 'invalidCodeCharacters';
+        }
 
         return $errors;
     }

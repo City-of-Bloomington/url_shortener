@@ -35,6 +35,8 @@ details, fieldset > div {
     margin-bottom: $size-gutter;
 }
 
+input#code { width: 5em; }
+
 label[for="preview"] { display: inline; }
 label[for="query"]   { display: none;   }
 button[type="submit"] {

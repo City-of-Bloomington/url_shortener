@@ -1,31 +1,34 @@
 {% macro pageLinks(totalItemCount, itemsPerPage=20, pageNumber=1, pageRange=10) %}
     {% set pageCount = (totalItemCount / itemsPerPage)|round(0, 'ceil') %}
+
     {% if pageRange > pageCount %}
         {% set pageRange = pageCount %}
-        {% set delta     = (pageRange / 2)|round(0, 'ceil') %}
+    {% endif %}
 
-        {% if (pageNumber - delta) > (pageCount - pageRange) %}
-            {% set lowerBound = pageCount - pageRange + 1 %}
-            {% set upperBound = pageCount %}
-        {% else %}
-            {% if (pageNumber - delta) < 0 %}
-                {% set delta = pageNumber %}
-            {% endif %}
+    {% set delta     = (pageRange / 2)|round(0, 'ceil') %}
 
-            {% set lowerBound = (pageNumber - delta + 1) %}
-            {% set upperBound = (pageNumber - delta + pageRange) %}
+    {% if (pageNumber - delta) > (pageCount - pageRange) %}
+        {% set lowerBound = pageCount - pageRange + 1 %}
+        {% set upperBound = pageCount %}
+    {% else %}
+        {% if (pageNumber - delta) < 0 %}
+            {% set delta = pageNumber %}
         {% endif %}
 
-        <nav class="pageNavigation">
-        {% set url = current_url() %}
-            {% do url.__set('page', 1) %}
-            <a href="{{ url }}">First</a>
-            {% do url.__set('page', pageNumber>1 ? pageNumber-1 : 1) %}
-            <a href="{{ url }}">Previous</a>
-        {% for i in lowerBound..upperBound %}
-            {% do url.__set('page', i) %}
-            <a href="{{ url }}" {% if i==pageNumber %}class="current"{% endif %}>{{ i }}</a>
-        {% endfor %}
-        </nav>
+        {% set lowerBound = (pageNumber - delta + 1) %}
+        {% set upperBound = (pageNumber - delta + pageRange) %}
     {% endif %}
+
+    <nav class="pageNavigation">
+    {% set url = current_url() %}
+        {% do url.__set('page', 1) %}
+        <a href="{{ url }}">First</a>
+    {% for i in lowerBound..upperBound %}
+        {% do url.__set('page', i) %}
+        <a href="{{ url }}" {% if i==pageNumber %}class="current"{% endif %}>{{ i }}</a>
+    {% endfor %}
+
+        {% do url.__set('page', pageCount) %}
+        <a href="{{ url }}">Last</a>
+    </nav>
 {% endmacro %}

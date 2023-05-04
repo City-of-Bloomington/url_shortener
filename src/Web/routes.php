@@ -6,7 +6,7 @@
  */
 declare (strict_types=1);
 
-$ROUTES = new Aura\Router\RouterContainer(BASE_URI);
+$ROUTES = new Aura\Router\RouterContainer(BASE_URI=='/' ? null : BASE_URI);
 $map    = $ROUTES->getMap();
 
 $map->tokens(['id' => '\d+', 'code' => '[^/]{5}']);

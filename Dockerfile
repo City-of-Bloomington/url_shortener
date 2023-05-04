@@ -33,6 +33,7 @@ RUN apt-get install -y \
 WORKDIR /srv/sites/url_shortener
 COPY --chown=www-data . /srv/sites/url_shortener
 RUN mkdir -p /srv/sites/url_shortener/data/sessions && \
+    mkdir -p /srv/sites/url_shortener/data/qrcodes && \
     chown -R www-data /srv/sites/url_shortener
 
 EXPOSE 80

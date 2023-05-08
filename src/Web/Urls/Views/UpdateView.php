@@ -29,7 +29,8 @@ class UpdateView extends View
             'original'    => $request->original,
             'preview'     => $request->preview,
             'CODE_LENGTH' => CODE_LENGTH,
-            'CODE_PATTERN'  => Metadata::VALID_CHARACTER_CLASS
+            // 'CODE_PATTERN'  => Metadata::VALID_CHARACTER_CLASS
+            'CODE_PATTERN'  => '.*'
         ];
     }
 

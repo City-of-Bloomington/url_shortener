@@ -45,7 +45,10 @@ class Command
 
         if (strlen($req->code) !== CODE_LENGTH) { $errors[] = 'invalidCodeLength'; }
 
-        if (preg_match("/[^{Metadata::VALID_CHARACTER_CLASS}]+/", $req->code)) {
+        // if (preg_match("/[^{Metadata::VALID_CHARACTER_CLASS}]+/", $req->code)) {
+        //     $errors[] = 'invalidCodeCharacters';
+        // }
+        if (preg_match("/[.*]+/", $req->code)) {
             $errors[] = 'invalidCodeCharacters';
         }
 

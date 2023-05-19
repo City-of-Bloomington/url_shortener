@@ -49,7 +49,8 @@
                 </div>
                 <div>
                     <label   for="username">Username</label>
-                    <select name="username" id="username"><option value=""></option>
+                    <select name="username" id="username" onchange="this.form.submit();">
+                        <option value=""></option>
                     {% for u in usernames %}
                         <option {% if u==username %}selected="selected"{% endif %}>{{ u }}</option>
                     {% endfor %}
@@ -57,7 +58,7 @@
                 </div>
                 <div>
                     <label   for="preview">Preview</label>
-                    <select name="preview">
+                    <select name="preview" onchange="this.form.submit();">
                         <option value=""></option>
                         <option value="1" {{ preview ? 'selected="true"' : '' }}>Yes</option>
                         <option value="0" {{ preview is same as(false) ? 'selected="true"' : '' }}>No</option>

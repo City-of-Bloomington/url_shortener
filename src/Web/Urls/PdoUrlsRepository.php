@@ -67,7 +67,7 @@ class PdoUrlsRepository extends PdoRepository implements UrlsRepository
                     break;
 
                     default:
-                        $select->where("lower($f) like ?", strtolower($req->$f).'%');
+                        $select->where("lower($f) like ?", '%'.strtolower($req->$f).'%');
                 }
             }
         }

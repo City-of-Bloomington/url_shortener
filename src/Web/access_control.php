@@ -30,7 +30,7 @@ foreach (array_keys($ROUTES->getMap()->getRoutes()) as $r) {
 }
 // Permissions for unauthenticated browsing
 $ACL->allow(null, 'login');
-$ACL->allow(null, 'urls', 'redirect');
+$ACL->allow(null, 'urls', ['redirect', 'qrcode']);
 
 $ACL->allow('Staff', 'home', 'index');
 $ACL->allow('Staff', 'urls', ['add', 'index', 'view', 'qrcode']);

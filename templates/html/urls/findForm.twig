@@ -68,6 +68,18 @@
                 <a href="{{ uri('urls.index') }}" class="cancel button">Reset</a>
             </fieldset>
         </details>
+        <fieldset>
+            <div>
+                <label   for="sort">Sort</label>
+                <select name="sort" id="sort" onchange="this.form.submit();">
+                {% for s in sorts %}
+                    <option value="{{ s }}" {% if s==order %}selected="true"{% endif %}>
+                    {{ _('sort ' ~ s) }}
+                    </option>
+                {% endfor %}
+                </select>
+            </div>
+        </fieldset>
     </form>
     {# Pagination #}
     {% if total > itemsPerPage %}
@@ -78,49 +90,20 @@
     {% set sorturl      = current_url() %}
     {% set current_sort = sorturl.__get('sort')|split(' ') %}
     <p>Click code value to see URL details and QR code.</p>
-    <p>Click column headings to sort.</p>
-    <table>
-        <thead>
-            <tr>
-                <th>Preview</th>
-                {{ sorturl.__set('sort', 'code') }}
-                {% if current_sort[0]=='code' and current_sort[1] is not defined %}{{ sorturl.__set('sort', 'code desc') }}{% endif %}
-                <th><a href="{{ sorturl }}">Code</a></th>
 
-                {{ sorturl.__set('sort', 'created') }}
-                {% if current_sort[0]=='created' and current_sort[1] is not defined %}{{ sorturl.__set('sort', 'created desc') }}{% endif %}
-                <th><a href="{{ sorturl }}">Created</a></th>
+    {% for url in urls %}{% set uri = uri('urls.view', {'id':url.id}) %}
+    <article>
+        <header><a href="{{ uri('urls.view', {'id':url.id}) }}">{{ url.code }}</a></header>
+        <div><a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></div>
+        <div><a href="{{ url.original }}">{{ url.original }}</a></div>
+        <div><strong>Created:</strong> {{ url.created.format('n/d/Y') }}
+             <strong>Updated:</strong> {{ url.updated.format('n/d/Y') }}
+             <strong>User:</strong>    {{ url.username }}
+             <strong>Hits:</strong>    {{ url.hits }}
+        </div>
+    </article>
+    {% endfor %}
 
-                {{ sorturl.__set('sort', 'updated') }}
-                {% if current_sort[0]=='updated' and current_sort[1] is not defined %}{{ sorturl.__set('sort', 'updated desc') }}{% endif %}
-                <th><a href="{{ sorturl }}">Updated</a></th>
-
-                {{ sorturl.__set('sort', 'username') }}
-                {% if current_sort[0]=='username' and current_sort[1] is not defined %}{{ sorturl.__set('sort', 'username desc') }}{% endif %}
-                <th><a href="{{ sorturl }}">Username</a></th>
-
-                {{ sorturl.__set('sort', 'hits') }}
-                {% if current_sort[0]=='hits' and current_sort[1] is not defined %}{{ sorturl.__set('sort', 'hits desc') }}{% endif %}
-                <th><a href="{{ sorturl }}">Hits</a></th>
-
-                {{ sorturl.__set('sort', 'original') }}
-                {% if current_sort[0]=='original' and current_sort[1] is not defined %}{{ sorturl.__set('sort', 'original desc') }}{% endif %}
-                <th><a href="{{ sorturl }}">Destination Url</a></th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for url in urls %}{% set uri = uri('urls.view', {'id':url.id}) %}
-        <tr><td>{{ url.preview ? '✓' : '' }}</td>
-            <td><a href="{{ uri('urls.view', {'id':url.id}) }}">{{ url.code }}</a></td>
-            <td>{{ url.created.format('n/d/Y') }}</td>
-            <td>{{ url.updated.format('n/d/Y') }}</td>
-            <td>{{ url.username }}</td>
-            <td>{{ url.hits }}</td>
-            <td><a href="{{ url.original }}">Destination Url</a></td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
     {% else %}
         <p>No URLs found.</p>
     {% endif %}

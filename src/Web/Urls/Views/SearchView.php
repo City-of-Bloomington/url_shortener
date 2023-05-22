@@ -37,6 +37,7 @@ class SearchView extends View
         $this->vars['total'      ] = $response->total;
         $this->vars['usernames'  ] = $metadata->usernames();
         $this->vars['CODE_LENGTH'] = CODE_LENGTH;
+        $this->vars['sorts'      ] = $valid_sorts;
     }
 
     public function render(): string

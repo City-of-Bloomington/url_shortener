@@ -26,6 +26,7 @@ section {
 }
 
 article {
+    margin-bottom: $size-gutter;
     border-bottom: 1px solid $color-divider;
     header {
         font-size: $font-size-big; font-weight: bold;

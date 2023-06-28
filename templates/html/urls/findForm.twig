@@ -93,9 +93,10 @@
 
     {% for url in urls %}{% set uri = uri('urls.view', {'id':url.id}) %}
     <article>
-        <header><a href="{{ uri('urls.view', {'id':url.id}) }}">{{ url.code }}</a></header>
+        <header><a href="{{ url.original }}">{{ url.original }}</a></header>
+        {# <header><a href="{{ uri('urls.view', {'id':url.id}) }}">{{ url.code }}</a></header> #}
         <div><a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></div>
-        <div><a href="{{ url.original }}">{{ url.original }}</a></div>
+        {# <div><a href="{{ url.original }}">{{ url.original }}</a></div> #}
         <div><strong>Created:</strong> {{ url.created.format('n/d/Y') }}
              <strong>Updated:</strong> {{ url.updated.format('n/d/Y') }}
              <strong>User:</strong>    {{ url.username }}

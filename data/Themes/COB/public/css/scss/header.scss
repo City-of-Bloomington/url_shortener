@@ -3,7 +3,6 @@ $size-logo-height: 55px;
 $size-logo-margin: 28px;
 
 body > header {
-    border-top: $size-gutter solid $color-header;
     color: $color-header;
     padding-top:$size-logo-margin; padding-left:$size-logo-margin;
     height: $size-logo-margin + $size-logo-height;

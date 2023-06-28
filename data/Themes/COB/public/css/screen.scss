@@ -1,5 +1,4 @@
 @import 'scss/vars';
-
 @import 'scss/html-elements';
 @import 'scss/header';
 
@@ -7,19 +6,18 @@
     background-color: $color-error;
 }
 
-html { background-color: $color-selected-background; }
 @media (min-width: 700px) {
     main {
         display: flex; align-items: center; justify-content: center;
         margin: $size-gutter;
+
     }
 }
 section {
     background-color: $color-content-background;
     border-radius: $size-gutter;
     padding: $size-gutter;
-    width: fit-content; block-size: fit-content;
-
+    width: 80%; block-size: fit-content;
     header h2 {
         border-bottom: 1px solid $color-divider;
     }
@@ -29,7 +27,7 @@ article {
     margin-bottom: $size-gutter;
     border-bottom: 1px solid $color-divider;
     header {
-        font-size: $font-size-big; font-weight: bold;
+        font-size: $font-size-big; font-weight: bold; white-space: nowrap; overflow: hidden;
     }
 }
 details, fieldset > div {

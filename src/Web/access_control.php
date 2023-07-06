@@ -32,6 +32,8 @@ foreach (array_keys($ROUTES->getMap()->getRoutes()) as $r) {
 $ACL->allow(null, 'login');
 $ACL->allow(null, 'urls', ['redirect', 'qrcode']);
 
+$ACL->allow('Staff', 'help', 'help');
+
 $ACL->allow('Staff', 'home', 'index');
 $ACL->allow('Staff', 'urls', ['add', 'index', 'view', 'qrcode']);
 $ACL->allow('Staff', 'urls', ['update', 'delete'], new OwnershipAssertion());

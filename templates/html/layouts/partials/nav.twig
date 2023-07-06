@@ -2,8 +2,10 @@
     {% if isAllowed('urls', 'index') %}
     <a href="{{ uri('urls.index') }}">All Urls</a>
     {% endif %}
-
+    
     {% if isAllowed('urls', 'add') %}
     <a href="{{ uri('urls.add') }}">Add Url</a>
     {% endif %}
+    
+    <a href="{{ uri('help.') }}">Help</a>
 </nav>

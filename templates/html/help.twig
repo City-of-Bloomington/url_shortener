@@ -1,0 +1,36 @@
+{% extends "html/layouts/default.twig" %}
+{% block content %}
+
+<section>
+	<header><h2>Help</h2></header>
+	<h3>Add Url</h3>
+	    <p>To shorten a link, copy and paste the link into the “Paste a long URL” box.</p>
+	    <p>Note: A QR code is generated for every shortened URL.</p>
+	<h4>Alias</h4>
+	    <p>Every time the Add Url page loads, an alias is randomly generated but you can change the alias to be anything you want (however you are limited to 5 characters).</p>
+	<h4>Destination Preview</h4>
+	    <p>If checked: when the url is clicked or a QR scanned, folks will be taken to a Bton preview page that shows the original url, the shortened url, and QR code.</p>
+	    <p>If unchecked: when the url is clicked or a QR scanned, folks are taken straight to the destination URL.</p>
+	
+	<h3>Edit a Url</h3>
+	<p>
+	<ol>
+		<li>Go to <a href="urls">All Urls</a></li>
+		<li>Sort by your username</li>
+			<ul>
+			<li><em>You can only edit short urls you have created</em></li>
+			</ul>
+		<img src="COB/images/help/sort-by-username.png" alt="For the select username field, choose your name then click search.">
+		<li>Select the Alias of an URL you wish to edit</li>
+		<img src="COB/images/help/alias-click.png" alt="In the sorted list, choose the shortened url you want to edit by clicking on the alias.">
+		<li>Click Edit to change the following:</li>
+			<ul>
+				<li>Update a broken or dead link with a new url</li>
+				<li>Change the Alias</li>
+			</ul>
+		<li>You can also delete the url in the previous screen</li>
+	</ol>
+	</p>
+</section>
+
+{% endblock %}

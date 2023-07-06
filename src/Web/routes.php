@@ -13,6 +13,8 @@ $map->tokens(['id' => '\d+', 'code' => '[^/]{5}']);
 
 $map->get('home.index',    '/'      , Web\HomeController::class);
 
+$map->get('help.',    '/help'      , Web\HelpController::class);
+
 $map->attach('login.', '/login', function ($r) {
     $r->get('oidc',  '/oidc', Web\Authentication\Controllers\OidcController::class);
 });

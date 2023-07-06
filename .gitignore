@@ -7,4 +7,5 @@ data/sessions/*
 *.cache
 *.css*
 *.mo
+.DS_STORE
 

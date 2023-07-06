@@ -9,3 +9,4 @@ data/sessions/*
 *.mo
 .DS_STORE
 
+.DS_Store

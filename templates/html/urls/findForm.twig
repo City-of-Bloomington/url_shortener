@@ -95,6 +95,7 @@
     <article>
         <header><a href="{{ url.original }}">{{ url.original }}</a></header>
         {# <header><a href="{{ uri('urls.view', {'id':url.id}) }}">{{ url.code }}</a></header> #}
+        <a href="{{ uri('urls.view', {'id':url.id}) }}">{{ url.code }}</a>
         <div><a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></div>
         {# <div><a href="{{ url.original }}">{{ url.original }}</a></div> #}
         <div><strong>Created:</strong> {{ url.created.format('n/d/Y') }}

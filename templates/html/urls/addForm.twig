@@ -16,23 +16,22 @@
     </header>
     <form method="post">
         <fieldset>
-            <div>
-                <input name="preview" id="preview" type="checkbox" value="1" {{ preview ? 'checked="true"' : '' }} />
-                <label  for="preview">Enable Destination Preview</label>
+        	<div>
+	            <label  for="original" >Paste a long URL</label>
+	            <textarea name="original" id="original" placeholder="Example: http://super-long-link.com/shorten-it">{{ original }}</textarea>
             </div>
             <div>
-	            <label  for="code">Code</label>
-	            <input name="code" id="code" value="{{ code }}"
+	            <label  for="code">Alias (use only numbers and letters)</label>
+	            https://bton.in/<input name="code" id="code" value="{{ code }}"
                            title="Must only contain numbers and letters"
                          pattern="{{ CODE_PATTERN ~ '{' ~ CODE_LENGTH ~ '}' }}"
 	                        size="{{ CODE_LENGTH }}"
 	                   minlength="{{ CODE_LENGTH }}"
 	                   maxlength="{{ CODE_LENGTH }}" />
-                <div class="help">only allows numbers and letters</div>
             </div>
             <div>
-	            <label  for="original">Destination Url</label>
-	            <textarea name="original" id="original">{{ original }}</textarea>
+                <input name="preview" id="preview" type="checkbox" value="1" {{ preview ? 'checked="true"' : '' }} />
+                <label  for="preview">Enable Destination Preview</label>
             </div>
             <button type="submit">Save</button>
         </fieldset>

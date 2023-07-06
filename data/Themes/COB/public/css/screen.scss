@@ -21,6 +21,15 @@ section {
     header h2 {
         border-bottom: 1px solid $color-divider;
     }
+    ol {
+         list-style-type: numbers; padding: revert;
+    }
+    ul {
+        list-style-type: circle; padding: revert;
+    }
+    img {
+         max-width: 35%;
+    }
 }
 
 article {
@@ -39,7 +48,7 @@ input#code { width: 5em; }
 label[for="preview"] { display: inline; }
 label[for="query"]   { display: none;   }
 button[type="submit"] {
-    background-color: $color-action;
+    background-color: $button-submit-background;
     color: $color-content-background;
 }
 .button.edit   { background-color: $color-link;  color: $color-content-background; }
@@ -49,13 +58,12 @@ button[type="submit"] {
 .help { font-style: italic; }
 .pageNavigation {
     a {
-        display: table-cell;
         border-collapse: collapse;
-        border: 1px solid $color-divider;
         padding: 0 1ex;
         text-align: center;
     }
     .current {
-        background-color: $color-action;
+        background-color: $cob-blue;
+        color: $color-content-background;
     }
 }

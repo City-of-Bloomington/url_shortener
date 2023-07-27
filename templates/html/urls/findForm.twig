@@ -93,15 +93,14 @@
 
     {% for url in urls %}{% set uri = uri('urls.view', {'id':url.id}) %}
     <article>
-        <header><a href="{{ url.original }}">{{ url.original }}</a></header>
-        {# <header><a href="{{ uri('urls.view', {'id':url.id}) }}">{{ url.code }}</a></header> #}
-        <a href="{{ uri('urls.view', {'id':url.id}) }}">{{ url.code }}</a>
-        <div><a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></div>
-        {# <div><a href="{{ url.original }}">{{ url.original }}</a></div> #}
-        <div><strong>Created:</strong> {{ url.created.format('n/d/Y') }}
-             <strong>Updated:</strong> {{ url.updated.format('n/d/Y') }}
-             <strong>User:</strong>    {{ url.username }}
-             <strong>Hits:</strong>    {{ url.hits }}
+        <header aria-label="destination url"><a href="{{ url.original }}">{{ url.original }}</a></header>
+        <div aria-label="shortened url"><a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></div>
+        <div>
+        	<button aria-label="information"><a href="{{ uri('urls.view', {'id':url.id}) }}">{{ url.code }}</a></button>
+        	<strong>Created:</strong> {{ url.created.format('n/d/Y') }}
+            <strong>Updated:</strong> {{ url.updated.format('n/d/Y') }}
+            <strong>User:</strong>    {{ url.username }}
+            <strong>Hits:</strong>    {{ url.hits }}
         </div>
     </article>
     {% endfor %}

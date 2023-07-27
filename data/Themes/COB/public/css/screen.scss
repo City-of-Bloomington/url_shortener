@@ -30,28 +30,46 @@ section {
     img {
          max-width: 30%;
     }
+    form details {
+            padding: 8px;
+            width: fit-content;
+            block-size: fit-content;
+            border: none;
+            border-radius: 0px;
+    }
 }
 
 article {
     margin-bottom: $size-gutter;
     border-bottom: 1px solid $color-divider;
+    padding-bottom: 8px;
     header {
-        font-size: $font-size-big; font-weight: bold; white-space: nowrap; overflow: hidden;
+        font-size: $font-size-big; 
+        font-weight: bold; 
+        white-space: nowrap; 
+        overflow: hidden;
+        h2 {
+            border-bottom: 0px;
+        }
+    }
+    div {
+        margin:$size-gutter 0 ($size-gutter/2) 0;
     }
 }
 details, fieldset > div {
     margin-bottom: $size-gutter;
+    font-weight: bold;
 }
 
 input#code { width: 5em; }
 
 label[for="username"] { display: inline; }
 
-abel[for="preview"] { display: inline; }
+label[for="preview"] { display: inline; }
 
 label[for="sort"] { display: inline; }
 
-label[for="query"]   { display: none;   }
+label[for="query"]   { display: none; }
 
 select {
     border: 0;
@@ -73,6 +91,7 @@ button[type="submit"] {
 .button.edit   { background-color: $color-link;  color: $color-content-background; }
 .button.delete { background-color: $color-alert; color: $color-content-background; }
 .button.cancel { background-color: $color-alert; color: $color-content-background; }
+.button.info   { background-color: $cob-blue; color: $color-content-background; margin: 0px; }
 
 .help { font-style: italic; }
 .pageNavigation {

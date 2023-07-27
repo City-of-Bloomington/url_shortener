@@ -12,8 +12,8 @@
                 title="Must only contain numbers and letters"
                 pattern="{{ CODE_PATTERN ~ '{' ~ CODE_LENGTH ~ '}' }}"
                 size="{{ CODE_LENGTH }}"
-            minlength="{{ CODE_LENGTH }}"
-            maxlength="{{ CODE_LENGTH }}" />
+                minlength="{{ CODE_LENGTH }}"
+                maxlength="{{ CODE_LENGTH }}" />
 </div>
 <div>
     <input name="preview" id="preview" type="checkbox" value="1" {{ preview ? 'checked="true"' : '' }} />

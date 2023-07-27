@@ -70,7 +70,7 @@
         </details>
         <fieldset>
             <div>
-                <label   for="sort">Sort</label>
+                <label  for="sort">Sort</label>
                 <select name="sort" id="sort" onchange="this.form.submit();">
                 {% for s in sorts %}
                     <option value="{{ s }}" {% if s==order %}selected="true"{% endif %}>
@@ -89,18 +89,17 @@
     {% if urls %}
     {% set sorturl      = current_url() %}
     {% set current_sort = sorturl.__get('sort')|split(' ') %}
-    <p>Click code value to see URL details and QR code.</p>
+    {# <p>Click alias to see URL details and QR code.</p> #}
 
     {% for url in urls %}{% set uri = uri('urls.view', {'id':url.id}) %}
     <article>
         <header>
-            <h2><a href="{{ uri('urls.view', {'id':url.id}) }}">{{ url.code }}</a></h2>
-            <h3>{{ url.title }}</h3>
+            <h2>{{ url.title }}</h2>
             <h3 aria-label="destination url"><a href="{{ url.original }}">{{ url.original }}</a></h3>
             <h3 aria-label="shortened url"><a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></h3>
         </header>
-
         <div>
+            <a href="{{ uri('urls.view', {'id':url.id}) }}" class="info button">{{ url.code }}</a>
         	<strong>Created:</strong> {{ url.created.format('n/d/Y') }}
             <strong>Updated:</strong> {{ url.updated.format('n/d/Y') }}
             <strong>User:</strong>    {{ url.username }}

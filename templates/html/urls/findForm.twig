@@ -93,10 +93,14 @@
 
     {% for url in urls %}{% set uri = uri('urls.view', {'id':url.id}) %}
     <article>
-        <header aria-label="destination url"><a href="{{ url.original }}">{{ url.original }}</a></header>
-        <div aria-label="shortened url"><a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></div>
+        <header>
+            <h2><a href="{{ uri('urls.view', {'id':url.id}) }}">{{ url.code }}</a></h2>
+            <h3>{{ url.title }}</h3>
+            <h3 aria-label="destination url"><a href="{{ url.original }}">{{ url.original }}</a></h3>
+            <h3 aria-label="shortened url"><a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></h3>
+        </header>
+
         <div>
-        	<button aria-label="information"><a href="{{ uri('urls.view', {'id':url.id}) }}">{{ url.code }}</a></button>
         	<strong>Created:</strong> {{ url.created.format('n/d/Y') }}
             <strong>Updated:</strong> {{ url.updated.format('n/d/Y') }}
             <strong>User:</strong>    {{ url.username }}

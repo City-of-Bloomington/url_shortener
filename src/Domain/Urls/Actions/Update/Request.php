@@ -10,6 +10,7 @@ class Request
 {
     public ?int    $id       = null;
     public ?string $code     = null;
+    public ?string $title    = null;
     public ?string $original = null;
     public ?bool   $preview  = null;
     public ?string $username = null;

@@ -25,6 +25,7 @@ class AddView extends View
         $this->vars = [
             'code'          => $request->code,
             'original'      => $request->original,
+            'title'         => $request->title,
             'preview'       => $request->preview,
             'CODE_LENGTH'   => CODE_LENGTH,
             // 'CODE_PATTERN'  => Metadata::VALID_CHARACTER_CLASS

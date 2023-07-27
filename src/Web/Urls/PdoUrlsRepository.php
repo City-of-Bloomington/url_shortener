@@ -92,6 +92,7 @@ class PdoUrlsRepository extends PdoRepository implements UrlsRepository
             'id'       => $url->id,
             'code'     => $url->code,
             'original' => $url->original,
+            'title'    => $url->title,
             'username' => $url->username,
             'preview'  => $url->preview ? 1 : null
         ];

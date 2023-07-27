@@ -16,6 +16,7 @@
     {% endif %}
     <table>
         <tr><th>id</th>      <td>{{ url.id       }}</td></tr>
+        <tr><th>title</th>   <td>{{ url.title    }}</td></tr>
         <tr><th>Code</th>    <td>{{ url.code     }}</td></tr>
         <tr><th>Short Url</th><td><a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></td></tr>
         <tr><th>Destination Url</th><td><a href="{{ url.original }}">{{ url.original }}</a></td></tr>

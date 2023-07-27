@@ -3,7 +3,7 @@
         "php": ">=8",
         "aura/di":                         "@stable",
         "aura/router":                     "@stable",
-        "aura/sqlquery":                   "@stable",
+        "aura/sqlquery":                   "~2",
         "apereo/phpcas":                   "@stable",
         "bacon/bacon-qr-code":             "@stable",
         "guzzlehttp/guzzle":               "@stable",

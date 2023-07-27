@@ -11,6 +11,7 @@ class Request
     public ?string $code     = null;
     public ?string $original = null;
     public ?string $username = null;
+    public ?string $title    = null;
     public ?bool   $preview  = null;
 
     public function __construct(array $data=null)

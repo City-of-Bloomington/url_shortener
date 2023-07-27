@@ -4,6 +4,7 @@
  *
  * @param string code
  * @param string original
+ * @param string title
  * @param bool   preview
  * @param int    CODE_LENGTH   Short URL codes must be exactly this length
  * @param string CODE_PATTERN  Valid regex pattern for code input
@@ -16,23 +17,7 @@
     </header>
     <form method="post">
         <fieldset>
-        	<div>
-	            <label  for="original" >Paste a long URL</label>
-	            <textarea name="original" id="original" placeholder="Example: http://super-long-link.com/shorten-it">{{ original }}</textarea>
-            </div>
-            <div>
-	            <label  for="code">Alias (use only numbers and letters)</label>
-	            https://bton.in/<input name="code" id="code" value="{{ code }}"
-                           title="Must only contain numbers and letters"
-                         pattern="{{ CODE_PATTERN ~ '{' ~ CODE_LENGTH ~ '}' }}"
-	                        size="{{ CODE_LENGTH }}"
-	                   minlength="{{ CODE_LENGTH }}"
-	                   maxlength="{{ CODE_LENGTH }}" />
-            </div>
-            <div>
-                <input name="preview" id="preview" type="checkbox" value="1" {{ preview ? 'checked="true"' : '' }} />
-                <label  for="preview">Enable Destination Preview</label>
-            </div>
+            {% include 'html/urls/partials/fields.twig' %}
             <button type="submit">Save</button>
         </fieldset>
     </form>

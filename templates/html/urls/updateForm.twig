@@ -16,25 +16,7 @@
         <fieldset>
             <input type="hidden" name="id" value="{{ id }}" />
 
-            <div>
-                <input name="preview" id="preview" type="checkbox" value="1" {{ preview ? 'checked="true"' : '' }} />
-                <label  for="preview">Enable Destination Preview</label>
-            </div>
-            <div>
-                <label  for="code">Code:</label>
-                <input name="code" id="code" value="{{ code }}" required
-                           title="Must only contain numbers and letters"
-                         pattern="{{ CODE_PATTERN ~ '{' ~ CODE_LENGTH ~ '}' }}"
-	                        size="{{ CODE_LENGTH }}"
-	                   minlength="{{ CODE_LENGTH }}"
-	                   maxlength="{{ CODE_LENGTH }}" />
-                <div class="help">only allows numbers and letters</div>
-            </div>
-            <div>
-                <label  for="original">Destination Url</label>
-                <textarea name="original" id="original" required="true">{{ original }}</textarea>
-            </div>
-
+            {% include 'html/urls/partials/fields.twig' %}
             <button type="submit">Save</button>
             <a href="{{ uri('urls.view', {'id':id}) }}" class="cancel button">Cancel</a>
         </fieldset>

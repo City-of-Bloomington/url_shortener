@@ -12,6 +12,7 @@ class Url
     public ?string    $username = null;
     public ?string    $code     = null;
     public ?string    $original = null;
+    public ?string    $title    = null;
     public ?\DateTime $created  = null;
     public ?\DateTime $updated  = null;
     public ?int       $hits     = null;

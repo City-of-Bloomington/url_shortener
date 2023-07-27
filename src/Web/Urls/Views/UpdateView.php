@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2019-2021 City of Bloomington, Indiana
+ * @copyright 2019-2023 City of Bloomington, Indiana
  * @license http://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
  */
 declare (strict_types=1);
@@ -26,6 +26,7 @@ class UpdateView extends View
         $this->vars = [
             'id'          => $request->id,
             'code'        => $request->code,
+            'title'       => $request->title,
             'original'    => $request->original,
             'preview'     => $request->preview,
             'CODE_LENGTH' => CODE_LENGTH,

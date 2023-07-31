@@ -36,6 +36,6 @@ package:
 	rsync -rl --exclude-from=buildignore . build/${APPNAME}
 	cd build && tar czf ${APPNAME}-${VERSION}.tar.gz ${APPNAME}
 
-dockerfile:
-	docker build build/${APPNAME} -t ${DOCKER_REPO}/${APPNAME}:${VERSION}-${COMMIT}
+dockerdeployment:
+	docker build build/${APPNAME} --platform=linux/amd64 -t ${DOCKER_REPO}/${APPNAME}:${VERSION}-${COMMIT}
 	docker push ${DOCKER_REPO}/${APPNAME}:${VERSION}-${COMMIT}

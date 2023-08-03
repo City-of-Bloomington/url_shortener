@@ -7,7 +7,7 @@
     <textarea name="original" id="original" placeholder="Example: http://super-long-link.com/shorten-it">{{ original }}</textarea>
 </div>
 <div>
-    <label  for="code">Alias (use only numbers and letters)</label>
+    <label  for="code">Alias <em>(use only numbers and letters)</em></label>
     https://bton.in/<input name="code" id="code" value="{{ code }}"
                 title="Must only contain numbers and letters"
                 pattern="{{ CODE_PATTERN ~ '{' ~ CODE_LENGTH ~ '}' }}"

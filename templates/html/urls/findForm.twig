@@ -21,7 +21,7 @@
  * @param string query
 #}
 {% extends "html/layouts/default.twig" %}
-{% import  "html/macros/pagination.twig" as pagination %}
+{% import "html/macros/pagination.twig" as pagination %}
 
 {% block content %}
 <section id="findForm">
@@ -38,9 +38,9 @@
             <summary>Advanced Search</summary>
             <fieldset>
                 <div>
-                    <label  for="code">Code</label>
+                    <label for="code">Code</label>
                     <input name="code" id="code" value="{{ code }}"
-                                size="{{ CODE_LENGTH }}"
+                           size="{{ CODE_LENGTH }}"
                            maxlength="{{ CODE_LENGTH }}" />
                 </div>
                 <div>
@@ -48,16 +48,16 @@
                     <input name="original" id="original" value="{{ original }}" />
                 </div>
                 <div>
-                    <label   for="username">Username</label>
+                    <label for="username">Username</label>
                     <select name="username" id="username" onchange="this.form.submit();">
                         <option value=""></option>
-                    {% for u in usernames %}
-                        <option {% if u==username %}selected="selected"{% endif %}>{{ u }}</option>
-                    {% endfor %}
+                        {% for u in usernames %}
+                            <option {% if u==username %}selected="selected"{% endif %}>{{ u }}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div>
-                    <label   for="preview">Preview</label>
+                    <label for="preview">Preview</label>
                     <select name="preview" onchange="this.form.submit();">
                         <option value=""></option>
                         <option value="1" {{ preview ? 'selected="true"' : '' }}>Yes</option>
@@ -70,49 +70,46 @@
         </details>
         <fieldset>
             <div>
-                <label  for="sort">Sort</label>
+                <label for="sort">Sort</label>
                 <select name="sort" id="sort" onchange="this.form.submit();">
-                {% for s in sorts %}
-                    <option value="{{ s }}" {% if s==order %}selected="true"{% endif %}>
-                    {{ _('sort ' ~ s) }}
-                    </option>
-                {% endfor %}
+                    {% for s in sorts %}
+                        <option value="{{ s }}" {% if s==order %}selected="true"{% endif %}>
+                            {{ _('sort ' ~ s) }}
+                        </option>
+                    {% endfor %}
                 </select>
             </div>
         </fieldset>
     </form>
-    {# Pagination #}
     {% if total > itemsPerPage %}
         {{ pagination.pageLinks(total, itemsPerPage, currentPage) }}
     {% endif %}
-
     {% if urls %}
-    {% set sorturl      = current_url() %}
-    {% set current_sort = sorturl.__get('sort')|split(' ') %}
-    {# <p>Click alias to see URL details and QR code.</p> #}
-
-    {% for url in urls %}{% set uri = uri('urls.view', {'id':url.id}) %}
-    <article>
-        <header>
-            <h2>{{ url.title }}</h2>
-            <h3 aria-label="destination url"><a href="{{ url.original }}">{{ url.original }}</a></h3>
-            <h3 aria-label="shortened url"><a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></h3>
-        </header>
-        <div>
-            <a href="{{ uri('urls.view', {'id':url.id}) }}" class="info button">{{ url.code }}</a>
-        	<strong>Created:</strong> {{ url.created.format('n/d/Y') }}
-            <strong>Updated:</strong> {{ url.updated.format('n/d/Y') }}
-            <strong>User:</strong>    {{ url.username }}
-            <strong>Hits:</strong>    {{ url.hits }}
-        </div>
-    </article>
-    {% endfor %}
-
+        {% for url in urls %}
+        {% set uri = uri('urls.view', {'id':url.id}) %}
+        <article class="list-group">
+            <div class="list-group-item list-group-item-action">
+                <header class="d-flex w-100 justify-content-between">
+                    <h2 class="mb-1">{{ url.title }}</h2>
+                    <small class="text-muted"><strong>Updated:</strong> {{ url.updated.format('n/d/Y') }}</small>
+                </header>
+                <div>
+                    <h3 aria-label="destination url"><a href="{{ url.original }}">{{ url.original }}</a></h3>
+                    <h3 aria-label="shortened url"><a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></h3>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-start align-items-center">
+                    <a href="{{ uri }}" class="info button mr-2">{{ url.code }}</a>
+                    <small class="text-muted mr-2"><strong>Created:</strong> {{ url.created.format('n/d/Y') }}</small>
+                    <small class="text-muted mr-2"><strong>User:</strong> {{ url.username }}</small>
+                    <small class="text-muted"><strong>Hits:</strong> {{ url.hits }}</small>
+                </div>
+            </div>
+        </article>
+        {% endfor %}
     {% else %}
         <p>No URLs found.</p>
     {% endif %}
-
-    {# Pagination #}
     {% if total > itemsPerPage %}
         {{ pagination.pageLinks(total, itemsPerPage, currentPage) }}
     {% endif %}

@@ -1,36 +1,72 @@
 {% extends "html/layouts/default.twig" %}
 {% block content %}
 
-<section>
-	<header><h2>Help</h2></header>
-	<h3>Add Url</h3>
-	    <p>To shorten a link, copy and paste the link into the “Paste a long URL” box.</p>
-	    <p>Note: A QR code is generated for every shortened URL.</p>
-	<h4>Alias</h4>
-	    <p>Every time the Add Url page loads, an alias is randomly generated but you can change the alias to be anything you want (however you are limited to 5 characters).</p>
-	<h4>Destination Preview</h4>
-	    <p>If checked: when the url is clicked or a QR scanned, folks will be taken to a Bton preview page that shows the original url, the shortened url, and QR code.</p>
-	    <p>If unchecked: when the url is clicked or a QR scanned, folks are taken straight to the destination URL.</p>
-	
-	<h3>Edit a Url</h3>
-	<p>
-	<ol>
-		<li>Go to <a href="urls">All Urls</a></li>
-		<li>Sort by your username</li>
-			<ul>
-			<li><em>You can only edit the shortened urls you have created!</em></li>
-			</ul>
-		<img src="COB/images/help/sort-by-username.png" alt="For the select username field, choose your name then click search.">
-		<li>Select the Alias of an URL you wish to edit</li>
-		<img src="COB/images/help/info-button.png" alt="In the sorted list, choose the shortened url you want to edit by clicking on the alias.">
-		<li>Click Edit to change the following:</li>
-			<ul>
-				<li>Update a broken or dead link with a new url</li>
-				<li>Change the Alias</li>
-			</ul>
-		<li>You can also delete the url in the previous screen</li>
-	</ol>
-	</p>
-</section>
+<main>
+    <section class="overflow-hidden">
+        <header class="text-center"><h2>Help</h2></header>
+        <div class="row">
+            <div class="col-3">
+                <nav id="navbar-example3" class="flex-column align-items-stretch pe-3 border-end">
+                    <nav class="nav nav-pills flex-column">
+                        <a class="nav-link" href="#add-url">Add Url</a>
+                        <a class="nav-link ms-3 my-1" href="#alias">Alias</a>
+                        <a class="nav-link ms-3 my-1" href="#destination-preview">Destination Preview</a>
+                        <a class="nav-link" href="#edit-url">Edit a Url</a>
+                        <a class="nav-link ms-3 my-1" href="#step-1">Step 1</a>
+                        <a class="nav-link ms-3 my-1" href="#step-2">Step 2</a>
+                        <a class="nav-link ms-3 my-1" href="#step-3">Step 3</a>
+                        <a class="nav-link ms-3 my-1" href="#step-4">Step 4</a>
+                        <a class="nav-link ms-3 my-1" href="#step-5">Step 5</a>
+                    </nav>
+                </nav>
+            </div>
+
+            <div class="col-9">
+                <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
+                    <div class="card" style="max-height: 50vh; overflow-y: auto;">
+                        <div class="card-body">
+                            <div id="add-url">
+                                <h4>Add Url</h4>
+                                <p>To shorten a link, copy and paste the link into the “Paste a long URL” box.</p>
+                                <p>Note: A QR code is generated for every shortened URL.</p>
+                            </div>
+
+                            <div id="alias">
+                                <h5>Alias</h5>
+                                <p>Every time the Add Url page loads, an alias is randomly generated but you can change the alias to be anything you want (however you are limited to 5 characters).</p>
+                            </div>
+
+                            <div id="destination-preview">
+                                <h5>Destination Preview</h5>
+                                <p>If checked: when the url is clicked or a QR scanned, folks will be taken to a Bton preview page that shows the original url, the shortened url, and QR code.</p>
+                                <p>If unchecked: when the url is clicked or a QR scanned, folks are taken straight to the destination URL.</p>
+                            </div>
+
+                            <div id="edit-url">
+                                <h4>Edit a Url</h4>
+                                <ol>
+                                    <li id="step-1">Go to <a href="urls">All Urls</a></li>
+                                    <li id="step-2">Sort by your username</li>
+                                    <ul>
+                                        <li><em>You can only edit the shortened urls you have created!</em></li>
+                                    </ul>
+                                    <img src="COB/images/help/sort-by-username.png" alt="For the select username field, choose your name then click search." style="max-width: 100%; min-width: 200px;">
+                                    <li id="step-3">Select the Alias of an URL you wish to edit</li>
+                                    <img src="COB/images/help/info-button.png" alt="In the sorted list, choose the shortened url you want to edit by clicking on the alias." style="max-width: 100%; min-width: 200px;">
+                                    <li id="step-4">Click Edit to change the following:</li>
+                                    <ul>
+                                        <li>Update a broken or dead link with a new url</li>
+                                        <li>Change the Alias</li>
+                                    </ul>
+                                    <li id="step-5">You can also delete the url in the previous screen</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 
 {% endblock %}

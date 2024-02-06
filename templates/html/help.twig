@@ -1,7 +1,7 @@
 {% extends "html/layouts/default.twig" %}
 {% block content %}
 
-   <section class="container">
+   <section class="container p-2">
 	<header>
 		<h2>Help</h2>
 		<hr>
@@ -16,7 +16,7 @@
 	    <p>If unchecked: when the url is clicked or a QR scanned, folks are taken straight to the destination URL.</p>
 	<h3>Edit a Url</h3>
 		<ol class="list-group list-group-numbered">
-			<li class="list-group-item">Go to <a href="urls">All Urls</a></li>
+			<li class="list-group-item">Go to <a href="{{ uri('urls.index') }}">All Urls</a></li>
 			<li class="list-group-item">Sort by your username
 				<ul>
 					<li>

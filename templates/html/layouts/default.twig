@@ -4,7 +4,7 @@
 <body>
     {{ include('html/layouts/partials/header.twig') }}
     {{ include('html/layouts/partials/nav.twig') }}
-	<main>
+	<main class="container p-2">
         {% if errorMessages is defined %}
         {{ include('html/layouts/partials/errorMessages.twig') }}
         {% endif %}

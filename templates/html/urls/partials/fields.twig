@@ -1,23 +1,24 @@
-<div class="form-group">
-    <label for="title">Title</label>
+<div class="mb-3">
+    <label class="form-label" for="title">Title</label>
     <input name="title" id="title" value="{{ title }}" class="form-control"/>
 </div>
-<div class="form-group">
-    <label for="original">Paste a long URL</label>
+<div class="mb-3">
+    <label class="form-label" for="original">Paste a long URL</label>
     <textarea name="original" id="original" class="form-control" placeholder="Example: http://super-long-link.com/shorten-it">{{ original }}</textarea>
 </div>
-<div class="form-group">
-    <label for="code">Alias <em>(use only numbers and letters)</em></label>
+<div class="mb-3">
+    <label class="form-label" for="code">Alias</label>
     <div class="input-group">
         <div class="input-group-prepend">
             <span class="input-group-text">https://bton.in/</span>
         </div>
         <input name="code" id="code" value="{{ code }}" title="Must only contain numbers and letters" pattern="{{ CODE_PATTERN ~ '{' ~ CODE_LENGTH ~ '}' }}" size="{{ CODE_LENGTH }}" minlength="{{ CODE_LENGTH }}" maxlength="{{ CODE_LENGTH }}" class="form-control"/>
+        <div class="form-text">Use only numbers and letters</div>
     </div>
 </div>
-<div class="form-group">
+<div class="mb-3">
     <input name="preview" id="preview" type="checkbox" value="1" {{ preview ? 'checked="true"' : '' }} class="form-check-input"/>
-    <label for="preview" class="form-check-label">Enable Destination Preview</label>
+    <label class="form-label" for="preview" class="form-check-label">Enable Destination Preview</label>
     <ul class="list-group list-group-flush">
         <li class="list-group-item"><em>Unchecked: the URL or QR Code takes folks straight to the destination URL.</em></li>
         <li class="list-group-item"><em>Checked: the URL or QR Code scanned takes folks to a Bton preview page that shows the original URL, the shortened URL, and QR Code.</em></li>

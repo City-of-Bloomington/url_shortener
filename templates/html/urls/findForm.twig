@@ -24,60 +24,71 @@
 {% import "html/macros/pagination.twig" as pagination %}
 {% block content %}
 <section id="findForm">
-    <header>
-        <h2 class="text-center" >Find URLs</h2>
-    </header>
-    <form method="get" class="card mx-auto p-3" style="width: 30rem;">
-        <fieldset class="mb-3">
-            <label for="query" class="form-label">Query</label>
-            <input name="query" id="query" value="{{ query }}" placeholder="Search original or code" class="form-control"/>
-            <button type="submit" class="btn btn-primary mt-2">Search</button>
-        </fieldset>
-        <details {% if code or original or username or preview or (preview is same as(false)) %}open="true"{% endif %}>
-            <summary class="btn btn-link">Advanced Search</summary>
-            <fieldset class="card card-body mt-2">
-                <div class="mb-2">
-                    <label for="code" class="form-label">Code</label>
-                    <input name="code" id="code" value="{{ code }}" size="{{ CODE_LENGTH }}" maxlength="{{ CODE_LENGTH }}" class="form-control"/>
-                </div>
-                <div class="mb-2">
-                    <label for="original" class="form-label">Destination Url</label>
-                    <input name="original" id="original" value="{{ original }}" class="form-control"/>
-                </div>
-                <div class="mb-2">
-                    <label for="username" class="form-label">Username</label>
-                    <select name="username" id="username" class="form-select" onchange="this.form.submit();">
-                        <option value=""></option>
-                        {% for u in usernames %}
-                            <option {% if u==username %}selected="selected"{% endif %}>{{ u }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="mb-2">
-                    <label for="preview" class="form-label">Preview</label>
-                    <select name="preview" class="form-select" onchange="this.form.submit();">
-                        <option value=""></option>
-                        <option value="1" {{ preview ? 'selected="true"' : '' }}>Yes</option>
-                        <option value="0" {{ preview is same as(false) ? 'selected="true"' : '' }}>No</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary">Search</button>
-                <a href="{{ uri('urls.index') }}" class="btn btn-secondary mt-2">Reset</a>
-            </fieldset>
-        </details>
-        <fieldset class="mt-3">
-            <div class="form-group">
-                <label for="sort" class="form-label">Sort</label>
-                <select name="sort" id="sort" class="form-select" onchange="this.form.submit();">
-                    {% for s in sorts %}
-                        <option value="{{ s }}" {% if s==order %}selected="true"{% endif %}>
-                            {{ _('sort ' ~ s) }}
-                        </option>
-                    {% endfor %}
-                </select>
-            </div>
-        </fieldset>
-    </form>
+    <div class="card">
+        <div class="card-header">
+            <h1 >Find URLs</h1>
+        </div>
+        <div class="card-body">
+            <form method="get">
+                <fieldset>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="query">Query</label>
+                        <input class="form-control" name="query" id="query" value="{{ query }}" placeholder="Search original or code"/>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                    <details class="mb-3" {% if code or original or username or preview or (preview is same as(false)) %}open="true"{% endif %}>
+                        <summary class="btn btn-link">Advanced Search</summary>
+                        <div class="card">
+                            <div class="card-body">
+                                <fieldset>
+                                    <div class="mb-3">
+                                        <label for="code" class="form-label">Alias</label>
+                                        <input name="code" id="code" value="{{ code }}" size="{{ CODE_LENGTH }}" maxlength="{{ CODE_LENGTH }}" class="form-control"/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="original" class="form-label">Destination Url</label>
+                                        <input name="original" id="original" value="{{ original }}" class="form-control"/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="username" class="form-label">Username</label>
+                                        <select name="username" id="username" class="form-select" onchange="this.form.submit();">
+                                            <option value=""></option>
+                                            {% for u in usernames %}
+                                                <option {% if u==username %}selected="selected"{% endif %}>{{ u }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="preview" class="form-label">Preview</label>
+                                        <select name="preview" class="form-select" onchange="this.form.submit();">
+                                            <option value=""></option>
+                                            <option value="1" {{ preview ? 'selected="true"' : '' }}>Yes</option>
+                                            <option value="0" {{ preview is same as(false) ? 'selected="true"' : '' }}>No</option>
+                                        </select>
+                                    </div>
+                                    <div class="d-grid gap-2 mx-auto">
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                        <a href="{{ uri('urls.index') }}" class="btn btn-secondary">Reset</a>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </details>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="sort">Sort</label>
+                        <select name="sort" id="sort" class="form-select" onchange="this.form.submit();">
+                            {% for s in sorts %}
+                                <option value="{{ s }}" {% if s==order %}selected="true"{% endif %}>
+                                    {{ _('sort ' ~ s) }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
     {% if total > itemsPerPage %}
         {{ pagination.pageLinks(total, itemsPerPage, currentPage) }}
     {% endif %}

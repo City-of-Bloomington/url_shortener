@@ -95,24 +95,23 @@
     {% if urls %}
         {% for url in urls %}
         {% set uri = uri('urls.view', {'id':url.id}) %}
-        <article class="list-group p-3">
-            <div class="shadow list-group-item list-group-item-action">
-                <header class="d-flex w-100 justify-content-between">
-                    <h2 class="mb-1">{{ url.title }}</h2>
-                    <small class="text-muted"><strong>Updated:</strong> {{ url.updated.format('n/d/Y') }}</small>
-                </header>
-                <div>
-                    <h3 aria-label="destination url"><a href="{{ url.original }}">{{ url.original }}</a></h3>
-                    <h3 aria-label="shortened url"><a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></h3>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-start align-items-center">
-                    <a href="{{ uri }}" class="info button mr-2">{{ url.code }}</a>
-                    <small class="text-muted mr-2"><strong>Created:</strong> {{ url.created.format('n/d/Y') }}</small>
-                    <small class="text-muted mr-2"><strong>User:</strong> {{ url.username }}</small>
-                    <small class="text-muted"><strong>Hits:</strong> {{ url.hits }}</small>
-                </div>
+        <article class="card mb-3">
+            <div class="card-header d-flex">
+                <h2 class="flex-grow-1">{{ url.title }}</h2>
+                <small><strong>Updated:</strong> {{ url.updated.format('n/d/Y') }}</small>
             </div>
+            <div class="card-body">
+                <a class="card-link" href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a>
+                <a class="card-link" href="{{ url.original }}">{{ url.original }}</a>
+            </div>
+            <div class="card-footer d-flex">
+                <div class="flex-grow-1 text-body-secondary">
+                    <small class="mr-2"><strong>Created:</strong> {{ url.created.format('n/d/Y') }}</small>
+                    <small class="mr-2"><strong>User:</strong> {{ url.username }}</small>
+                    <small class="mr-2"><strong>Hits:</strong> {{ url.hits }}</small>
+                </div>
+                <a class="btn btn-primary" href="{{ uri }}">{{ url.code }}</a>
+                </div>
         </article>
         {% endfor %}
     {% else %}
@@ -123,5 +122,3 @@
     {% endif %}
 </section>
 {% endblock %}
-
-

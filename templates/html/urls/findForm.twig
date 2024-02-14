@@ -101,17 +101,22 @@
                 <small><strong>Updated:</strong> {{ url.updated.format('n/d/Y') }}</small>
             </div>
             <div class="card-body">
-                <a class="card-link" href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a>
-                <a class="card-link" href="{{ url.original }}">{{ url.original }}</a>
+                    <a class="card-link" href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a>
+                        <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                    <div class="card-text text-truncate">
+                        <a class="link-secondary" href="{{ url.original }}">{{ url.original }}</a>
+                    </div>
+                <div class="d-flex mt-3">
+                    <div class="flex-grow-1">
+                        <small class="me-2"><strong>Created:</strong> {{ url.created.format('n/d/Y') }}</small>
+                        <small class="me-2"><strong>User:</strong> {{ url.username }}</small>
+                        <small class="me-2"><strong>Hits:</strong> {{ url.hits }}</small>
+                    </div>
+                    <a class="btn btn-primary" href="{{ uri }}">
+                        <i class="bi bi-arrows-angle-expand me-1"></i>{{ url.code }}
+                    </a>
+                </div>
             </div>
-            <div class="card-footer d-flex">
-                <div class="flex-grow-1 text-body-secondary">
-                    <small class="mr-2"><strong>Created:</strong> {{ url.created.format('n/d/Y') }}</small>
-                    <small class="mr-2"><strong>User:</strong> {{ url.username }}</small>
-                    <small class="mr-2"><strong>Hits:</strong> {{ url.hits }}</small>
-                </div>
-                <a class="btn btn-primary" href="{{ uri }}">{{ url.code }}</a>
-                </div>
         </article>
         {% endfor %}
     {% else %}

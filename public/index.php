@@ -49,7 +49,7 @@ if ($route) {
                 $view = new \Web\Views\ForbiddenView();
             }
             else {
-                header('Location: '.\Web\View::generateUrl('login.oidc'));
+                header('Location: '.\Web\View::generateUrl('login.oidc')."?return_url=$_SERVER[REQUEST_URI]");
                 exit();
             }
         }

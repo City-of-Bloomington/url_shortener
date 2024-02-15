@@ -24,7 +24,9 @@ class OidcController extends Controller
      */
     public function __invoke(array $params): View
     {
-        $_SESSION['return_url'] = !empty($_REQUEST['return_url']) ? $_REQUEST['return_url'] : BASE_URL;
+        if (empty($_SESSION['return_url'])) {
+            $_SESSION['return_url'] = !empty($_REQUEST['return_url']) ? $_REQUEST['return_url'] : BASE_URL;
+        }
 
         global $AUTHENTICATION;
         if (empty($AUTHENTICATION['oidc']['client_id'])) {

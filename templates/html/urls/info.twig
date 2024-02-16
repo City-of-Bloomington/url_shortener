@@ -7,19 +7,19 @@
 {% block content %}
 <section id="info">
     {% if isAllowed('urls', 'update', url) %}
-    <header>
-        <nav>
-            <a href="{{ uri('urls.update', {'id':url.id}) }}" class="button edit">{{ _('edit'  ) }}</a>
-            <a href="{{ uri('urls.delete', {'id':url.id}) }}" class="button delete">{{ _('delete') }}</a>
-        </nav>
+    <header class="d-flex mb-3">
+        <h1 class="flex-grow-1">{{ url.title    }} #{{ url.id       }}</h1>
+        <a href="{{ uri('urls.update', {'id':url.id}) }}" class="btn btn-primary me-2 align-self-center">{{ _('edit'  ) }}</a>
+        <a href="{{ uri('urls.delete', {'id':url.id}) }}" class="btn btn-danger me-2 align-self-center">{{ _('delete') }}</a>
     </header>
     {% endif %}
+        <p>
+            <a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a>
+            <i class="bi bi-arrow-right" aria-hidden="true"></i>
+            <a class="link-secondary" href="{{ url.original }}">{{ url.original }}</a>
+        </p>
     <table>
-        <tr><th>id</th>      <td>{{ url.id       }}</td></tr>
-        <tr><th>title</th>   <td>{{ url.title    }}</td></tr>
         <tr><th>Code</th>    <td>{{ url.code     }}</td></tr>
-        <tr><th>Short Url</th><td><a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></td></tr>
-        <tr><th>Destination Url</th><td><a href="{{ url.original }}">{{ url.original }}</a></td></tr>
         <tr><th>Username</th><td>{{ url.username }}</td></tr>
         <tr><th>Created</th> <td>{{ url.created.format('c') }}</td></tr>
         <tr><th>Updated</th> <td>{{ url.updated.format('c') }}</td></tr>

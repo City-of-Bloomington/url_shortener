@@ -101,22 +101,16 @@
                 <small><strong>Updated:</strong> {{ url.updated.format('n/d/Y') }}</small>
             </div>
             <div class="card-body">
-                    <a class="card-link" href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a>
-                        <i class="bi bi-arrow-right" aria-hidden="true"></i>
-                    <div class="card-text text-truncate">
-                        <a class="link-secondary" href="{{ url.original }}">{{ url.original }}</a>
-                    </div>
-                <div class="d-flex mt-3">
-                    <div class="flex-grow-1">
-                        <small class="me-2"><strong>Created:</strong> {{ url.created.format('n/d/Y') }}</small>
-                        <small class="me-2"><strong>Created by:</strong> {{ url.username }}</small>
-                        <small class="me-2"><strong>Hits:</strong> {{ url.hits }}</small>
-                         <small class="me-2"><strong>Preview:</strong> {{ url.preview ? 'Enabled' : 'Disabled' }}</small>
-                    </div>
-                    <a class="btn btn-primary btn-sm" href="{{ uri }}">
-                        <i class="bi bi-info-circle me-1" aria-label="More Information"></i>{{ url.code }}
-                    </a>
-                </div>
+                <ul class="list-unstyled">
+                    <li><small><strong class="me-2">Short Url:</strong> <a class="card-link" href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></small></li>
+                    <li><small><strong class="me-2">Destination Url:</strong> <a class="link-secondary" href="{{ url.original }}">{{ url.original }}</a></small></li>
+                </ul>
+                <ul class="list-inline"> 
+                    <li class="list-inline-item"><small><strong>Created:</strong> {{ url.created.format('n/d/Y') }}</small></li>
+                    <li class="list-inline-item"><small><strong>User:</strong> {{ url.username }}</small></li>
+                    <li class="list-inline-item"><small><strong>Hits:</strong> {{ url.hits }}</small></li>
+                    <li class="list-inline-item"><a class="btn btn-primary btn-sm" href="{{ uri }}"><i class="bi bi-info-circle me-1" aria-label="More Information"></i>{{ url.code }}</a></li>
+                </ul>
             </div>
         </article>
         {% endfor %}

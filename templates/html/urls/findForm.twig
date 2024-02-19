@@ -109,8 +109,9 @@
                 <div class="d-flex mt-3">
                     <div class="flex-grow-1">
                         <small class="me-2"><strong>Created:</strong> {{ url.created.format('n/d/Y') }}</small>
-                        <small class="me-2"><strong>User:</strong> {{ url.username }}</small>
+                        <small class="me-2"><strong>Created by:</strong> {{ url.username }}</small>
                         <small class="me-2"><strong>Hits:</strong> {{ url.hits }}</small>
+                         <small class="me-2"><strong>Preview:</strong> {{ url.preview ? 'Enabled' : 'Disabled' }}</small>
                     </div>
                     <a class="btn btn-primary btn-sm" href="{{ uri }}">
                         <i class="bi bi-info-circle me-1" aria-label="More Information"></i>{{ url.code }}

@@ -3,44 +3,35 @@
 
 <section>
 	<header>
-		<h2>Help</h2>
+		<h1>Help</h1>
 		<hr>
 	</header>
-	<h3>Add Url</h3>
+	<h2>Add URL</h2>
 	    <p>To shorten a link, copy and paste the link into the “Paste a long URL” box.</p>
 	    <p>Note: A QR code is generated for every shortened URL.</p>
-	<h4>Alias</h4>
-	    <p>Every time the Add Url page loads, an alias is randomly generated but you can change the alias to be anything you want (however you are limited to 5 characters).</p>
-	<h4>Destination Preview</h4>
-	    <p>If checked: when the url is clicked or a QR scanned, folks will be taken to a Bton preview page that shows the original url, the shortened url, and QR code.</p>
-	    <p>If unchecked: when the url is clicked or a QR scanned, folks are taken straight to the destination URL.</p>
-	<h3>Edit a Url</h3>
-		<ol class="list-group list-group-numbered">
-			<li class="list-group-item">Go to <a href="{{ uri('urls.index') }}">All Urls</a></li>
-			<li class="list-group-item">Sort by your username
+	<h3><small class="text-body-secondary">Alias</small></h3>
+	    <p>Every time the Add URL page loads, an alias is randomly generated but you can change the alias to be anything you want (however you are limited to 5 characters).</p>
+	<h3><small class="text-body-secondary">Destination Preview</small></h3>
+	    <p>If checked: when the URL is clicked or a QR scanned, folks will be taken to a Bton preview page that shows the original URL, the shortened URL, and QR code.</p>
+	    <p>If unchecked: when the URL is clicked or a QR scanned, folks are taken straight to the destination URL.</p>
+	<h2>Edit a URL</h2>
+		<ol>
+			<li >Go to <a href="{{ uri('urls.index') }}">All URLs</a></li>
+			<li >Sort by your username
 				<ul>
 					<li>
-						<em>You can only edit the shortened urls you have created!</em>
-					</li>
-					<li>
-						<img style="width:25%;" src="COB/images/help/sort-by-username.png" alt="For the select username field, choose your name then click search.">
+						<em>You can only edit the shortened URLs you have created!</em>
 					</li>
 				</ul>
 			</li>
-			<li class="list-group-item">Select the Alias of an URL you wish to edit
+			<li >Select the Info button of an URL you wish to edit</li>
+			<li >Click Edit to change the following:
 				<ul>
-					<li>
-						<img style="width:25%;" src="COB/images/help/info-button.png" alt="In the sorted list, choose the shortened url you want to edit by clicking on the alias.">
-					</li>
-				</ul>
-			</li>
-			<li class="list-group-item">Click Edit to change the following:
-				<ul>
-					<li>Update a broken or dead link with a new url</li>
+					<li>Update a broken or dead link with a new URL</li>
 					<li>Change the Alias</li>
+					<li>Delete Short URL</li>
 				</ul>
 			</li>
-			<li class="list-group-item">You can also delete the url in the previous screen</li>
 		</ol>
 </section>
 

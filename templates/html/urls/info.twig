@@ -10,24 +10,19 @@
     <header class="d-flex mb-3">
         <h1 class="flex-grow-1">{{ url.title    }} #{{ url.id       }}</h1>
         <a href="{{ uri('urls.update', {'id':url.id}) }}" class="btn btn-primary me-2 align-self-center">{{ _('edit'  ) }}</a>
-        <a href="{{ uri('urls.delete', {'id':url.id}) }}" class="btn btn-danger me-2 align-self-center">{{ _('delete') }}</a>
+        <a href="{{ uri('urls.delete', {'id':url.id}) }}" class="btn btn-danger align-self-center">{{ _('delete') }}</a>
     </header>
     {% endif %}
-        <p>
-            <a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a>
-            <i class="bi bi-arrow-right" aria-hidden="true"></i>
-            <a class="link-secondary" href="{{ url.original }}">{{ url.original }}</a>
-        </p>
-    <table>
-        <tr><th>Code</th>    <td>{{ url.code     }}</td></tr>
-        <tr><th>Username</th><td>{{ url.username }}</td></tr>
-        <tr><th>Created</th> <td>{{ url.created.format('c') }}</td></tr>
-        <tr><th>Updated</th> <td>{{ url.updated.format('c') }}</td></tr>
-        <tr><th>hits</th>    <td>{{ url.hits }}</td></tr>
-        <tr><th>Preview</th> <td>{{ url.preview ? '✓' : '' }}</td></tr>
-    </table>
-
-    <img src="{{ url('urls.qrcode', {'code':url.code} )}}" />
-    
+        <ul class="list-group">
+            <li class="list-group-item"><strong class="me-2">Short Url:</strong><a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></li>
+            <li class="list-group-item"><strong class="me-2">Original Url:</strong><a class="link-secondary" href="{{ url.original }}">{{ url.original }}</a></li>  
+            <li class="list-group-item"><strong class="me-2">Alias:</strong>  {{ url.code     }}</li>
+            <li class="list-group-item"><strong class="me-2">Created by:</strong>  {{ url.username }}</li>
+            <li class="list-group-item"><strong class="me-2">Created:</strong>  {{ url.created.format('c') }}</li>
+            <li class="list-group-item"><strong class="me-2">Updated:</strong>  {{ url.updated.format('c') }}</li>
+            <li class="list-group-item"><strong class="me-2">hits:</strong>  {{ url.hits }}</li>
+            <li class="list-group-item"><strong class="me-2">Preview:</strong>  {{ url.preview ? 'Enabled' : 'Disabled' }}</li>
+        </ul>
+        <img class="img-thumbnail mt-2" src="{{ url('urls.qrcode', {'code':url.code} )}}" />
 </section>
 {% endblock %}

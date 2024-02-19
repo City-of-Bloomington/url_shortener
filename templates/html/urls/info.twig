@@ -14,8 +14,8 @@
     </header>
     {% endif %}
         <ul class="list-group">
-            <li class="list-group-item"><strong class="me-2">Short Url:</strong><a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></li>
-            <li class="list-group-item"><strong class="me-2">Destination Url:</strong><a class="link-secondary" href="{{ url.original }}">{{ url.original }}</a></li>  
+            <li class="list-group-item"><strong class="me-2">Short Url:</strong> <a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></li>
+            <li class="list-group-item"><strong class="me-2">Destination Url:</strong> <a class="link-secondary" href="{{ url.original }}">{{ url.original }}</a></li>  
             <li class="list-group-item"><strong class="me-2">Alias:</strong>  {{ url.code     }}</li>
             <li class="list-group-item"><strong class="me-2">Created by:</strong>  {{ url.username }}</li>
             <li class="list-group-item"><strong class="me-2">Created:</strong>  {{ url.created.format('c') }}</li>
@@ -23,6 +23,6 @@
             <li class="list-group-item"><strong class="me-2">hits:</strong>  {{ url.hits }}</li>
             <li class="list-group-item"><strong class="me-2">Preview:</strong>  {{ url.preview ? 'Enabled' : 'Disabled' }}</li>
         </ul>
-        <img class="img-thumbnail mt-2" src="{{ url('urls.qrcode', {'code':url.code} )}}" />
+        <img class="img-thumbnail mt-2" alt="QR Code to Short Url" src="{{ url('urls.qrcode', {'code':url.code} )}}" />
 </section>
 {% endblock %}

@@ -97,7 +97,13 @@
         {% set uri = uri('urls.view', {'id':url.id}) %}
         <article class="card mb-3">
             <div class="card-header d-flex">
-                <h2 class="flex-grow-1">{{ url.title }}</h2>
+            <h2 class="flex-grow-1">
+                {% if url.title is defined and url.title is not empty %}
+                    {{ url.title }}
+                {% else %}
+                    <small class="text-secondary">no title</small>
+                {% endif %}
+            </h2>
                 <small><strong>Updated:</strong> {{ url.updated.format('n/d/Y') }}</small>
             </div>
             <div class="card-body">

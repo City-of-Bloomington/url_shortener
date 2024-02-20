@@ -1,26 +1,13 @@
-<nav class="navbar navbar-expand-sm">
-    <div class="container">
-        <a class="navbar-brand" href="{{ BASE_URI }}">
-            <img src="/bton/COB/images/logo.svg" alt="COB Logo" style="padding-right:5%;width:25%;">
-            {{ APPLICATION_NAME }}
-        </a>
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                {% if isAllowed('urls', 'index') %}
-                <a class="nav-link" href="{{ uri('urls.index') }}">All Urls</a>
-                {% endif %}
-            </li>
-            <li class="nav-item">
-                 {% if isAllowed('urls', 'add') %}
-                <a class="nav-link" href="{{ uri('urls.add') }}">Add Url</a>
-                {% endif %}
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ uri('help.') }}">Help</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="https://bloomington.in.gov/ureport/miscellaneous/53">Feedback</a>
-            </li>
-        </ul>
-    </div>
+<nav>
+    {% if isAllowed('urls', 'index') %}
+    <a href="{{ uri('urls.index') }}">All Urls</a>
+    {% endif %}
+
+    {% if isAllowed('urls', 'add') %}
+    <a href="{{ uri('urls.add') }}">Add Url</a>
+    {% endif %}
+
+    <a href="{{ uri('help.') }}">Help</a>
+
+    <a href="https://bloomington.in.gov/ureport/miscellaneous/53">Feedback</a>
 </nav>

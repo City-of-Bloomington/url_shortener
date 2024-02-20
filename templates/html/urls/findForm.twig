@@ -92,20 +92,20 @@
     {# <p>Click alias to see URL details and QR code.</p> #}
 
     {% for url in urls %}{% set uri = uri('urls.view', {'id':url.id}) %}
-    <article>
+    <fieldset>
+        <legend><a href="{{ uri('urls.view', {'id':url.id}) }}" class="info button">{{ url.code }}</a></legend>
         <header>
             <h2>{{ url.title }}</h2>
             <h3 aria-label="destination url"><a href="{{ url.original }}">{{ url.original }}</a></h3>
             <h3 aria-label="shortened url"><a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></h3>
         </header>
         <div>
-            <a href="{{ uri('urls.view', {'id':url.id}) }}" class="info button">{{ url.code }}</a>
         	<strong>Created:</strong> {{ url.created.format('n/d/Y') }}
             <strong>Updated:</strong> {{ url.updated.format('n/d/Y') }}
             <strong>User:</strong>    {{ url.username }}
             <strong>Hits:</strong>    {{ url.hits }}
         </div>
-    </article>
+    </fieldset>
     {% endfor %}
 
     {% else %}

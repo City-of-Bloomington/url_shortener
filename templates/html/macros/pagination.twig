@@ -19,7 +19,7 @@
         {% set upperBound = (pageNumber - delta + pageRange) %}
     {% endif %}
 
-    <nav class="pageNavigation">
+    <nav class="pagination">
     {% set url = current_url() %}
         {% do url.__set('page', 1) %}
         <a href="{{ url }}">First</a>

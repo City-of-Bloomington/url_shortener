@@ -1,0 +1,130 @@
+{#
+ * @copyright 2023 City of Bloomington, Indiana
+ * @license https://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
+ *
+ * @param array  urls          Search Results
+ * @param array  usernames     List of all usernames
+ * @param array  sorts         List of valid sorting parameters
+ *
+ * -- Pagination parameters
+ * @param int    total
+ * @param int    itemsPerPage
+ * @param int    currentPage
+ * @param string order
+ *
+ * -- Search Parameters
+ * @param int    id
+ * @param string username
+ * @param string code
+ * @param string original
+ * @param bool   preview
+ * @param string query
+#}
+{% extends "html/layouts/default.twig" %}
+{% import "html/macros/pagination.twig" as pagination %}
+{% block content %}
+<section id="findForm">
+    <div class="card">
+        <div class="card-header">
+            <h1 >Find URLs</h1>
+        </div>
+        <div class="card-body">
+            <form method="get">
+                <fieldset>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="query">Query</label>
+                        <input class="form-control" name="query" id="query" value="{{ query }}" placeholder="Search by Alias or Destination Url"/>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                    <details class="mb-3" {% if code or original or username or preview or (preview is same as(false)) %}open="true"{% endif %}>
+                        <summary class="btn btn-link">Advanced Search</summary>
+                        <div class="card">
+                            <div class="card-body">
+                                <fieldset>
+                                    <div class="mb-3">
+                                        <label for="code" class="form-label">Alias</label>
+                                        <input name="code" id="code" value="{{ code }}" size="{{ CODE_LENGTH }}" maxlength="{{ CODE_LENGTH }}" class="form-control"/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="original" class="form-label">Destination Url</label>
+                                        <input name="original" id="original" value="{{ original }}" class="form-control"/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="username" class="form-label">Username</label>
+                                        <select name="username" id="username" class="form-select" onchange="this.form.submit();">
+                                            <option value=""></option>
+                                            {% for u in usernames %}
+                                                <option {% if u==username %}selected="selected"{% endif %}>{{ u }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="preview" class="form-label">Preview</label>
+                                        <select name="preview" class="form-select" onchange="this.form.submit();">
+                                            <option value=""></option>
+                                            <option value="1" {{ preview ? 'selected="true"' : '' }}>Yes</option>
+                                            <option value="0" {{ preview is same as(false) ? 'selected="true"' : '' }}>No</option>
+                                        </select>
+                                    </div>
+                                    <div class="d-grid gap-2 mx-auto">
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                        <a href="{{ uri('urls.index') }}" class="btn btn-secondary">Reset</a>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </details>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="sort">Sort</label>
+                        <select name="sort" id="sort" class="form-select" onchange="this.form.submit();">
+                            {% for s in sorts %}
+                                <option value="{{ s }}" {% if s==order %}selected="true"{% endif %}>
+                                    {{ _('sort ' ~ s) }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    {% if total > itemsPerPage %}
+        {{ pagination.pageLinks(total, itemsPerPage, currentPage) }}
+    {% endif %}
+    {% if urls %}
+        {% for url in urls %}
+        {% set uri = uri('urls.view', {'id':url.id}) %}
+        <article class="card mb-3">
+            <div class="card-header d-flex">
+            <h2 class="flex-grow-1">
+                {% if url.title is defined and url.title is not empty %}
+                    {{ url.title }}
+                {% else %}
+                    <small class="text-secondary">no title</small>
+                {% endif %}
+            </h2>
+                <small><strong>Updated:</strong> {{ url.updated.format('n/d/Y') }}</small>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li><small><strong class="me-2">Short URL:</strong> <a class="card-link" href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></small></li>
+                    <li><small><strong class="me-2">Destination URL:</strong> <a class="link-secondary" href="{{ url.original }}">{{ url.original }}</a></small></li>
+                </ul>
+                <ul class="list-inline"> 
+                    <li class="list-inline-item"><small><strong>Created:</strong> {{ url.created.format('n/d/Y') }}</small></li>
+                    <li class="list-inline-item"><small><strong>User:</strong> {{ url.username }}</small></li>
+                    <li class="list-inline-item"><small><strong>Hits:</strong> {{ url.hits }}</small></li>
+                    <li class="list-inline-item"><a class="btn btn-primary btn-sm" href="{{ uri }}"><i class="bi bi-info-circle me-1" aria-label="More Information"></i>Info</a></li>
+                </ul>
+            </div>
+        </article>
+        {% endfor %}
+    {% else %}
+        <p>No URLs found.</p>
+    {% endif %}
+    {% if total > itemsPerPage %}
+        {{ pagination.pageLinks(total, itemsPerPage, currentPage) }}
+    {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,18 @@
+{#
+ * @copyright 2023 City of Bloomington, Indiana
+ * @license http://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
+ * @param Domain\Urls\Entities\Url url
+#}
+{% extends "html/layouts/default.twig" %}
+{% block content %}
+<section id="preview">
+    <header class="d-flex mb-3">
+        <h1> Short Url Preview</h1>
+    </header>
+    <ul class="list-group">
+        <li class="list-group-item"><strong class="me-2">Short Url:</strong> <a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></li>
+        <li class="list-group-item"><strong class="me-2">Destination Url:</strong> <a href="{{ url.original }}">{{ url.original }}</a></li>
+    </ul>
+    <img class="img-thumbnail mt-2" alt="QR Code to Short Url" src="{{ url('urls.qrcode', {'code':url.code} )}}"/>
+</section>
+{% endblock %}

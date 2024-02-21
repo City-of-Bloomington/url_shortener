@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ LANG }}" lang="{{ LANG }}">
+{{ include('html/layouts/partials/head.twig') }}
+<body>
+    <header></header>
+    {{ include('html/layouts/partials/nav.twig') }}
+	<main class="container p-2">
+        {% if errorMessages is defined %}
+        {{ include('html/layouts/partials/errorMessages.twig') }}
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+	</main>
+	<footer>
+	</footer>
+</body>
+</html>

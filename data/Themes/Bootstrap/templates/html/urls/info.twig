@@ -1,0 +1,28 @@
+{#
+ * @copyright 2023 City of Bloomington, Indiana
+ * @license http://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
+ * @param Domain\Urls\Entities\Url url
+#}
+{% extends "html/layouts/default.twig" %}
+{% block content %}
+<section id="info">
+    {% if isAllowed('urls', 'update', url) %}
+    <header class="d-flex mb-3">
+        <h1 class="flex-grow-1">{{ url.title    }} #{{ url.id       }}</h1>
+        <a href="{{ uri('urls.update', {'id':url.id}) }}" class="btn btn-primary me-2 align-self-center">{{ _('edit'  ) }}</a>
+        <a href="{{ uri('urls.delete', {'id':url.id}) }}" class="btn btn-danger align-self-center">{{ _('delete') }}</a>
+    </header>
+    {% endif %}
+        <ul class="list-group">
+            <li class="list-group-item"><strong class="me-2">Short URL:</strong> <a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></li>
+            <li class="list-group-item"><strong class="me-2">Destination URL:</strong> <a class="link-secondary" href="{{ url.original }}">{{ url.original }}</a></li>  
+            <li class="list-group-item"><strong class="me-2">Alias:</strong>  {{ url.code     }}</li>
+            <li class="list-group-item"><strong class="me-2">Created by:</strong>  {{ url.username }}</li>
+            <li class="list-group-item"><strong class="me-2">Created:</strong>  {{ url.created.format('c') }}</li>
+            <li class="list-group-item"><strong class="me-2">Updated:</strong>  {{ url.updated.format('c') }}</li>
+            <li class="list-group-item"><strong class="me-2">hits:</strong>  {{ url.hits }}</li>
+            <li class="list-group-item"><strong class="me-2">Preview:</strong>  {{ url.preview ? 'Enabled' : 'Disabled' }}</li>
+        </ul>
+        <img class="img-thumbnail mt-2" alt="QR Code to Short Url" src="{{ url('urls.qrcode', {'code':url.code} )}}" />
+</section>
+{% endblock %}

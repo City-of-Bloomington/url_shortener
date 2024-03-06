@@ -5,7 +5,7 @@
 #}
 {% extends "html/layouts/default.twig" %}
 {% block content %}
-<section id="info">
+<section id="info" class="container my-3">
     {% if isAllowed('urls', 'update', url) %}
     <header class="d-flex mb-3">
         <h1 class="flex-grow-1">{{ url.title    }} #{{ url.id       }}</h1>

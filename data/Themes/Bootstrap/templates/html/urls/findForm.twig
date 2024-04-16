@@ -23,24 +23,24 @@
 {% extends "html/layouts/default.twig" %}
 {% import "html/macros/pagination.twig" as pagination %}
 {% block content %}
-<section id="findForm" class="container my-3">
+<section id="findForm" class="container">
     <div class="card">
-        <div class="card-header">
-            <h1 >Find URLs</h1>
-        </div>
         <div class="card-body">
             <form method="get">
                 <fieldset>
-                    <div class="input-group mb-3">
+                    <legend><h1>Find URLs</h1></legend>
+                    <div class="input-group">
                         <label class="input-group-text" for="query">Query</label>
-                        <input class="form-control" name="query" id="query" value="{{ query }}" placeholder="Search by Alias or Destination Url"/>
+                        <input class="form-control" name="query" id="query" aria-describedby="query-help" value="{{ query }}" />
                         <button type="submit" class="btn btn-primary">Search</button>
                     </div>
+                    <div class="form-text" id="query-help">Search by Alias or Destination Url</div>
                     <details class="mb-3" {% if code or original or username or preview or (preview is same as(false)) %}open="true"{% endif %}>
                         <summary class="btn btn-link">Advanced Search</summary>
                         <div class="card">
                             <div class="card-body">
                                 <fieldset>
+                                    <legend>Advanced Search</legend>
                                     <div class="mb-3">
                                         <label for="code" class="form-label">Alias</label>
                                         <input name="code" id="code" value="{{ code }}" size="{{ CODE_LENGTH }}" maxlength="{{ CODE_LENGTH }}" class="form-control"/>
@@ -52,7 +52,7 @@
                                     <div class="mb-3">
                                         <label for="username" class="form-label">Username</label>
                                         <select name="username" id="username" class="form-select" onchange="this.form.submit();">
-                                            <option value=""></option>
+                                            <option value="">--Choose a Username--</option>
                                             {% for u in usernames %}
                                                 <option {% if u==username %}selected="selected"{% endif %}>{{ u }}</option>
                                             {% endfor %}
@@ -60,8 +60,8 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="preview" class="form-label">Preview</label>
-                                        <select name="preview" class="form-select" onchange="this.form.submit();">
-                                            <option value=""></option>
+                                        <select name="preview" id="preview" class="form-select" onchange="this.form.submit();">
+                                            <option value="">All</option>
                                             <option value="1" {{ preview ? 'selected="true"' : '' }}>Yes</option>
                                             <option value="0" {{ preview is same as(false) ? 'selected="true"' : '' }}>No</option>
                                         </select>
@@ -97,19 +97,19 @@
         {% set uri = uri('urls.view', {'id':url.id}) %}
         <article class="card mb-3">
             <div class="card-header d-flex">
-            <h2 class="flex-grow-1">
+            <h2 class="flex-grow-1 fs-3 text">
                 {% if url.title is defined and url.title is not empty %}
                     {{ url.title }}
                 {% else %}
-                    <small class="text-secondary">no title</small>
+                    <small>no title</small>
                 {% endif %}
             </h2>
                 <small><strong>Updated:</strong> {{ url.updated.format('n/d/Y') }}</small>
             </div>
             <div class="card-body">
                 <ul class="list-unstyled">
-                    <li><small><strong class="me-2">Short URL:</strong> <a class="card-link" href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></small></li>
-                    <li><small><strong class="me-2">Destination URL:</strong> <a class="link-secondary" href="{{ url.original }}">{{ url.original }}</a></small></li>
+                    <li><small><strong class="me-2">Short URL:</strong> <a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></small></li>
+                    <li><small><strong class="me-2">Destination URL:</strong> <a class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{{ url.original }}">{{ url.original }}</a></small></li>
                 </ul>
                 <ul class="list-inline"> 
                     <li class="list-inline-item"><small><strong>Created:</strong> {{ url.created.format('n/d/Y') }}</small></li>

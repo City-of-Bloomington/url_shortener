@@ -8,20 +8,19 @@
 #}
 {% extends "html/layouts/default.twig" %}
 {% block content %}
-<section id="updateForm" class="d-flex justify-content-center my-3">
+<section id="updateForm" class="d-flex justify-content-center">
     <div class="card">
-        <div class="card-header">
-            <h1>Shorten a URL</h1>
+        <div class="card-body">
+            <form method="post">
+                <fieldset>
+                    <legend><h1>Update a Short URL</h1></legend>
+                    <input type="hidden" name="id" value="{{ id }}" />
+                    {% include 'html/urls/partials/fields.twig' %}
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a href="{{ uri('urls.view', {'id':id}) }}" class="btn btn-secondary">Cancel</a>
+                </fieldset>
+            </form>
         </div>
-    <div class="card-body">
-        <form method="post">
-            <fieldset>
-                <input type="hidden" name="id" value="{{ id }}" />
-                {% include 'html/urls/partials/fields.twig' %}
-                <button type="submit" class="btn btn-primary">Save</button>
-                <a href="{{ uri('urls.view', {'id':id}) }}" class="btn btn-secondary">Cancel</a>
-            </fieldset>
-        </form>
     </div>
 </section>
 {% endblock %}

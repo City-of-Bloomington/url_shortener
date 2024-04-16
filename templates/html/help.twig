@@ -5,44 +5,29 @@
 		<h1>Help</h1>
 		<hr>
 	</header>
-</section>
-<section class="container my-3">
-	<header>
-		<h2>Add URL</h2>
-		<hr>
-	</header>
+	<h2>Add URL</h2>
 	<p>To shorten a link, go to <a href="{{ uri('urls.add') }}">Add Url</a> and paste the link into the “Paste a long URL” box.</p>
 	<h3><small class="text-body-secondary">Title</small></h3>
-		<p>You can optionally provide a title for the URL which will make searching for it easier if you ever need to update the short URL.</p>
+	<p>You can optionally provide a title for the URL which will make searching for it easier if you ever need to update the short URL.</p>
 	<h3><small class="text-body-secondary">Alias</small></h3>
-		<p>Every time the Add URL page loads, an alias is randomly generated. Although you can change the alias, you are limited to 5 numbers or letters.</p>
+	<p>Every time the Add URL page loads, an alias is randomly generated. Although you can change the alias, you are limited to 5 numbers or letters.</p>
 	<h3><small class="text-body-secondary">QR Code</small></h3>
-		<p>A QR code image is generated for every short URL.</p>
+	<p>A QR code image is generated for every short URL.</p>
 	<h3><small class="text-body-secondary">Destination Preview</small></h3>
-		<p>If checked: when the short URL is clicked or a QR scanned, folks will be taken to a Bton preview page that shows the destination URL, the short URL, and QR code.</p>
-		<p>If unchecked: when the short URL is clicked or a QR scanned, folks are taken straight to the destination URL.</p>
-</section>
-<section class="container my-3">
-	<header>
-		<h2>All URLS</h2>
-		<hr>
-	</header>
+	<p>If checked: when the short URL is clicked or a QR scanned, folks will be taken to a Bton preview page that shows the destination URL, the short URL, and QR code.</p>
+	<p>If unchecked: when the short URL is clicked or a QR scanned, folks are taken straight to the destination URL.</p>
+	<h2>All URLS</h2>
 	<p>To search for short URLS, go to <a href="{{ uri('urls.index') }}">All Urls</a> and use the search bar to enter the Alias (for example, civic or 19i6J) or a portion of the destination URL.</p>
 	<p>To quickly sort the results, use the Sort dropdown and select an ordering option (the default is Last Updated).</p>
 	<h3><small class="text-body-secondary">Advanced Search</small></h3>
-		<p>When you select Advanced Search, several search parameters will appear. You can configure them all or just one to refine the search results.</p>
-		<ul>
-			<li>Alias search box</li>
-			<li>Destination URL search box</li>
-			<li>Username dropdown to search for short URLs created a by a specific user</li>
-			<li>Preview dropdown to search for short URLs with preview enabled or disabled</li>
-		</ul>
-</section>
-<section class="container my-3">
-	<header>
-		<h2>Edit a URL</h2>
-		<hr>
-	</header>
+	<p>When you select Advanced Search, several search parameters will appear. You can configure them all or just one to refine the search results.</p>
+	<ul>
+		<li>Alias search box</li>
+		<li>Destination URL search box</li>
+		<li>Username dropdown to search for short URLs created a by a specific user</li>
+		<li>Preview dropdown to search for short URLs with preview enabled or disabled</li>
+	</ul>
+	<h2>Edit a URL</h2>
 	<ol>
 		<li>Go to <a href="{{ uri('urls.index') }}">All URLs</a></li>
 		<li>Sort by your username using Advanced Search</li>

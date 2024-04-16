@@ -5,10 +5,10 @@
 #}
 {% extends "html/layouts/default.twig" %}
 {% block content %}
-<section id="info" class="container my-3">
+<section id="info" class="container">
     {% if isAllowed('urls', 'update', url) %}
     <header class="d-flex mb-3">
-        <h1 class="flex-grow-1">{{ url.title    }} #{{ url.id       }}</h1>
+        <h1 class="flex-grow-1">{{ url.title    }} #{{ url.id }}</h1>
         <a href="{{ uri('urls.update', {'id':url.id}) }}" class="btn btn-primary me-2 align-self-center">{{ _('edit'  ) }}</a>
         <a href="{{ uri('urls.delete', {'id':url.id}) }}" class="btn btn-danger align-self-center">{{ _('delete') }}</a>
     </header>

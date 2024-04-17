@@ -7,12 +7,15 @@
 {% block content %}
 <section id="preview" class="container">
     <header class="d-flex mb-3">
-        <h1> Short Url Preview</h1>
+        <h1> Short URL Preview</h1>
     </header>
     <ul class="list-group">
-        <li class="list-group-item"><strong class="me-2">Short Url:</strong> <a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></li>
-        <li class="list-group-item"><strong class="me-2">Destination Url:</strong> <a href="{{ url.original }}">{{ url.original }}</a></li>
+         {% if url.title is defined and url.title is not empty %}
+        <li class="list-group-item"><strong class="me-2">Title:</strong> {{ url.title }}</li>
+        {% endif %} 
+        <li class="list-group-item"><strong class="me-2">Short URL:</strong> <a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></li>
+        <li class="list-group-item"><strong class="me-2">Destination URL:</strong> <a href="{{ url.original }}">{{ url.original }}</a></li>
     </ul>
-    <img class="img-thumbnail mt-2" alt="QR Code to Short Url" src="{{ url('urls.qrcode', {'code':url.code} )}}"/>
+    <img class="img-thumbnail mt-2" alt="QR Code to Short URL" src="{{ url('urls.qrcode', {'code':url.code} )}}"/>
 </section>
 {% endblock %}

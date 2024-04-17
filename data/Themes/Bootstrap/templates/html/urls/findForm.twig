@@ -102,20 +102,21 @@
                     {{ url.title }}
                 {% else %}
                     <small>no title</small>
-                {% endif %}
+                {% endif %}   
             </h2>
                 <small><strong>Updated:</strong> {{ url.updated.format('n/d/Y') }}</small>
             </div>
             <div class="card-body">
+                
                 <ul class="list-unstyled">
                     <li><small><strong class="me-2">Short URL:</strong> <a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></small></li>
                     <li><small><strong class="me-2">Destination URL:</strong> <a class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{{ url.original }}">{{ url.original }}</a></small></li>
                 </ul>
-                <ul class="list-inline"> 
-                    <li class="list-inline-item"><small><strong>Created:</strong> {{ url.created.format('n/d/Y') }}</small></li>
-                    <li class="list-inline-item"><small><strong>User:</strong> {{ url.username }}</small></li>
-                    <li class="list-inline-item"><small><strong>Hits:</strong> {{ url.hits }}</small></li>
-                    <li class="list-inline-item"><a class="btn btn-primary btn-sm" href="{{ uri }}"><i class="bi bi-info-circle me-1" aria-label="More Information"></i>Info</a></li>
+                <ul class="list-group list-group-horizontal-sm"> 
+                    <li class="list-group-item"><small><strong>Created:</strong> {{ url.created.format('n/d/Y') }}</small></li>
+                    <li class="list-group-item"><small><strong>User:</strong> {{ url.username }}</small></li>
+                    <li class="list-group-item"><small><strong>Hits:</strong> {{ url.hits }}</small></li>
+                    <li class="list-group-item"> <a class="btn btn-primary btn-sm" href="{{ uri }}"><i class="bi bi-info-circle me-1" aria-label="URL Information"></i>Info</a></li>
                 </ul>
             </div>
         </article>

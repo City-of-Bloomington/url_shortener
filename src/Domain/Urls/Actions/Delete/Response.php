@@ -8,5 +8,5 @@ namespace Domain\Urls\Actions\Delete;
 
 class Response
 {
-    public function __construct(array $errors=[]) {}
+    public function __construct(public array $errors=[]) { }
 }

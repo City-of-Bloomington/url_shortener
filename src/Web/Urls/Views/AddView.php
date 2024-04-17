@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2023 City of Bloomington, Indiana
+ * @copyright 2024 City of Bloomington, Indiana
  * @license https://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
  */
 declare (strict_types=1);
@@ -23,10 +23,7 @@ class AddView extends View
         }
 
         $this->vars = [
-            'code'          => $request->code,
-            'original'      => $request->original,
-            'title'         => $request->title,
-            'preview'       => $request->preview,
+            'url'           => $request,
             'CODE_LENGTH'   => CODE_LENGTH,
             // 'CODE_PATTERN'  => Metadata::VALID_CHARACTER_CLASS
             'CODE_PATTERN'  => '.'

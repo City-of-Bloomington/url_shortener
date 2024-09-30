@@ -1,25 +1,26 @@
-<div>
-    <label for="title">Title</label>
-    <input name="title" id="title" value="{{ title }}" />
+<div class="mb-3">
+    <label class="form-label" for="title">Title</label>
+    <input name="title" id="title" value="{{ url.title }}" class="form-control"/>
 </div>
-<div>
-    <label  for="original" >Paste a long URL</label>
-    <textarea name="original" id="original" placeholder="Example: http://super-long-link.com/shorten-it">{{ original }}</textarea>
+<div class="mb-3">
+    <label class="form-label" for="original">Paste a long URL</label>
+    <textarea name="original" id="original" class="form-control" placeholder="Example: http://super-long-link.com/shorten-it">{{ url.original }}</textarea>
 </div>
-<div>
-    <label  for="code">Alias <em>(use only numbers and letters)</em></label>
-    https://bton.in/<input name="code" id="code" value="{{ code }}"
-                title="Must only contain numbers and letters"
-                pattern="{{ CODE_PATTERN ~ '{' ~ CODE_LENGTH ~ '}' }}"
-                size="{{ CODE_LENGTH }}"
-                minlength="{{ CODE_LENGTH }}"
-                maxlength="{{ CODE_LENGTH }}" />
+<div class="mb-3">
+    <label class="form-label" for="code">Alias</label>
+    <div class="input-group">
+        <span class="input-group-text" id="alias-input">https://bton.in/</span>
+        <input class="form-control" name="code" id="code" type="text" aria-describedby="alias-input alias-help" value="{{ url.code }}" title="Must only contain numbers and letters" pattern="{{ CODE_PATTERN ~ '{' ~ CODE_LENGTH ~ '}' }}" size="{{ CODE_LENGTH }}" minlength="{{ CODE_LENGTH }}" maxlength="{{ CODE_LENGTH }}"/>
+    </div>
+    <div class="form-text" id="alias-help">Use only numbers and letters.</div>
 </div>
-<div>
-    <input name="preview" id="preview" type="checkbox" value="1" {{ preview ? 'checked="true"' : '' }} />
-    <label  for="preview">Enable Destination Preview</label>
-    <ul>
-        <li><em>Unchecked: the URL or QR Code takes folks straight to the destination URL.</em></li>
-        <li><em>Checked: the URL or QR Code scanned takes folks to a Bton preview page that shows the original URL, the shortened URL, and QR Code.</em></li>
-    </ul>
+<div class="mb-3">
+    <input class="form-check-input" aria-describedby="preview-help" name="preview" id="preview" type="checkbox" value="1" {{ url.preview ? 'checked="true"' : '' }}/>
+    <label class="form-check-label" for="preview">Enable Destination Preview</label>
+    <div class="form-text" id="preview-help">
+        Unchecked: the URL or QR Code takes folks straight to the destination URL.
+    </div>
+    <div class="form-text" id="preview-help">
+        Checked: the URL or QR Code scanned takes folks to a Bton preview page that shows the original URL, the shortened URL, and QR Code.
+    </div>
 </div>

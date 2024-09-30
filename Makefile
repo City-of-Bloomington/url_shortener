@@ -9,8 +9,9 @@ REQS := sassc msgfmt
 K := $(foreach r, ${REQS}, $(if $(shell command -v ${r} 2> /dev/null), '', $(error "${r} not installed")))
 
 LANGUAGES := $(wildcard language/*/LC_MESSAGES)
-THEMES := $(shell ls -d data/Themes/*/)
 JAVASCRIPT := $(shell find public -name '*.js' ! -name '*-*.js')
+SASS := $(shell find . -name screen.scss -not -path '*/build/*')
+CSS := $(patsubst %.scss, %-$(VERSION).css, $(SASS))
 
 VERSION := $(shell cat VERSION | tr -d "[:space:]")
 COMMIT := $(shell git rev-parse --short HEAD)
@@ -19,14 +20,17 @@ default: clean compile package
 
 clean:
 	rm -Rf build/${APPNAME}*
-	for f in $(shell find public/css   -name '*-*.css'   ); do rm $$f; done
-	for f in $(shell find data/Themes  -name '*-*.css'   ); do rm $$f; done
 
-compile:
-	cd ${LANGUAGES} && msgfmt -cv *.po
-	cd public/css                 && sassc -t compact -m screen.scss screen-${VERSION}.css
-	for d in ${THEMES}; do sassc -t compact -m $${d}public/css/screen.scss $${d}public/css/screen-${VERSION}.css; done;
+	rm -Rf public/css/.sass-cache
+	for f in $(shell find public/css  -name 'screen-*.css*'); do rm $$f; done
+	for f in $(shell find public/js   -name '*-*.js'       ); do rm $$f; done
+
+compile: $(CSS)
 	for f in ${JAVASCRIPT}; do cp $$f $${f%.js}-${VERSION}.js; done
+	cd ${LANGUAGES} && msgfmt -cv *.po
+
+$(CSS): $(SASS)
+	cd $(@D) && sassc -t compact -m screen.scss screen-${VERSION}.css
 
 test:
 	vendor/phpunit/phpunit/phpunit -c src/Test/Unit.xml

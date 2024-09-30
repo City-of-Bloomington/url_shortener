@@ -22,16 +22,6 @@ define('BASE_URI' , '/blossom');
 define('BASE_HOST', $_SERVER['SERVER_NAME']);
 define('BASE_URL' , "$_SERVER[REQUEST_SCHEME]://".BASE_HOST.BASE_URI);
 
-/**
- * Specify the theme directory
- *
- * Remember to create a symbolic link in public/css to the theme CSS
- * that you declare here.
- *
- * A theme can consist of templates, blocks which will override core.
- * The current theme's screen.css will be included in the HTML head.
- */
-define('THEME', 'COB');
 define('QR_SIZE',   200);
 define('CODE_LENGTH', 5); // The short code length must be exactly this size
 

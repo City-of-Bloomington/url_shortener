@@ -21,98 +21,109 @@
  * @param string query
 #}
 {% extends "html/layouts/default.twig" %}
-{% import  "html/macros/pagination.twig" as pagination %}
-
+{% import "html/macros/pagination.twig" as pagination %}
 {% block content %}
-<section id="findForm">
-    <header>
-        <h2>Find URLs</h2>
-    </header>
-    <form method="get">
-        <fieldset>
-            <label for="query">Query</label>
-            <input name="query" id="query" value="{{ query }}" placeholder="Search original or code"/>
-            <button type="submit" class="search">Search</button>
-        </fieldset>
-        <details {% if code or original or username or preview or (preview is same as(false)) %}open="true"{% endif %}>
-            <summary>Advanced Search</summary>
-            <fieldset>
-                <div>
-                    <label  for="code">Code</label>
-                    <input name="code" id="code" value="{{ code }}"
-                                size="{{ CODE_LENGTH }}"
-                           maxlength="{{ CODE_LENGTH }}" />
-                </div>
-                <div>
-                    <label for="original">Destination Url</label>
-                    <input name="original" id="original" value="{{ original }}" />
-                </div>
-                <div>
-                    <label   for="username">Username</label>
-                    <select name="username" id="username" onchange="this.form.submit();">
-                        <option value=""></option>
-                    {% for u in usernames %}
-                        <option {% if u==username %}selected="selected"{% endif %}>{{ u }}</option>
-                    {% endfor %}
-                    </select>
-                </div>
-                <div>
-                    <label   for="preview">Preview</label>
-                    <select name="preview" onchange="this.form.submit();">
-                        <option value=""></option>
-                        <option value="1" {{ preview ? 'selected="true"' : '' }}>Yes</option>
-                        <option value="0" {{ preview is same as(false) ? 'selected="true"' : '' }}>No</option>
-                    </select>
-                </div>
-                <button type="submit" class="search">Search</button>
-                <a href="{{ uri('urls.index') }}" class="cancel button">Reset</a>
-            </fieldset>
-        </details>
-        <fieldset>
-            <div>
-                <label  for="sort">Sort</label>
-                <select name="sort" id="sort" onchange="this.form.submit();">
-                {% for s in sorts %}
-                    <option value="{{ s }}" {% if s==order %}selected="true"{% endif %}>
-                    {{ _('sort ' ~ s) }}
-                    </option>
-                {% endfor %}
-                </select>
-            </div>
-        </fieldset>
-    </form>
-    {# Pagination #}
+<section id="findForm" class="container">
+    <div class="card">
+        <div class="card-body">
+            <form method="get">
+                <fieldset>
+                    <legend><h1>Find URLs</h1></legend>
+                    <div class="input-group">
+                        <label class="input-group-text" for="query">Query</label>
+                        <input class="form-control" name="query" id="query" aria-describedby="query-help" value="{{ query }}" />
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                    <div class="form-text" id="query-help">Search by Alias or Destination Url</div>
+                    <details class="mb-3" {% if code or original or username or preview or (preview is same as(false)) %}open="true"{% endif %}>
+                        <summary class="btn btn-link">Advanced Search</summary>
+                        <div class="card">
+                            <div class="card-body">
+                                <fieldset>
+                                    <legend>Advanced Search</legend>
+                                    <div class="mb-3">
+                                        <label for="code" class="form-label">Alias</label>
+                                        <input name="code" id="code" value="{{ code }}" size="{{ CODE_LENGTH }}" maxlength="{{ CODE_LENGTH }}" class="form-control"/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="original" class="form-label">Destination Url</label>
+                                        <input name="original" id="original" value="{{ original }}" class="form-control"/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="username" class="form-label">Username</label>
+                                        <select name="username" id="username" class="form-select" onchange="this.form.submit();">
+                                            <option value="">--Choose a Username--</option>
+                                            {% for u in usernames %}
+                                                <option {% if u==username %}selected="selected"{% endif %}>{{ u }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="preview" class="form-label">Preview</label>
+                                        <select name="preview" id="preview" class="form-select" onchange="this.form.submit();">
+                                            <option value="">All</option>
+                                            <option value="1" {{ preview ? 'selected="true"' : '' }}>Yes</option>
+                                            <option value="0" {{ preview is same as(false) ? 'selected="true"' : '' }}>No</option>
+                                        </select>
+                                    </div>
+                                    <div class="d-grid gap-2 mx-auto">
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                        <a href="{{ uri('urls.index') }}" class="btn btn-secondary">Reset</a>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </details>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="sort">Sort</label>
+                        <select name="sort" id="sort" class="form-select" onchange="this.form.submit();">
+                            {% for s in sorts %}
+                                <option value="{{ s }}" {% if s==order %}selected="true"{% endif %}>
+                                    {{ _('sort ' ~ s) }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
     {% if total > itemsPerPage %}
         {{ pagination.pageLinks(total, itemsPerPage, currentPage) }}
     {% endif %}
-
     {% if urls %}
-    {% set sorturl      = current_url() %}
-    {% set current_sort = sorturl.__get('sort')|split(' ') %}
-    {# <p>Click alias to see URL details and QR code.</p> #}
-
-    {% for url in urls %}{% set uri = uri('urls.view', {'id':url.id}) %}
-    <fieldset>
-        <legend><a href="{{ uri('urls.view', {'id':url.id}) }}" class="info button">{{ url.code }}</a></legend>
-        <header>
-            <h2>{{ url.title }}</h2>
-            <h3 aria-label="destination url"><a href="{{ url.original }}">{{ url.original }}</a></h3>
-            <h3 aria-label="shortened url"><a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></h3>
-        </header>
-        <div>
-        	<strong>Created:</strong> {{ url.created.format('n/d/Y') }}
-            <strong>Updated:</strong> {{ url.updated.format('n/d/Y') }}
-            <strong>User:</strong>    {{ url.username }}
-            <strong>Hits:</strong>    {{ url.hits }}
-        </div>
-    </fieldset>
-    {% endfor %}
-
+        {% for url in urls %}
+        {% set uri = uri('urls.view', {'id':url.id}) %}
+        <article class="card mb-3">
+            <div class="card-header d-flex">
+            <h2 class="flex-grow-1 fs-3 text">
+                {% if url.title is defined and url.title is not empty %}
+                    {{ url.title }}
+                {% else %}
+                    <small>no title</small>
+                {% endif %}   
+            </h2>
+                <small><strong>Updated:</strong> {{ url.updated.format('n/d/Y') }}</small>
+            </div>
+            <div class="card-body">
+                
+                <ul class="list-unstyled">
+                    <li><small><strong class="me-2">Short URL:</strong> <a href="{{ url('urls.redirect', {'code':url.code}) }}">{{ url('urls.redirect', {'code':url.code}) }}</a></small></li>
+                    <li><small><strong class="me-2">Destination URL:</strong> <a class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{{ url.original }}">{{ url.original }}</a></small></li>
+                </ul>
+                <ul class="list-group list-group-horizontal-sm"> 
+                    <li class="list-group-item"><small><strong>Created:</strong> {{ url.created.format('n/d/Y') }}</small></li>
+                    <li class="list-group-item"><small><strong>User:</strong> {{ url.username }}</small></li>
+                    <li class="list-group-item"><small><strong>Hits:</strong> {{ url.hits }}</small></li>
+                    <li class="list-group-item"> <a class="btn btn-primary btn-sm" href="{{ uri }}"><i class="bi bi-info-circle me-1" aria-label="URL Information"></i>Info</a></li>
+                </ul>
+            </div>
+        </article>
+        {% endfor %}
     {% else %}
         <p>No URLs found.</p>
     {% endif %}
-
-    {# Pagination #}
     {% if total > itemsPerPage %}
         {{ pagination.pageLinks(total, itemsPerPage, currentPage) }}
     {% endif %}

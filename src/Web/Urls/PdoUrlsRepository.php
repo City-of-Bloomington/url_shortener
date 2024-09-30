@@ -94,7 +94,8 @@ class PdoUrlsRepository extends PdoRepository implements UrlsRepository
             'original' => $url->original,
             'title'    => $url->title,
             'username' => $url->username,
-            'preview'  => $url->preview ? 1 : null
+            'preview'  => $url->preview ? 1 : null,
+            'updated'  => date('Y-m-d H:i:s')
         ];
         return parent::saveToTable($data, self::TABLE);
     }

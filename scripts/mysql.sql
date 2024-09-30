@@ -6,6 +6,6 @@ create table urls (
 	preview   boolean,
 	original  text         not null,
 	created   datetime     not null default CURRENT_TIMESTAMP,
-	updated   timestamp    not null default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+	updated   timestamp    not null default CURRENT_TIMESTAMP,
 	hits      int          not null default 0
 );

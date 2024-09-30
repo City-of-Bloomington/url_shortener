@@ -1,22 +1,19 @@
 <?php
 /**
- * @copyright 2023 City of Bloomington, Indiana
+ * @copyright 2023-2024 City of Bloomington, Indiana
  * @license https://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
  */
 declare (strict_types=1);
-namespace Web\Urls\Controllers;
-
-use Web\Controller;
-use Web\View;
+namespace Web\Urls\QrCode;
 
 use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
 
-class QrCodeController extends Controller
+class Controller extends \Web\Controller
 {
-    public function __invoke(array $params): View
+    public function __invoke(array $params): \Web\View
     {
         $repo = $this->di->get('Domain\Urls\DataStorage\UrlsRepository');
         try {
@@ -24,9 +21,9 @@ class QrCodeController extends Controller
             $renderer = new ImageRenderer(new RendererStyle(QR_SIZE), new ImagickImageBackEnd());
             $writer   = new Writer($renderer);
 
-            $writer->writeFile(View::generateUrl('urls.redirect', ['code'=>$url->code]),
+            $writer->writeFile(\Web\View::generateUrl('urls.redirect', ['code'=>$url->code]),
                                SITE_HOME."/qrcodes/{$url->code}.png");
-            header('Location: '.View::generateUrl('urls.qrcode', ['code'=>$url->code]));
+            header('Location: '.\Web\View::generateUrl('urls.qrcode', ['code'=>$url->code]));
             exit();
         }
         catch (\Exception $e) {

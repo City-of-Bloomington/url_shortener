@@ -32,18 +32,6 @@
         config_file: "{{ mysql_defaults_extra_file }}"
       no_log: "True"
 
-    - name: "Extract release"
-      unarchive:
-        src: "{{ url_shortener_archive_path }}"
-        dest: "/usr/local/src"
-      register: "release"
-
-    - name: "Remove old release"
-      file:
-        path: "{{ url_shortener_install_path }}"
-        state: "absent"
-      when: "release.changed"
-
     - name: "Create directories"
       file:
         path: "{{ item }}"
@@ -55,15 +43,16 @@
         - "{{ url_shortener_install_path }}"
         - "{{ url_shortener_backup_path  }}"
         - "{{ url_shortener_site_home    }}"
+        - "{{ url_shortener_site_home    }}/sessions"
+        - "{{ url_shortener_site_home    }}/qrcodes"
         - "/var/log/cron"
 
-    - name: "Install release"
-      command: "rsync -rl /usr/local/src/url_shortener/ {{ url_shortener_install_path }}/"
-      when: "release.changed"
-
-    - name: "Update site_home"
-      command: "rsync -rl /usr/local/src/url_shortener/data/ {{ url_shortener_site_home }}/"
-      when: "release.changed"
+    - name: "Extract release"
+      ansible.builtin.unarchive:
+        src:  "{{ url_shortener_archive_path }}"
+        dest: "{{ url_shortener_install_path }}"
+        owner: 'www-data'
+        group: 'staff'
 
     - name: "Apache configuration"
       template:
@@ -77,30 +66,18 @@
         dest: "/etc/cron.daily/backup.d/url_shortener"
         mode: "0755"
 
-    - name: "Configure backup credentials"
-      template:
-        src:  "backup.cnf"
-        dest: "/etc/cron.daily/backup.d/url_shortener.cnf"
-        mode: "0400"
-
     - name: "Install site_config"
       template:
         src:  "site_config.j2"
         dest: "{{ url_shortener_site_home }}/site_config.php"
 
-    - name: "Update directory ownership"
-      command: "chown -R www-data:staff {{ item }}"
-      args:
-        warn: "no"
-      with_items:
-        - "{{ url_shortener_install_path }}"
-        - "{{ url_shortener_backup_path  }}"
-        - "{{ url_shortener_site_home    }}"
-
-    - name: "Update directory permission"
-      command: "chmod -R u=rwX,g=rwX,o=rX {{ item }}"
-      args:
-        warn: "no"
+    - name: 'Update directory permissions'
+      ansible.builtin.file:
+        path: "{{ item }}"
+        recurse: 'yes'
+        mode:  'u=rwX,g=rwX,o=rX'
+        owner: 'www-data'
+        group: 'staff'
       with_items:
         - "{{ url_shortener_install_path }}"
         - "{{ url_shortener_backup_path  }}"

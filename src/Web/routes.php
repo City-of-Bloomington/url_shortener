@@ -22,12 +22,12 @@ $map->attach('login.', '/login', function ($r) {
 $map->get('login.logout',  '/logout', Web\Authentication\Controllers\LogoutController::class);
 
 $map->attach('urls.', '/urls', function ($r) {
-    $r->get('add',    '/add'        , Web\Urls\Controllers\AddController::class)->allows(['POST']);
-    $r->get('update', '/{id}/update', Web\Urls\Controllers\UpdateController::class)->allows(['POST']);
-    $r->get('delete', '/{id}/delete', Web\Urls\Controllers\DeleteController::class);
-    $r->get('view',   '/{id}',        Web\Urls\Controllers\ViewController::class);
-    $r->get('index',  ''            , Web\Urls\Controllers\ListController::class);
+    $r->get('add',    '/add'        , Web\Urls\Add\Controller::class)->allows(['POST']);
+    $r->get('update', '/{id}/update', Web\Urls\Update\Controller::class)->allows(['POST']);
+    $r->get('delete', '/{id}/delete', Web\Urls\Delete\Controller::class);
+    $r->get('view',   '/{id}',        Web\Urls\View\Controller::class);
+    $r->get('index',  ''            , Web\Urls\List\Controller::class);
 });
 
-$map->get('urls.redirect', '/{code}', Web\Urls\Controllers\RedirectController::class);
-$map->get('urls.qrcode',   '/qrcodes/{code}.png', Web\Urls\Controllers\QrCodeController::class);
+$map->get('urls.redirect', '/{code}', Web\Urls\Redirect\Controller::class);
+$map->get('urls.qrcode',   '/qrcodes/{code}.png', Web\Urls\QrCode\Controller::class);

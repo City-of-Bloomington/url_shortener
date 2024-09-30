@@ -1,22 +1,18 @@
 <?php
 /**
- * @copyright 2019 City of Bloomington, Indiana
+ * @copyright 2019-2024 City of Bloomington, Indiana
  * @license http://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
  */
 declare (strict_types=1);
 
-namespace Web\Urls\Controllers;
+namespace Web\Urls\Update;
 
 use Domain\Urls\Actions\Update\Request;
 use Domain\Urls\Actions\Update\Response;
-use Web\Urls\Views\UpdateView;
-use Web\Controller;
-use Web\View;
 
-
-class UpdateController extends Controller
+class Controller extends \Web\Controller
 {
-    public function __invoke(array $params): View
+    public function __invoke(array $params): \Web\View
     {
         if (isset($params['id'])) {
             $info = $this->di->get('Domain\Urls\Actions\Info\Command');
@@ -27,21 +23,19 @@ class UpdateController extends Controller
             $req = new Request((array)$ir->url);
         }
 
-
         if (isset($_POST['code'])) {
             $update = $this->di->get('Domain\Urls\Actions\Update\Command');
             $req    = new Request($_POST);
             $req->username = $_SESSION['USER']->username;
             $res    = $update($req);
             if (!$res->errors) {
-                header("Location: ".View::generateUrl('urls.view', ['id'=>$req->id]));
+                header("Location: ".\Web\View::generateUrl('urls.view', ['id'=>$req->id]));
             }
             else {
                 $_SESSION['errorMessages'] = $res->errors;
             }
         }
 
-        return new UpdateView($req, $res ?? null);
+        return new View($req, $res ?? null);
     }
 }
-

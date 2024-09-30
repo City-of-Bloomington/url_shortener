@@ -1,20 +1,16 @@
 <?php
 /**
- * @copyright 2023 City of Bloomington, Indiana
+ * @copyright 2023-2024 City of Bloomington, Indiana
  * @license https://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
  */
 declare (strict_types=1);
-namespace Web\Urls\Controllers;
+namespace Web\Urls\Add;
 
 use Domain\Urls\Actions\Add\Request;
 
-use Web\Urls\Views\AddView;
-use Web\Controller;
-use Web\View;
-
-class AddController extends Controller
+class Controller extends \Web\Controller
 {
-    public function __invoke(array $params): View
+    public function __invoke(array $params): \Web\View
     {
         if (isset($_POST['code'])) {
             $add = $this->di->get('Domain\Urls\Actions\Add\Command');
@@ -23,7 +19,7 @@ class AddController extends Controller
             $res = $add($req);
 
             if (!$res->errors) {
-                header('Location: '.View::generateUrl('urls.view', ['id'=>$res->id]));
+                header('Location: '.\Web\View::generateUrl('urls.view', ['id'=>$res->id]));
                 exit();
             }
             else {
@@ -35,7 +31,7 @@ class AddController extends Controller
             $req->code = self::generateCode();
         }
 
-        return new AddView($req, $res ?? null);
+        return new View($req, $res ?? null);
     }
 
     private static function generateCode(): string

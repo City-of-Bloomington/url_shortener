@@ -1,20 +1,19 @@
 <?php
 /**
- * @copyright 2024 City of Bloomington, Indiana
- * @license https://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
+ * @copyright 2019-2024 City of Bloomington, Indiana
+ * @license http://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
  */
 declare (strict_types=1);
-namespace Web\Urls\Views;
 
-use Domain\Urls\Actions\Add\Request;
-use Domain\Urls\Actions\Add\Response;
+namespace Web\Urls\Update;
+
+use Domain\Urls\Actions\Update\Request;
+use Domain\Urls\Actions\Update\Response;
 use Domain\Urls\Metadata;
-use Web\View;
 
-class AddView extends View
+class View extends \Web\View
 {
-    public function __construct(Request  $request,
-                               ?Response $response=null)
+    public function __construct(Request $request, ?Response $response=null)
     {
         parent::__construct();
 
@@ -32,6 +31,6 @@ class AddView extends View
 
     public function render(): string
     {
-        return $this->twig->render('html/urls/addForm.twig', $this->vars);
+        return $this->twig->render("{$this->outputFormat}/urls/updateForm.twig", $this->vars);
     }
 }

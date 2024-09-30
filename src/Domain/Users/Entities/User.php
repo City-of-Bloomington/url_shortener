@@ -9,7 +9,7 @@ namespace Domain\Users\Entities;
 class User
 {
     public $id;
-    public $displayname;
+    public $displayName;
     public $firstname;
     public $lastname;
     public $email;

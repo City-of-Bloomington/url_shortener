@@ -1,16 +1,16 @@
 {
     "require": {
-        "php": ">=8",
+        "php": ">=8.1",
         "aura/di":                         "@stable",
         "aura/router":                     "@stable",
         "aura/sqlquery":                   "~2",
         "apereo/phpcas":                   "@stable",
         "bacon/bacon-qr-code":             "@stable",
         "guzzlehttp/guzzle":               "@stable",
-        "graylog2/gelf-php":               "@stable",
+        "graylog2/gelf-php":               "~1",
         "jumbojett/openid-connect-php":    "@stable",
         "laminas/laminas-log":             "@stable",
-        "laminas/laminas-permissions-acl": "@stable",
+        "laminas/laminas-permissions-acl": "~2.16",
         "twig/twig":                       "@stable"
     },
     "require-dev": {

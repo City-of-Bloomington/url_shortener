@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2023 City of Bloomington, Indiana
+ * @copyright 2023-2024 City of Bloomington, Indiana
  * @license https://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
  */
 declare (strict_types=1);
@@ -43,7 +43,8 @@ class Command
         if (!$req->original) { $errors[] = 'missingOriginal'; }
         if (!$req->username) { $errors[] = 'missingUsername'; }
 
-        if (strlen($req->code) !== CODE_LENGTH) { $errors[] = 'invalidCodeLength'; }
+        $l = strlen($req->code);
+        if ($l < CODE_MIN or $l > CODE_MAX) { $errors[] = 'invalidCodeLength'; }
 
         // if (preg_match("/[^{Metadata::VALID_CHARACTER_CLASS}]+/", $req->code)) {
         //     $errors[] = 'invalidCodeCharacters';

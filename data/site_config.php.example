@@ -23,7 +23,9 @@ define('BASE_HOST', $_SERVER['SERVER_NAME']);
 define('BASE_URL' , "$_SERVER[REQUEST_SCHEME]://".BASE_HOST.BASE_URI);
 
 define('QR_SIZE',   200);
-define('CODE_LENGTH', 5); // The short code length must be exactly this size
+define('CODE_LENGTH', 5); // The length of generated codes
+define('CODE_MIN',    3); // Minimum code length for human entered codes
+define('CODE_MAX',    8); // Maximum code length for human entered codes
 
 /**
  * Database Setup

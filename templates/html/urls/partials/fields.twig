@@ -1,3 +1,12 @@
+{#
+ * @copyright 2024 City of Bloomington, Indiana
+ * @license https://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
+ *
+ * @param Domain\Urls\Entities\Url url
+ * @param int    CODE_MIN      Minimum code length for human entered codes
+ * @param int    CODE_MAX      Maximum code length for human entered codes
+ * @param string pattern       Valid regex pattern for code input
+#}
 <div class="mb-3">
     <label class="form-label" for="title">Title</label>
     <input name="title" id="title" value="{{ url.title }}" class="form-control"/>
@@ -9,8 +18,12 @@
 <div class="mb-3">
     <label class="form-label" for="code">Alias</label>
     <div class="input-group">
-        <span class="input-group-text" id="alias-input">https://bton.in/</span>
-        <input class="form-control" name="code" id="code" type="text" aria-describedby="alias-input alias-help" value="{{ url.code }}" title="Must only contain numbers and letters" pattern="{{ CODE_PATTERN ~ '{' ~ CODE_LENGTH ~ '}' }}" size="{{ CODE_LENGTH }}" minlength="{{ CODE_LENGTH }}" maxlength="{{ CODE_LENGTH }}"/>
+        <span class="input-group-text" id="alias-input">{{ BASE_URL }}/</span>
+        <input name="code" id="code" type="text" value="{{ url.code }}"
+            title="Must only contain numbers and letters"
+            size="{{ CODE_MAX }}" minlength="{{ CODE_MIN }}" maxlength="{{ CODE_MAX }}"
+            pattern="{{ pattern }}"
+            class="form-control" aria-describedby="alias-input alias-help"    />
     </div>
     <div class="form-text" id="alias-help">Use only numbers and letters.</div>
 </div>

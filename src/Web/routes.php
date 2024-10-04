@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2023 City of Bloomington, Indiana
+ * @copyright 2023-2024 City of Bloomington, Indiana
  * @license http://www.gnu.org/licenses/agpl.txt GNU/AGPL, see LICENSE
  * @see https://auraphp.com/packages/3.x/Router
  */
@@ -9,7 +9,7 @@ declare (strict_types=1);
 $ROUTES = new Aura\Router\RouterContainer(BASE_URI=='/' ? null : BASE_URI);
 $map    = $ROUTES->getMap();
 
-$map->tokens(['id' => '\d+', 'code' => '[^/]{5}']);
+$map->tokens(['id' => '\d+', 'code' => sprintf('[^/]{%d,%d}', CODE_MIN, CODE_MAX)]);
 
 $map->get('home.index',    '/'      , Web\HomeController::class);
 

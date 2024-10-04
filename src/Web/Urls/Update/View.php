@@ -24,8 +24,10 @@ class View extends \Web\View
         $this->vars = [
             'url'           => $request,
             'CODE_LENGTH'   => CODE_LENGTH,
+            'CODE_MIN'    => CODE_MIN,
+            'CODE_MAX'    => CODE_MAX,
             // 'CODE_PATTERN'  => Metadata::VALID_CHARACTER_CLASS
-            'CODE_PATTERN'  => '.'
+            'pattern'     => sprintf('.{%d,%d}', CODE_MIN, CODE_MAX)
         ];
     }
 

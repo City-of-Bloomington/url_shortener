@@ -26,8 +26,7 @@ class View extends \Web\View
             'CODE_LENGTH' => CODE_LENGTH,
             'CODE_MIN'    => CODE_MIN,
             'CODE_MAX'    => CODE_MAX,
-            // 'CODE_PATTERN'  => Metadata::VALID_CHARACTER_CLASS
-            'pattern'     => sprintf('.{%d,%d}', CODE_MIN, CODE_MAX)
+            'pattern'     => sprintf('[^%s]{%d,%d}', Metadata::VALID_CHARACTER_CLASS, CODE_MIN, CODE_MAX)
         ];
     }
 

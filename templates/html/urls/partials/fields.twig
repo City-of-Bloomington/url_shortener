@@ -13,7 +13,8 @@
 </div>
 <div class="mb-3">
     <label class="form-label" for="original">Paste a long URL</label>
-    <textarea name="original" id="original" class="form-control" placeholder="Example: http://super-long-link.com/shorten-it">{{ url.original }}</textarea>
+    <textarea name="original" id="original" class="form-control" required="true"
+        placeholder="Example: http://super-long-link.com/shorten-it">{{ url.original }}</textarea>
 </div>
 <div class="mb-3">
     <label class="form-label" for="code">Alias</label>
@@ -22,7 +23,6 @@
         <input name="code" id="code" type="text" value="{{ url.code }}"
             title="Must only contain numbers and letters"
             size="{{ CODE_MAX }}" minlength="{{ CODE_MIN }}" maxlength="{{ CODE_MAX }}"
-            pattern="{{ pattern }}"
             class="form-control" aria-describedby="alias-input alias-help"    />
     </div>
     <div class="form-text" id="alias-help">Use only numbers and letters.</div>

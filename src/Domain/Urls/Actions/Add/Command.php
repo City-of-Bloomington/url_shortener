@@ -46,10 +46,8 @@ class Command
         $l = strlen($req->code);
         if ($l < CODE_MIN or $l > CODE_MAX) { $errors[] = 'invalidCodeLength'; }
 
-        // if (preg_match("/[^{Metadata::VALID_CHARACTER_CLASS}]+/", $req->code)) {
-        //     $errors[] = 'invalidCodeCharacters';
-        // }
-        if (preg_match("/[.*]+/", $req->code)) {
+        $pattern = sprintf('/[^%s]/', Metadata::VALID_CHARACTER_CLASS);
+        if (preg_match($pattern, $req->code)) {
             $errors[] = 'invalidCodeCharacters';
         }
 

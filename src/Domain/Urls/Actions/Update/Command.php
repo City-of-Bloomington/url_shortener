@@ -45,10 +45,11 @@ class Command
         if (!$req->original) { $errors[] = 'missingOriginal'; }
         if (!$req->username) { $errors[] = 'missingUsername'; }
 
-        // if (preg_match("/[^{Metadata::VALID_CHARACTER_CLASS}]+/", $req->code)) {
-        //     $errors[] = 'invalidCodeCharacters';
-        // }
-        if (preg_match("/[.*]+/", $req->code)) {
+        $l = strlen($req->code);
+        if ($l < CODE_MIN or $l > CODE_MAX) { $errors[] = 'invalidCodeLength'; }
+
+        $pattern = sprintf('/[^%s]/', Metadata::VALID_CHARACTER_CLASS);
+        if (preg_match($pattern, $req->code)) {
             $errors[] = 'invalidCodeCharacters';
         }
         return $errors;

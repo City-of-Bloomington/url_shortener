@@ -13,7 +13,7 @@ $startTime = microtime(true);
 
 include '../src/Web/bootstrap.php';
 ini_set('session.save_path', SITE_HOME.'/sessions');
-ini_set('session.cookie_path', BASE_URI);
+ini_set('session.cookie_path', !empty(BASE_URI) ? BASE_URI : '/');
 session_start();
 
 $matcher = $ROUTES->getMatcher();
